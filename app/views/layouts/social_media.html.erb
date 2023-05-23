@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Social Media</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%# <meta name="turbolinks-visit-control" content="reload"> %>
+  </head>
+
+  <body id="sns-body">
+    <%= render 'social_media/header' %>
+    <%= yield %>
+    <%= render 'social_media/footer' %>
+    <%= javascript_pack_tag 'common' %>
+  </body>
+</html>

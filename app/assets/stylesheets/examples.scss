@@ -1,0 +1,322 @@
+@charset "utf-8";
+@import "swiper/swiper-bundle.min.css";
+
+.ex-hd-side {
+    background-color: lightcoral;
+}
+
+// lifecost
+#cost-con {
+    width: 100%;
+}
+
+#lifecost_total td, #cost {
+    font-weight: bold;
+    color: red;
+}
+
+#income td {
+    font-weight: bold;
+    color: orange;
+}
+
+.gene_cost_input, .basic_month {
+    width: 100px;
+    text-align: center;
+}
+
+#my_year_total, .lifeincome {
+    font-weight: bold;
+    color: orange;
+}
+
+#basic_total {
+    font-weight: bold;
+    color: palevioletred;
+}
+
+#simulate-box {
+    width: 800px;
+    margin: auto;
+    background-color: lightgray;
+    padding: 5px;
+}
+
+#simulate-box h3 {
+    color: green;
+}
+
+.option {
+    display: inline-block;
+    min-width: 100px;
+    height: 30px;
+    background-color: #fff;
+    margin: 5px;
+}
+
+
+
+
+
+
+
+
+// manga
+#manga-con {
+    margin: 100px auto 0;
+    padding-bottom: 70px;
+}
+
+#manga-theme {
+    padding: 0;
+}
+
+#manga-genres {
+    display: flex;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    padding: 0;
+}
+
+#manga-genres li {
+    width: 100%;
+    cursor: pointer;
+}
+
+#manga-article {
+    margin: 30px auto;
+}
+
+#manga-genres li:hover {
+    background-color: darkgray;
+    transition: 0.5s;
+}
+
+.manga {
+    aspect-ratio: 16/9 !important;
+}
+
+
+
+
+
+
+
+
+
+
+// 英検１級
+#e-g1-back {
+    background-image: url("/image/castle.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#e-g1-con {
+    background-color: rgba(0, 0, 0, 0.6);
+    margin: 70px auto 0;
+    padding-bottom: 40px;
+}
+
+#title, #e-g1-con h1, #e-g1-con h2, #e-g1-con p {
+    color: #fff;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#quiz {
+    font-size: 40px;
+}
+
+#input_answer {
+    text-align: center;
+    width: auto;
+    display: none;
+}
+
+#voice, #mistakes_confirm {
+    display: block;
+    width: 200px;
+}
+
+#word {
+    display: none;
+}
+
+
+.quiz_button {
+    background-color:firebrick;
+    margin:0.5em auto;
+    width:50%;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.voiceButton, #nextButton, .changeEitangoButton {
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+}
+
+.quiz_button:hover {
+    background-color: rgb(228, 59, 59);
+}
+
+ul {
+    padding-inline-start: 0px;
+}
+
+.categoryButton {
+    list-style-type: none;
+    text-align: center;
+    height: 25px;
+    width: 50%;
+    padding: 0;
+    margin: auto;
+    background-color: teal;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.categoryButton:hover {
+    background-color: rgb(41, 199, 199);
+}
+
+#quiz_container p {
+    display: inline;
+}
+
+#btn_audio{
+    display: none;
+}
+
+#mistake_back {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    z-index: 1;
+    cursor: pointer;
+}
+
+#no_mistakes {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    font-family: 'Times New Roman', Times, serif;
+    color: #fff;
+    font-size: 20px;
+    display: none;
+}
+
+#mistake_lists {
+    z-index: 2;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    background-color: firebrick;
+    color: #fff;
+    height: 500px;
+    width: 500px;
+    overflow: scroll;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#meaning {
+    display: none;
+}
+
+
+
+
+// media
+#media-main {
+    background-image: url("/image/media.jpeg");
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+.media-wrapper p {
+    white-space: unset !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis !important;
+}
+
+.current {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    color: indianred;
+}
+
+.next a, .prev a {
+    margin: 15px;
+}
+
+
+
+
+@media screen and (max-width:750px) {
+
+    //english_grade1
+    #e-g1-back {
+        background-repeat: repeat;
+        background-size: contain;
+    }
+
+    #e-g1-con {
+        width: 100%;
+        padding: 40px 0;
+    }
+
+    #e-g1-con h1 {
+        font-size: 18px;
+    }
+
+    #e-g1-con h2 {
+        font-size: 16px;
+    }
+
+    #quiz {
+        font-size: 36px !important;
+    }
+
+    #mistake_lists {
+        height: 100vw;
+        width: 100%;
+    }
+
+    .voiceButton {
+        width: 100px !important;
+    }
+
+    .quiz_button {
+        width: 80%;
+    }
+
+    .changeEitangoButton {
+        color: #000;
+        background-color: lightgray;
+    }
+
+    
+    // manga
+    .manga {
+        aspect-ratio: 3/4 !important;
+    }
+
+    #manga-genres li {
+        font-size: 14px;
+        border: 1px solid #555;
+    }
+}

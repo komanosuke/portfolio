@@ -1,0 +1,2 @@
+module DoraemonHelper
+end

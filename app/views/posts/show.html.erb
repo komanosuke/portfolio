@@ -1,0 +1,17 @@
+<main>
+    <div class="side-bar pc">
+        <%= render 'social_media/sidebar' %>
+    </div>
+
+    <div class="contents" id="sns-contents">
+        <div class="post-name">
+            <%= image_tag @post.user.image.url, class:"sns-thumb", alt:"" %>
+            <p><%= @post.user.name %></p>
+            <p><%= @post.user.username %></p>
+        </div>
+        <p><%= @post.content %></p>
+        <% if @post.image.to_s != 'noimage.jpg' %>
+            <%= image_tag @post.image.url, class:"sns-post-img", alt:"" %>
+        <% end %>
+    </div>
+</main>

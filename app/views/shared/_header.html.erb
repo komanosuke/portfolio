@@ -1,0 +1,20 @@
+<header id="top-header">
+	<div id="hd-flex">
+		<a href="/">
+			<div class="hd-side pf-side">home</div>
+		</a>
+		<a href="/" class="pf-hd-center" id="hd-center">
+			<div>Portfolio</div>
+		</a>
+		<% if admin_logged_in? %>
+			<%= link_to "Log out", admin_logout_path, method: :delete, class:"hd-side" %>
+		<% else %>
+			<% if logged_in? %>
+				<%= link_to "Log out", logout_path, method: :delete, class:"hd-side pf-side" %>
+			<% else%>
+				<a href="/login"><div class="hd-side pf-side">log in</div></a>
+			<% end %>
+		<% end %>
+	</div>
+</header>
+	  

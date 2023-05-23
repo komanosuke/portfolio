@@ -1,0 +1,2 @@
+module WorkCatsHelper
+end

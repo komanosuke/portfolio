@@ -1,0 +1,119 @@
+
+<div class="container">
+
+    <div class="brand-theme">Anti Nihilism Fashion Brand</div>
+
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><%= image_tag "/image/mid_main1.png", class:"main-photo", alt:"" %></div>
+            <div class="swiper-slide"><%= image_tag "/image/mid_main2.png", class:"main-photo", alt:"" %></div>
+            <div class="swiper-slide"><%= image_tag "/image/mid_main3.png", class:"main-photo", alt:"" %></div>
+            <div class="swiper-slide"><%= image_tag "/image/mid_main4.png", class:"main-photo", alt:"" %></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+
+    <div id="cxxsew-contents">
+        <div class="article">
+            <h1>- CxxSewの挑戦 -</h1>
+            <div class="article-flex">
+                <div class="article-p-wrapper">
+                    <p>石川県金沢市出身のデザイナーたちが立ち上げたCxxSew（シーソウ）は、「ニヒリズムの脱却」をテーマとしたファッションブランドです。</p>
+                    <p>ブランド名は、現代衣服の意義を表しています。思いや考え（=C[Concepts]）がかけ合わさり（=xx）、縫い合わさる（=Sew）ことで衣服は作られているという意味です。</p>
+                    <p>このような「意思表示としての衣服のあり方」が注目されて久しいですが、CxxSewでは、特に「ニヒリズムの脱却」、つまり「目的ある人生」を実現するための衣服を目指しています。</p>
+                </div>
+                <div class="article-img-wrapper">
+                    <%= image_tag "/image/mid_rainbow.png", alt:"" %>
+                </div>
+            </div>
+            <h2>- 人間疎外とニヒリズム -</h2>
+            <div class="article-flex">
+                <div class="article-p-wrapper" id="child2">
+                    <p>
+                        あなたは社会が冷たくなったと感じたことはないでしょうか。自分は大切にされていないと感じたことはないでしょうか。
+                        失敗への恐れや無力感から、挑戦を諦めたことはないでしょうか。
+                    </p>
+                    <p>現代社会では、科学技術によるシステム化や経済合理性の追求により、たびたび「人間疎外」が指摘されています。</p>
+                    <p>
+                        最近では人工知能の発展によって、機械が人間の能力のほとんどを代替できるようになる未来が見えてきました。
+                        歴史上比類ないほど豊かな社会が実現しそうである一方で、
+                        「がんばっても報われないし、人生はただの暇つぶしだ」と考えるニヒリズム的な思想が広がっているようです。
+                    </p>
+                </div>
+                <div class="article-img-wrapper" id="child1">
+                    <%= image_tag "/image/mid_orange_dress.png", alt:"" %>
+                </div>
+            </div>
+            <h2>- ニヒリズムの脱却 -</h2>
+            <p>
+                哲学者ニーチェは、強い意志をもった「超人」となることでニヒリズムから脱却できると説きましたが、人間は弱いものです。
+                一人では寂しく、気力も長くはもちません。現実に心を折られたり、目先の欲にかられて目的を忘れてしまったりすることもあるでしょう。
+            </p>
+            <p>
+                現状を打開すべく、私たちは衣服による「ニヒリズムの脱却」に挑戦しています。
+                いつも私たちのそばにある衣服は、大切なメッセージを忘れないようにしてくれます。
+                CxxSewの思いとあなたの思いをかけ合わせて衣服にすれば、常に「人生の目的」を身にまとうことができます。
+            </p>
+            <p>
+                他人より美しくなくても、強くなくても、有能でなくても大丈夫です。CxxSewはあなたを応援しています。
+                ニヒリズムを乗り越えようと共に歩んでくれる仲間が一人でも増えるなら、これ以上の喜びはありません。
+            </p>
+            <div class="btn"><a href="/concept">Know More</a></div>
+            <div>
+                <%= image_tag "/image/mid_main5.png", class:"large-img", alt:"" %>
+            </div>
+        </div>
+        
+
+        <h2>- Works -</h2>
+        <p class="left">全ての作品にCxxSewの思いが込められていますので、ぜひご覧ください。作品は本サイトでご注文いただけます。</p>
+        <p class="subtext">◆のついているものは、一点物のハンドメイド作品です。</p>
+        <div class="works">
+            <% @works.each do |work| %>
+            <div class="work">
+                <a href="/works/<%= work.id %>">
+                    <%= image_tag work.image.url, alt:"" %>
+                    <div>
+                        <p>title: <%= work.title %>
+                        <% if work.onlyone == '1' %>
+                        ◆
+                        <% end %>
+                        </p>
+                        <p>price: ￥<%= work.price.to_s(:delimited) %></p>
+                    </div>
+                </a>
+            </div>
+            <% end %>
+        </div>
+        <div class="btn"><a href="/works">View More</a></div>
+
+        
+
+        <h2>- Site Map -</h2>
+        <p class="left">
+            ご興味をもっていただけましたら、ぜひ以下のリンクから本サイト内を探検してみてください。
+        </p>
+        <div class="explain">
+            <div class="rect-wrapper">
+                <div class="rect-row">
+                    <a href="/concept"><p>CONCEPT</p></a>
+                    <a href="/news"><p>NEWS</p></a>
+                </div>
+                <div class="rect-row">
+                    <a href="/works"><p>WORKS</p></a>
+                    <a href="/articles"><p>CONTENTS</p></a>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <h2>- Concept Movie -</h2>
+        <p class="left">私たちの伝えたいことをシンプルな動画にまとめました。お気軽にご覧ください。</p>
+        <%= video_tag "/movie/nuddle.mp4", controls: true, poster:"/image/nuddle.jpeg", id:"concept-movie" %>
+    </div>
+
+    <%= image_tag "/image/mid_main4.png", class:"footer-img", alt:"" %>
+</div>

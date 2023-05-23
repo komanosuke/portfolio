@@ -1,0 +1,24 @@
+<main>
+    <div class="side-bar pc">
+        <%= render 'social_media/sidebar' %>
+    </div>
+
+    <div class="contents" id="sns-contents">
+        <h1>- 新規投稿作成 -</h1>
+        <%= form_with(model: @post, url: { controller: 'posts', action: 'create' }, class:'sns-form') do |f| %>
+            <label for="content"></label>
+            <%= f.text_field :content, required: true %>
+            <div class="btn sns-btn" id="add-post-image">画像を追加する</div>
+            <div id="image-option">
+                <%= f.file_field :image, id:'sns-img-file', accept:'image/*' %>
+                <div id="post-preview">
+                    <p>--- Preview ---</p>
+                    <%= image_tag "/image/noimage.jpg", id:"post-image", alt:"" %>
+                </div>
+            </div>
+            <%= f.submit "作成", class: "sns-btn" %>
+        <% end %>
+    </div>
+</main>
+
+<%= javascript_pack_tag 'sns' %>

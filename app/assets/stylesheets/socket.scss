@@ -1,0 +1,141 @@
+.socket-hd-side {
+    background-color: lightseagreen !important;
+}
+
+.panel_item_wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.panel_item {
+    display: inline-block;
+    margin: 10px auto;
+    width: 400px;
+    height: 400px;
+    background-color: lightgray;
+    padding: 10px;
+}
+
+.panel_item_ttl p {
+    text-align: left;
+}
+
+input[type="color"]{
+	border: none;
+    outline: none;
+    background: none;
+    width: 39px;
+    height: 42px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0;
+}
+
+#socket-con {
+    width: 900px;
+    margin: 100px auto 40px;
+}
+
+#socket-con-exp {
+    width: 80%;
+    margin: 0 auto 20px;
+}
+
+.form_item input[type="text"], #volume_input, #pdf_file, #movie_file, #audio_file {
+    width: 90%;
+}
+
+#pdf_file, #movie_file, #audio_file {
+    font-size: 12px;
+    margin: 10px auto;
+}
+
+.upload {
+    width: 200px;
+    height: 125px;
+    margin: auto;
+    border: 1px solid lightseagreen;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.preview {
+    margin: auto;
+}
+
+#led_color {
+    border: 1px solid lightseagreen;
+}
+
+#graphs {
+    display: flex;
+    flex-wrap: wrap
+}
+
+.graph_item {
+    background-color: lightgray;
+    width: 30%;
+    margin: 10px auto;
+}
+
+.upload input {
+    width: auto;
+    height: auto;
+    margin: 0;
+    border: 1px solid lightseagreen;
+}
+
+.upload input[type="file"] {
+    width: 150px;
+    border: none;
+}
+
+#preview_dummy, #mp4_preview_dummy {
+    width: 100px;
+}
+
+.panel_item_content {
+    width: 90%;
+    margin: auto;
+}
+
+.upload_item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+}
+
+#socket-footer {
+    background-color: lightseagreen;
+}
+
+@media screen and (max-width:750px) {
+    
+    #socket-con {
+        width: 100%;
+        margin: 0px auto 0;
+        height: auto;
+    }
+
+    .panel_item_wrap {
+        flex-flow: column;
+    }
+
+    input[type="color"]{
+        width: 11%;
+        height: 10vw;
+    }
+
+    .panel_item {
+        width: 90%;
+        padding: 0;
+        margin: 10px auto;
+    }
+
+    .graph_item {
+        width: 90%;
+    }
+
+}

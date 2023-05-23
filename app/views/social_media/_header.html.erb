@@ -1,0 +1,34 @@
+<header>
+	<div id="hd-flex">
+		<a href="/">
+			<div class="hd-side pc sns-hd-side">HOME</div>
+		</a>
+		<div class="toggle-btn sp" id="sns-tgl">
+			<div id="cross">
+				<span class="menu-line-top"></span>
+				<span class="menu-line-middle"></span>
+				<span class="menu-line-bottom"></span>
+			</div>
+		</div>
+		<a href="/posts" id="hd-center">
+			<div>Social Media</div>
+		</a>
+		<% if admin_logged_in? %>
+			<%= link_to "Log out", admin_logout_path, method: :delete, class:"hd-side" %>
+		<% else %>
+			<% if logged_in? %>
+				<%= link_to "Log out", logout_path, method: :delete, class:"hd-side sns-hd-side" %>
+			<% else%>
+				<a href="/login"><div class="hd-side sns-hd-side">log in</div></a>
+			<% end %>
+		<% end %>
+	</div>
+</header>
+
+<div class="hidden sp" id="sp-bg"></div>
+<div class="hidden sp" id="sp-menu">
+	<h1 class="menu-h2">- Menu -</h1>
+	<div class="side-bar sp" id="sp-side-bar">
+        <%= render 'social_media/sidebar' %>
+    </div>
+</div>

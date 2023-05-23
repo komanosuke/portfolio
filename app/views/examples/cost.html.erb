@@ -1,0 +1,358 @@
+<main>
+    <div class="contents" id="cost-con">
+        
+        <h1>生涯のコスト対照表</h1>
+        <p>変化の激しい時代には生涯の収支を見積もることなど無意味かもしれませんが、各項目を入力すると概算に利用できます。</p>
+        <p>生涯収入:生涯支出＝<span class="lifeincome"></span>円:<span id="cost"></span>円</p>
+        <p>差額（不足額）＝<span id="difference"></span>円</p>
+        <p>もらえる年金（算出）？比較<span>7980000</span>円</p>
+        <p>１年間にどれだけ稼ぐ計画にするか？生涯収入をどう設定するか？今までは？</p>
+        
+        
+        <h1>生涯収入の計算</h1>
+        <p>生涯収入＝<span class="lifeincome"></span>円（<a href="#total">根拠</a>）</p>
+        <table>
+            <tr>
+                <th>年代</th>
+                <th>20代</th>
+                <th>30代</th>
+                <th>40代</th>
+                <th>50代</th>
+                <th>60代</th>
+                <th>合計</th>
+            </tr>
+            <tr>
+                <th>年収</th>
+                <td><input type="number" class="gene_cost_input" value="3000000">円</td>
+                <td><input type="number" class="gene_cost_input" value="4000000">円</td>
+                <td><input type="number" class="gene_cost_input" value="5000000">円</td>
+                <td><input type="number" class="gene_cost_input" value="6000000">円</td>
+                <td><input type="number" class="gene_cost_input" value="2000000">円</td>
+                <td><span id="my_lifecost_total"></span>円</td>
+            </tr>
+            <tr>
+                <th>年収×10年</th>
+                <td><span class="gene_cost_year"></span>円</td>
+                <td><span class="gene_cost_year"></span>円</td>
+                <td><span class="gene_cost_year"></span>円</td>
+                <td><span class="gene_cost_year"></span>円</td>
+                <td><span class="gene_cost_year"></span>円</td>
+                <td><span id="my_year_total"></span>円</td>
+            </tr>
+        </table>
+        <button id="default_mode">独身モード</button>
+        <button id="marry_mode">結婚（離婚リスク込み）</button>
+        <button id="child_mode">子ども</button>
+        <button id="house_mode">住宅購入</button>
+        <button id="car_mode">車購入</button>
+        <button id="care_mode">親の看病・介護</button>
+        <button>終活</button>
+        <p>社会変動(インフレ、社会保険料値上げなど)で計算式を都度変更する</p>
+        <div id="simulate-box">
+            <h3>独身モード</h3>
+            <p>------------------------------------------------------------------------------------------------------------------------<span>></span></p>
+            <p id="mode">
+                <span class="option">結婚</span>
+                <span class="option">子ども</span>
+                <span class="option">住宅</span>
+                <span class="option">車</span>
+                <span class="option">介護</span>
+            </p>
+            <p>オプション追加料金</p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+        </div>
+        
+        <h1>生涯支出の計算</h1>
+        <table>
+            <tr>
+                <th>項目</th>
+                <th>例</th>
+                <th>自分の場合</th>
+            </tr>
+            <tr id="income">
+                <td>生涯収入</td>
+                <td><span class="income_ex">270000000</span>円</td>
+                <td><span class="income_ex"></span>円</td>
+            </tr>
+            <tr>
+                <td>22～64歳の平均生活費</td>
+                <td><span class="cost">145480000</span>円</td>
+                <td><span class="my_cost"></span>円（<a href="#evid1">根拠</a>）</td>
+            </tr>
+            <tr>
+                <td>結婚関連費用</td>
+                <td><span class="cost">5130000</span>円</td>
+                <td><span class="my_cost">0</span>円（<a href="#evid2">根拠</a>）</td>
+            </tr>
+            <tr>
+                <td>子供の学習費</td>
+                <td><span class="cost">9860000</span>円</td>
+                <td><span class="my_cost">0</span>円（<a href="#evid3">根拠</a>）</td>
+            </tr>
+            <tr>
+                <td>マイホーム</td>
+                <td><span class="cost">35380000</span>円</td>
+                <td><span class="my_cost">0</span>円（<a href="#evid4">根拠</a>）</td>
+            </tr>
+            <tr>
+                <td>マイカー</td>
+                <td><span class="cost">15000000</span>円</td>
+                <td><span class="my_cost">0</span>円（<a href="#evid5">根拠</a>）</td>
+            </tr>
+            <tr>
+                <td>生命保険</td>
+                <td><span class="cost">9640000</span>円</td>
+                <td><span class="my_cost">5000000</span>円（<a href="#evid6">根拠</a>）</td>
+            </tr>
+            <tr>
+                <td>老後の平均生活費</td>
+                <td><span class="cost">57600000</span>円</td>
+                <td><span class="my_cost"></span>円（<a href="#evid7">根拠</a>）</td>
+            </tr>
+            <tr>
+                <td>税金</td>
+                <td><span class="cost">54000000</span>円</td>
+                <td><span class="my_cost"></span>円（<a href="#evid8">根拠</a>）</td>
+            </tr>
+            <tr id="lifecost_total">
+                <td>合計</td>
+                <td><span id="total"></span>円</td>
+                <td><span id="my_total"></span>円</td>
+            </tr>     
+        </table>
+
+        <h2 id="evid1">22～64歳の平均生活費 計算</h2>
+        <p>①固定費</p>
+        <table>
+            <tr>
+                <th>項目</th>
+                <th>費用（月）</th>
+                <th>費用（年）</th>
+            </tr>
+            <tr>
+                <td>住宅費（家賃、住宅ローン、管理費など）</td>
+                <td><input type="number" class="basic_month" value="50000">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>水道光熱費（水道代、電気代、ガス代）</td>
+                <td><input type="number" class="basic_month" value="20000">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>通信料（インターネット接続料、携帯電話代、固定電話代など）</td>
+                <td><input type="number" class="basic_month" value="10000">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>保険料（生命保険、医療保険、学資保険、個人年金など）</td>
+                <td><input type="number" class="basic_month" value="">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>車両費（車のローン、駐車場代、車検代、自動車税、自動車保険料など）</td>
+                <td><input type="number" class="basic_month" value="10000">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>保育料、学費（保育園・幼稚園の費用、小学校・中学校・高校・大学の費用など）</td>
+                <td><input type="number" class="basic_month" value="">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>税金（国民健康保険料、国民年金、所得税、住民税など）</td>
+                <td><input type="number" class="basic_month" value="">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>習い事（子どもの塾や習い事の月謝、自分や家族のカルチャースクール等の月謝など）</td>
+                <td><input type="number" class="basic_month" value="">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>交通費（通勤や通学のための定期代など）</td>
+                <td><input type="number" class="basic_month" value="10000">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>小遣い（夫、妻、子どもの小遣い）</td>
+                <td><input type="number" class="basic_month" value="">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>その他（サブスク、新聞購読料、ウォーターサーバーレンタル料、ジム代など）</td>
+                <td><input type="number" class="basic_month" value="10000">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+        </table>
+
+        <p>②変動費</p>
+        <table>
+            <tr>
+                <th>項目</th>
+                <th>費用</th>
+                <th>費用（年）</th>
+            </tr>
+            <tr>
+                <td>食費（食料品代、外食代など）</td>
+                <td><input type="number" class="basic_month" value="30000">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>日用品費（掃除道具や、ティッシュペーパーなどの日用品、消耗品代など）</td>
+                <td><input type="number" class="basic_month" value="2000">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>医療費（医薬品代、通院費、入院費など）</td>
+                <td><input type="number" class="basic_month" value="1000">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>子ども費（教材代、文具や書籍代、部活動や習い事の雑費など）</td>
+                <td><input type="number" class="basic_month" value="">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>被服費（洋服などの購入、クリーニング代など）</td>
+                <td><input type="number" class="basic_month" value="2000">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>美容費（化粧品購入や美容院代など）</td>
+                <td><input type="number" class="basic_month" value="5000">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>交際費（飲み会代、お祝いのプレゼント代、ご祝儀など）</td>
+                <td><input type="number" class="basic_month" value="">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>娯楽費（書籍の購入や映画鑑賞など）</td>
+                <td><input type="number" class="basic_month" value="">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>雑費（その他の少額な出費）</td>
+                <td><input type="number" class="basic_month" value="">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+            <tr>
+                <td>特別費（家電購入代や旅行費など）</td>
+                <td><input type="number" class="basic_month" value="">円</td>
+                <td><span class="basic_cost"></span>円</td>
+            </tr>
+        </table>
+        <p>① + ② ＝<span id="basic_total"></span>円</p>
+        <p>１ヶ月の生活費<span id="basic_total_month"></span>円</p>
+
+        <h2 id="evid2">結婚関連費用 計算</h2>
+        <p>結納や両家顔合わせ</p>
+        <p>結婚式の費用（前払い）</p>
+        <p>新婚旅行</p>
+        <p><span id="marriage">3940000</span>円</p>
+
+        <h2 id="evid3">子供の学習費 計算</h2>
+        <p>一人当たり<span id="child">24000000</span>円</p>
+        <p></p>
+
+        <h2 id="evid4">マイホーム 計算</h2>
+        <p>ローン<span id="house">40000000</span>円</p>
+        <p></p>
+
+        <h2 id="evid5">マイカー 計算</h2>
+        <p>ローン<span id="car">4000000</span>円</p>
+        <p></p>
+
+        <h2 id="evid6">生命保険 計算</h2>
+        <p></p>
+
+        <h2 id="evid7">老後の平均生活費 計算</h2>
+        <p></p>
+
+        <h2 id="evid8">税金 計算</h2>
+        <p>生涯年収×0.25</p>
+
+        
+
+        <h2>22～64歳の平均生活費</h2>
+        <p>22～64歳の平均生活費は統計上、単身世帯は年191万円、2人以上の世帯は年372万円※2です。仮に30歳で結婚すると「191万円×8年＋372万円×35年＝1億4548万円」が必要になります。
+
+            単身世帯	2人以上
+            年191万円	年372万円
+            ただし、単身世帯は都市部では物価が高いために月15万円程度では生活できませんし、逆に2人以上の世帯は節約次第で減額できます。
+            
+            ※2 総務省（2016年）「家計調査」</p>
+
+        <h2>結婚関連費用</h2>
+        <p>結婚関連費用は婚約から新婚旅行までで総額513万円※3でした。内訳は「婚約56万円、結婚指輪24万円、結婚式360万円、新婚旅行73万円」です。
+
+            ただし、ご祝儀が平均200万円、親からの援助金も平均200万円得られるために、個人差はありますが、結果的に収支はそこまで生涯に影響しません。さらに結婚式や披露宴をしない人たちも増えており、必須の支出ではありません。
+            
+            ※3 リクルートブライダル総研「結婚トレンド調査2016」</p>
+        
+        <h2>子供の学習費</h2>
+        <p>小学校から大学まですべて公立は986万円、すべて私立は2519万円※4、最も割合が多い幼稚園から高校までが公立、大学から私立に自宅通学したケースを想定すると、平均1275万円になります。
+
+            対象	公立	私立
+            幼稚園	67万円	149万円
+            小学校	193万円	922万円
+            中学校	143万円	402万円
+            高校	123万円	209万円
+            大学	458万円	747万円
+            ただ、現在は保育園に通わせる世帯も多く、その場合は所得と自治体によって、保育料に月数万円の差が出ます。
+            
+            大学も公立と私立の違いだけではなく、文系と理系、自宅通学と1人暮らし、4年制と医学部や薬学部、留学などもあるため、子供の学習費は平均値から乖離しやすい項目です。
+            
+            ※4 文部科学省（2014年）「子供の学習費調査」</p>
+
+        <h2>マイホーム</h2>
+        <p>マイホームは「購入と賃貸、新築と中古、一戸建てとマンション、土地ありと土地なし、注文と建売、都市部と地方」などと多数の選択肢があり、個人差と地域差が発生しやすいです。
+
+            統計上の最安値は全国の中古戸建てで2252万円※5、最高値は首都圏のマンションで4851万円ですが、35年ローンを組むことで利息の1000～2000万円が増えます。また、賃貸でも総額は6000万円程度を見ておきたいです。
+            
+            対象	全国	首都圏
+            注文住宅	3274万円	3586万円
+            注文住宅＋土地	3945万円	4667万円
+            建売住宅	3287万円	3538万円
+            マンション	4271万円	4851万円
+            中古戸建て	2252万円	2753万円
+            中古マンション	2635万円	2906万円
+            ※5 住宅金融支援機構（2015年）「フラット35利用者調査」</p>
+
+        <h2>マイカー</h2>
+        <p>マイカーは都市部では不要な人も多いですが、地方では生活必需品であり、また、子供がいるとなおさら必要です。維持費の中に車検代も含まれていますが、ガソリン代と駐車場代は別途必要です。
+
+            例えば、30～70歳の40年間で8年置きに買い替えると、1回あたり新車が220万円、8年間の維持費が80万円となり、5回分で1500万円※6がかかります。
+            ただし、新車も100万未満から1000万円以上とピンきりですし、駐車場代なども個人差が大きいです。また、平均的には自家用車を40年間乗ったときの支出額は2564万円になります。
+            ※6 日本自動車工業会「2015年度 乗用車市場動向調査」</p>
+
+        <h2>生命保険</h2>
+        <p>生命保険は男性が月平均20083円、女性が月平均15166円※7です。仮に男性が25～64歳に加入すると「月平均20083円×40年＝964万円」になります。
+
+            現状では生命保険や医療保険は1人暮らしのときは、月2000～3000円の都民共済や県民共済の掛け捨てでも構いません。ただ、子供が生まれると万が一のために月1万～2万円に増やす人が多いです。
+            
+            ちなみに病気やケガによる入院費は「1日1万円×30日＝30万円」が一般的です。ただし、この数字には高齢者が多く含まれており、20～40代であれば入院する割合が低いため、確率的には考慮しない人も多いです。
+            ※7 生命保険文化センター「平成25年度 生活保障に関する調査」</p>
+
+        <h2>老後の平均生活費</h2>
+        <p>単身世帯は年180万円、2人以上の世帯は年280万円※8かかります。仮に65～84歳を夫婦で暮らすと「288万円×20年＝5760万円」が必要です。
+
+            老後の平均生活費は特に重要です。人生の3大支出は教育資金、住宅資金、老後資金であり、子供やマイホームを持たない選択肢はありますが、65～84歳の生活費は削減できません。
+            
+            ※8 総務省統計局（2016年）「家計調査」</p>
+
+        <h2>税金</h2>
+        <p>最後に税金も考慮します。今回は日本人の平均年収441万円を基準にして、所得税、住民税、社会保険料で合計20％に設定しましたが、今後は消費税や年金保険料の負担増は免れないため、25％に設定することもあります。</p>
+
+        <h2></h2>
+        <p></p>
+        
+    </div>
+</main>
+
+<%= javascript_pack_tag 'cost' %>

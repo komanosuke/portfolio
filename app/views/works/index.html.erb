@@ -1,0 +1,34 @@
+<div class="brand-theme">Anti Nihilism Fashion Brand</div>
+<%= image_tag "/image/mid_main2.png", class:"header-img sp", id:"works-hd-img", alt:"" %>
+
+<div id="cxxsew-contents">
+    <div class="article">
+        <h1>- Works -</h1>
+        <p>ここでは、CxxSewの作品ラインナップをご覧いただけます。作品は本サイトでご注文いただけます。</p>
+    </div>
+    <% if @works.empty? %>
+        <p>現在、販売中の作品はありません。</p>
+    <% else %>
+    <p class="subtext">◆のついているものは、一点物のハンドメイド作品です。</p>
+        <div class="works">
+            <% @works.each do |work| %>
+                <div class="work">
+                    <a href="/works/<%= work.id %>">
+                        <%= image_tag work.image.url, alt:"" %>
+                        <div>
+                            <p>title: <%= work.title %>
+                            <% if work.onlyone == '1' %>
+                            ◆
+                            <% end %>
+                            </p>
+                            <p>price: ￥<%= work.price.to_s(:delimited) %></p>
+                        </div>
+                    </a>
+                </div>
+            <% end %>
+        </div>
+    <% end %>
+    
+</div>
+
+<%= image_tag "/image/mid_main4.png", class:"footer-img", alt:"" %>

@@ -1,0 +1,58 @@
+<div class="study-back">
+<div id="page_top"><a></a></div>
+<div id="title"><ruby>学習記録<rt>がくしゅうきろく</rt></ruby></div>
+<div class="contents">
+    <p>↓　がんばった<ruby>記録<rt>きろく</rt></ruby>はここにのこる！　↓</p>
+        <p class="dummy_data" value="user_id">
+            <%= @study_record.user_id %>
+        </p>
+        <p class="dummy_data" value="１年データ">
+            <%= @correct_to_js[0] %>
+        </p>
+        <p class="dummy_data" value="２年データ">
+            <%= @correct_to_js[1] %>
+        </p>
+        <p class="dummy_data" value="３年データ">
+            <%= @correct_to_js[2] %>
+        </p>
+        <p class="dummy_data" value="４年データ">
+            <%= @correct_to_js[3] %>
+        </p>
+        <p class="dummy_data" value="５年データ">
+            <%= @correct_to_js[4] %>
+        </p>
+        <p class="dummy_data" value="６年データ">
+            <%= @correct_to_js[5] %>
+        </p>
+    
+    <%= image_tag "introduction.jpg", id: "welcome" %>
+
+
+    <div class="container_to_clone">
+        <h2 class="grade"></h2>
+        <div class="card_list">
+            <button class="cards" type="button"></button>
+        </div>
+        
+    </div>
+    
+    
+    <div class="study-btn" id="delete_collections"><%= link_to '学習記録を削除', action: 'index' %></div>
+
+
+    <div class="popup" id="js-popup">
+        <div class="popup-inner">
+          <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
+          <%= image_tag "/white.jpg", id:"image_file" %>
+          <p id="collection_char_name"></p>
+        </div>
+        <div class="black-background" id="js-black-bg"></div>
+    </div>
+    
+        
+    
+    
+    <%= javascript_pack_tag 'toggle'%>
+    <%= javascript_pack_tag 'collections'%>
+    </div>
+</div>

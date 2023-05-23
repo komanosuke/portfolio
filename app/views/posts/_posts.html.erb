@@ -1,0 +1,42 @@
+<% @posts.each do |post| %>
+    <div class="work sns-post">
+        <div class="thumb-wrapper">
+            <div class="post-name-wrapper">
+                <%= image_tag post.user.image.url, class:"sns-thumb", alt:"" %>
+                <p><%= post.user.name %></p>
+                <p><%= post.user.username %></p>
+            </div>
+            <div class="follow-wrapper">
+                <div class="follow-btn">フォロー</div>
+            </div>
+        </div>
+        <a href="/posts/<%= post.id %>">
+            <p><%= post.content %></p>
+            <% if post.image.to_s != 'noimage.jpg' %>
+                <%= image_tag post.image.url, class:"sns-post-img", alt:"" %>
+            <% end %>
+        </a>
+        <% if logged_in? %>
+            <% if post.user != current_user && post.liked_by?(current_user) %>
+                <p id="delete-like"><%=link_to '❤︎', post_likes_path(post.id), method: :delete, remote: true %><span><%= post.likes.count %></span></p>
+            <% elsif post.user != current_user %>
+                <p id="post-like"><%=link_to '♡', post_likes_path(post.id), method: :post, remote: true %><span><%= post.likes.count %></span></p>
+            <% end %>
+
+            <% if post.commented_by?(current_user) %>
+                <p><span>コメント削除: </span><%=link_to post.comments.count, post_comments_path(post.id), method: :delete %></p>
+            <% else %>
+                <p><span>コメント投稿: </span><%=link_to post.comments.count, post_comments_path(post.id), method: :post %></p>
+            <% end %>
+            <% if current_user != post.user %>
+                <% if post.user.followed_by?(current_user) %>
+                    <p><%=link_to "フォロー済み", user_relationships_path(post.user.id), method: :delete %></p>
+                <% else %>
+                    <p><%=link_to "フォローする", user_relationships_path(post.user.id), method: :post %></p>
+                <% end %>
+            <% end %>
+        <% else %>
+            <p><span>お気に入り数: </span><%= post.likes.count %></p>
+        <% end %>
+    </div>
+<% end %>

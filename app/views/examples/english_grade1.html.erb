@@ -1,0 +1,52 @@
+
+<div id="mistake_back"></div>
+<div class="back" id="e-g1-back">
+    <div class="contents" id="e-g1-con">
+        <div id="title">英検１級英単語</div>
+        <h1>次の英単語の意味は３つのうちどれ？</h2>
+        <h2 id="quiz"></h2>
+        <p id="sentence"><%= @word %></p>
+        <%#= form_tag(url_for(:action => 'english_grade1'), :remote => true) do %>
+            <%#= text_field_tag :msg, nil, {id:'word'} %>
+            <%#= submit_tag '文章生成' ,{id: 'send', class:'btn'} %>
+        <%# end %>
+        <p id="meaning"></p>
+        <h2 id="count"></h2>
+        <button type="button" class="voiceButton">♫ 発音</button>
+        <input id="input_answer" type="text" value="">
+        <div class="wrap">
+            <button type="button" class="quiz_button"></button>
+            <button type="button" class="quiz_button"></button>
+            <button type="button" class="quiz_button"></button>
+        </div>
+        <button type="button" id="nextButton">次へ</button>
+        <h2>聞き流しモードのON/OFF</h2>
+        <button type="button" class="voiceButton" id="voice">聞き流しモード</button>
+        <div id="input_correct_message"></div>
+        <div id="correct_message"></div>
+        
+        <h2>ステージを切り替える（1〜12）</h2>
+        <button type="button" class="changeEitangoButton">1</button>
+        <button type="button" class="changeEitangoButton">2</button>
+        <button type="button" class="changeEitangoButton">3</button>
+        <button type="button" class="changeEitangoButton">4</button>
+        <button type="button" class="changeEitangoButton">5</button>
+        <button type="button" class="changeEitangoButton">6</button>
+        <button type="button" class="changeEitangoButton">7</button>
+        <button type="button" class="changeEitangoButton">8</button>
+        <button type="button" class="changeEitangoButton">9</button>
+        <button type="button" class="changeEitangoButton">10</button>
+        <button type="button" class="changeEitangoButton">11</button>
+        <button type="button" class="changeEitangoButton">12</button>
+        
+        <h2>間違えた単語を確認する</h2>
+        <button type="button" class="voiceButton" id="mistakes_confirm">間違えた単語の確認</button>
+        <div id="no_mistakes">間違えた単語はまだありません。</div>
+        <div id="mistake_lists">
+            <div class="mistake_list"></div>
+        </div>
+        <%= audio_tag("audio.mp3", id:"btn_audio") %>
+    </div>
+</div>
+
+<%= javascript_pack_tag 'english_grade1' %>

@@ -1,0 +1,28 @@
+<main>
+    <div class="contents" id="manga-con">
+        <h1>漫画を読もう</h1>
+        <div class="article" id="manga-article">
+            <p>漫画は、リラックスして心を癒やすために最適なエンターテイメントです。描かれるキャラクターたちの表情や仕草、背景などは、見る人を引き込み、作品の世界観に浸ることができます。</p>
+            <p>また、テーマやストーリーが繊細に描かれ、感動的な展開に心が揺さぶられることも。そんな漫画の魅力をぜひ感じてください。</p>
+        </div>
+         
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><%= image_tag "/image/marmaid.png", class:"main-photo manga", alt:"" %></div>
+                <div class="swiper-slide"><%= image_tag "/image/lock.png", class:"main-photo manga", alt:"" %></div>
+                <div class="swiper-slide"><%= image_tag "/image/wolf.png", class:"main-photo manga", alt:"" %></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+        <div class="brand-theme" id="manga-theme">
+            <ul id="manga-genres">
+                <li>コメディ</li>
+                <li>王道バトル</li>
+                <li>ホラー</li>
+                <li>推理</li>
+            </ul>
+        </div>
+    </div>
+</main>

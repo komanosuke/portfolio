@@ -1,0 +1,50 @@
+<div class="study-back">
+    <div id="page_top"><a></a></div>
+
+    <div id="title">英単語をおぼえよう</div>
+    <h1>日本語にあてはまる英語をえらぼう！<br>（小学生むけ）</h2>
+    <p>※音量注意！ ボタンを押すと音が出ます<br>お使いの端末によっては発音がうまくいかないことがあります</p>
+    
+        <h2 id="quiz"></h2>
+        <p id="quiz_count"></p>
+        <div class="wrap">
+            <button type="button" class="quiz_button"></button>
+            <button type="button" class="quiz_button"></button>
+            <button type="button" class="quiz_button"></button>
+        </div>
+        <h2 id="correct_message"></h2>
+        <button type="button" id="nextButton">次へ</button>
+        
+        <h1 class="eng_h1">＜テストしたいカテゴリをおしてね＞</h1>
+        <ul>
+            <div class="categoryContainer">
+                <li class="categoryButton" value=""></li>
+            </div>
+        </ul>
+    
+
+
+    <h1 class="eng_h1">＜学習用 単語リスト＞</h1>
+    <div class="category_copy">
+        <div class="categories"></div>
+        <table class="words_table">
+            <tr>
+                <th id="japanese_word">日本語</th>
+                <th id="english_word">英語</th>
+                <th id="english_pronunciation">発音(カタカナ読み)</th>
+                <th id="native_pronunciation">発音</th>
+            </tr>
+            <tr class="words_copy">
+                <td class="japanese_word"></td>
+                <td class="english_word"></td>
+                <td class="english_pronunciation"></td>
+                <td class="native_pronunciation"><button type="button" class="voiceButton">♫</button></td>
+            </tr>
+        </table>
+        
+    </div>
+
+    <%= javascript_pack_tag 'english' %>
+    <%= javascript_pack_tag 'toggle' %>
+    </div>
+</div>

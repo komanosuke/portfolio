@@ -1,0 +1,14 @@
+<main>
+    <div class="side-bar pc">
+        <%= render 'social_media/sidebar' %>
+    </div>
+
+    <div class="contents" id="sns-contents">
+        <div id="flash"><%= flash[:notice] %></div>
+        <div class="works sns-posts" id="posts-each-do">
+            <%= render 'posts', post: @post %>
+        </div> 
+    </div>
+</main>
+
+<%= javascript_pack_tag 'sns' %>

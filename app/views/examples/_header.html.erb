@@ -1,0 +1,45 @@
+<header>
+	<div id="hd-flex">
+		<a href="/">
+			<div class="hd-side ex-hd-side">home</div>
+		</a>
+		<a href="/" id="hd-center">
+			<div>Portfolio</div>
+		</a>
+		<% if admin_logged_in? %>
+			<%= link_to "Log out", admin_logout_path, method: :delete, class:"hd-side ex-hd-side" %>
+		<% else %>
+			<% if logged_in? %>
+				<%= link_to "Log out", logout_path, method: :delete, class:"hd-side ex-hd-side" %>
+			<% else%>
+				<a href="/login"><div class="hd-side ex-hd-side">log in</div></a>
+			<% end %>
+		<% end %>
+	</div>
+</header>
+
+<div class="hidden sp" id="sp-bg"></div>
+<div class="hidden sp" id="sp-menu">
+	<h1 class="menu-h2">- Menu -</h1>
+	<div class="explain">
+		<div class="rect-wrapper">
+			<div class="rect-row">
+				<a href="/doraemon"><p>ABOUT</p></a>
+				<a href="/doraemon"><p>NEWS</p></a>
+			</div>
+			<div class="rect-row">
+				<a href="/doraemon"><p>WORKS</p></a>
+				<a href="/doraemon"><p>CONTENTS</p></a>
+			</div>
+		</div>
+	</div>
+	<div class="explain">
+		<div class="rect-wrapper" id="sub-menu2">
+			<a href="/doraemon">HELP</a>
+			<a href="/doraemon">CONTACT</a>
+			<a href="/doraemon">POLICY</a>
+			<a href="/doraemon">TERMS</a>
+		</div>
+	</div>
+</div>
+	  

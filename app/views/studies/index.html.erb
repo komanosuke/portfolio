@@ -1,0 +1,32 @@
+<div class="study-back">
+    <div id="page_top"><a></a></div>
+
+    <div class="study-contents">
+        <div id="main_title">LIBERAL EARTH</div>
+        <h1>「<ruby>LIBERAL EARTH<rt>リベラルアース</rt></ruby>」へようこそ！</h1>
+        <p>このサイトでは、学びの基礎となる読み書き計算を楽しく学べます。<br>基礎を身につけ、世界のこと、人のこと、いろんなことを学んでいくと自由が広がります。<br>学習の土台づくりの一助となれば幸いです。</p>
+        <%= image_tag "welcome.jpg", id: "welcome" %>
+    
+    <% if logged_in? then %>
+        <p>「<%= @user.email %>」でログインしてるよ！</p>
+    <% else %>
+        <p>ログインすると<ruby>学<rt>まな</rt></ruby>びの<ruby>記録<rt>きろく</rt></ruby>がのこせるよ！<br>※現在「国語」のみ利用可能</p>
+    <% end %>
+
+
+    
+    <h1>つかいかた</h1>
+    <p><ruby>漢字<rt>かんじ</rt></ruby>クイズを<ruby>体験<rt>たいけん</rt></ruby>してみよう！</p>
+    <%= image_tag "intro0.jpg", class: "intro" %>
+    <%= image_tag "intro1.jpg", class: "intro" %>
+    <%= image_tag "intro2.jpg", class: "intro" %>
+    <%= image_tag "intro3.jpg", class: "intro" %>
+    <%= image_tag "intro4.jpg", class: "intro" %>
+    <%= image_tag "intro5.jpg", class: "intro" %>
+    <%= image_tag "intro6.jpg", class: "intro" %>
+    
+        
+    <%= javascript_pack_tag 'hello_image' %>
+    <%= javascript_pack_tag 'toggle' %>
+    </div>
+</div>

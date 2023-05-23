@@ -1,0 +1,8 @@
+<ul class="sns-ul">
+    <a href="/posts"><li>ホーム</li></a>
+    <a href="/posts/new"><li>投稿作成</li></a>
+    <li>検索</li>
+    <% if logged_in? %>
+        <a href="/users/<%= current_user.id %>"><li>プロフィール</li></a>
+    <% end %>
+</ul>

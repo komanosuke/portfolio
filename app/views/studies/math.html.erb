@@ -1,0 +1,247 @@
+<div class="study-back">
+    <div id="page_top"><a></a></div>
+
+    
+    <div class="study-contents">
+        <p>↓基礎を固めるための便利な機能があるよ↓</p>
+
+        <div id="title">百ます計算</div>
+        <div class="center">
+            <button type="button" class="buttons" id="makeAddButton">たし算をつくる</button>
+            <button type="button" class="buttons" id="makeSubButton">ひき算をつくる</button>
+            <button type="button" class="buttons" id="makeMultiButton">かけ算をつくる</button>
+        </div>
+
+        
+        <div class="gyou">
+            <div class="sign" id="column-base"></div>
+            <div class="columns" id="column0"></div>
+            <div class="columns" id="column1"></div>
+            <div class="columns" id="column2"></div>
+            <div class="columns" id="column3"></div>
+            <div class="columns" id="column4"></div>
+            <div class="columns" id="column5"></div>
+            <div class="columns" id="column6"></div>
+            <div class="columns" id="column7"></div>
+            <div class="columns" id="column8"></div>
+            <div class="columns" id="column9"></div>
+        </div>
+        
+        <div class="hyakumasu_copy">
+            <div class="gyou">
+                <div class="rows"></div>
+                <input type="tel" class="texts" maxlength="2" id="" value="">
+                <input type="tel" class="texts" maxlength="2" id="" value="">
+                <input type="tel" class="texts" maxlength="2" id="" value="">
+                <input type="tel" class="texts" maxlength="2" id="" value="">
+                <input type="tel" class="texts" maxlength="2" id="" value="">
+                <input type="tel" class="texts" maxlength="2" id="" value="">
+                <input type="tel" class="texts" maxlength="2" id="" value="">
+                <input type="tel" class="texts" maxlength="2" id="" value="">
+                <input type="tel" class="texts" maxlength="2" id="" value="">
+                <input type="tel" class="texts" maxlength="2" id="" value="">
+            </div>
+        </div>
+
+
+        <button type="button" class="buttons" id="hyakumasuAnswerButton">答え合わせ</button>
+        <button type="button" class="buttons" id="resetButton">リセット</button>
+
+
+        <hr>
+
+        <div id="title">百わり</div>
+        <button type="button" class="buttons" id="hyakuwariRandomButton">シャッフル</button>
+
+        <div class="hyakuwari_copy">
+            <div class="gyou">
+                <div class="sign" class="hyakuwari_base">÷</div>
+                <div class="hyakuwari_column"></div>
+                <div class="hyakuwari_column"></div>
+                <div class="hyakuwari_column"></div>
+                <div class="hyakuwari_column"></div>
+                <div class="hyakuwari_column"></div>
+                <div class="hyakuwari_column"></div>
+                <div class="hyakuwari_column"></div>
+                <div class="hyakuwari_column"></div>
+                <div class="hyakuwari_column"></div>
+                <div class="hyakuwari_column"></div>
+            </div>
+
+            <div class="gyou">
+                <div class="hyakuwari_row"></div>
+                <input  type="tel" class="hyakuwari_texts" maxlength="2" id="" value="">
+                <input  type="tel" class="hyakuwari_texts" maxlength="2" id="" value="">
+                <input  type="tel" class="hyakuwari_texts" maxlength="2" id="" value="">
+                <input  type="tel" class="hyakuwari_texts" maxlength="2" id="" value="">
+                <input  type="tel" class="hyakuwari_texts" maxlength="2" id="" value="">
+                <input  type="tel" class="hyakuwari_texts" maxlength="2" id="" value="">
+                <input  type="tel" class="hyakuwari_texts" maxlength="2" id="" value="">
+                <input  type="tel" class="hyakuwari_texts" maxlength="2" id="" value="">
+                <input  type="tel" class="hyakuwari_texts" maxlength="2" id="" value="">
+                <input  type="tel" class="hyakuwari_texts" maxlength="2" id="" value="">
+            </div>
+        </div>
+
+
+        <button type="button" class="buttons" id="hyakuwariAnswerButton">答え合わせ</button>
+        <button type="button" class="buttons" id="hyakuwariResetButton">リセット</button>
+    <hr>
+
+    <div id="title">基本計算（ランダム）</div>
+    <p>かんたんな計算を練習しよう</p>
+    <button type="button" class="buttons" id="setAddButton">たし算をつくる</button>
+    <button type="button" class="buttons" id="setSubButton">ひき算をつくる</button>
+    <button type="button" class="buttons" id="setMultiButton">かけ算をつくる</button>
+    <button type="button" class="buttons" id="setDivideButton">わり算をつくる</button>
+
+
+    <div class="formula_gyou">
+        <div id="formula_container">
+            <div id="calc_column0"></div>
+            <div class="formula" id="symbol">＋</div>
+            <div id="calc_row0"></div>
+            <div class="formula">＝</div>
+            <input type="tel" class="calc_texts" id="answer" value="" maxlength="3">
+        </div>
+        <div id="amari_container">
+            <div class="formula" id="amari">あまり</div>
+            <input type="tel" class="calc_texts" id="left" value="" maxlength="3">
+        </div>
+    </div>
+
+
+    <button type="button" class="buttons" id="answerCalcButton">答え合わせ</button>
+    <button type="button" class="buttons" id="resetCalcButton">リセット</button>
+    <div id="correct_message"></div>
+
+    <h2>筆算メモ</h2>
+    <canvas id="canvassample"></canvas>
+    </div>
+    <div style="padding:10px">
+    <button type="button" class="buttons" id="clearCanvas">リセット</button>
+    <button type="button" class="buttons" id="prevCanvas">戻る</button>
+    <button type="button" class="buttons" id="nextCanvas">進む</button>
+    </div>
+    <div style="padding:10px">
+
+    
+    <hr>
+    <div id="title">表とグラフ</div>
+    <p>棒グラフの便利さを実感しよう<br>（テストの点数のグラフ・平均点が出ます）</p>
+    <table class="words_table">
+        <tr>
+            <th class="graph_title">教科</th>
+            <th class="label">国語</th>
+            <th class="label">算数</th>
+            <th class="label">社会</th>
+            <th class="label">理科</th>
+            <th class="label">英語</th>
+        </tr>
+        <tr class="words_copy">
+            <th class="graph_title">点数</th>
+            <td class="score"><input type="tel" class="numbers" value="" maxlength="3"></td>
+            <td class="score"><input type="tel" class="numbers" value="" maxlength="3"></td>
+            <td class="score"><input type="tel" class="numbers" value="" maxlength="3"></td>
+            <td class="score"><input type="tel" class="numbers" value="" maxlength="3"></td>
+            <td class="score"><input type="tel" class="numbers" value="" maxlength="3"></td>
+        </tr>
+    </table>
+    <button type="button" class="buttons" id="graphButton">グラフ描画</button>
+    <div id="stage"></div>
+
+
+    <hr>
+    <div id="title">比例</div>
+    <p>□に数字を入力して、比例グラフに親しもう</p>
+    <table class="graph">
+        <tr>
+            <th class="prop_title">x</th>
+            <th class="x_points"></th>
+            <th class="x_points"></th>
+            <th class="x_points"></th>
+            <th class="x_points"></th>
+            <th class="x_points"></th>
+            <th class="x_points"></th>
+            <th class="x_points"></th>
+            <th class="prop_title">・・・</th>
+        </tr>
+        <tr class="words_copy">
+            <th class="prop_title">y</th>
+            <th class="y_points"></th>
+            <th class="y_points"></th>
+            <th class="y_points"></th>
+            <th class="y_points"></th>
+            <th class="y_points"></th>
+            <th class="y_points"></th>
+            <th class="y_points"></th>
+            <th class="prop_title">・・・</th>
+        </tr>
+    </table>
+    <div class="prop_container">
+        <div class="prop_formula">
+            <div class="formula">y</div>
+            <div class="formula">＝</div>
+            <input type="tel" class="calc_texts" id="prop_num" value="" maxlength="1">
+            <div class="formula">x</div>
+        </div>
+    </div>
+
+    <button type="button" class="buttons" id="proportionalButton">グラフ描画</button>
+    <div class="canvas-container">
+        <canvas id="chart1"></canvas>
+    </div>
+
+
+    <hr>
+    <div id="title">図形</div>
+    <p>長方形（正方形）：たて × よこ ＝ 面積</p>
+    <div class="prop_container">
+        <div class="prop_formula">
+            <input type="tel" class="calc_texts" id="shape_num1" value="" maxlength="2">
+            <div class="formula">×</div>
+            <input type="tel" class="calc_texts" id="shape_num2" value="" maxlength="2">
+            <div class="formula">＝</div>
+            <div id="area"></div>
+        </div>
+    </div>
+    <button type="button" class="buttons" id="shapeButton">四角形描画</button>
+    <p>これを２つにわったら三角形の面積になる（÷２）</p>
+    <div class="prop_container">
+        <div class="prop_formula">
+            <div id="takasa"></div>
+            <div class="formula">×</div>
+            <div id="teihen"></div>
+            <div class="formula">÷</div>
+            <div class="formula">２</div>
+            <div class="formula">＝</div>
+            <div id="area2"></div>
+        </div>
+    </div>
+    <button type="button" class="buttons" id="triShapeButton">三角形描画</button>
+    <div class="canvas-container">
+        <canvas id="chart2" width="400" height="400"></canvas>
+    </div>
+
+
+    <hr>
+    <div id="title">分数</div>
+    <p>□に数字を入力して、分数に親しもう</p>
+    <div class="prop_container">
+        <div class="prop_formula">
+            <input type="tel" class="calc_texts" id="fraction_num" value="" maxlength="2">
+            <div class="fraction">分の１</div>
+            <div class="formula">＝</div>
+            <div id="decimal"></div>
+            <div class="formula">＝</div>
+            <div id="percent"></div>
+        </div>
+    </div>
+    <button type="button" class="buttons" id="fractionButton">分数描画</button>
+    <div id="chart3"></div>
+
+        <%= javascript_pack_tag 'math'%>
+        <%= javascript_pack_tag 'toggle'%>
+    </div>
+    
+</div>
