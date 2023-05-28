@@ -59,13 +59,15 @@ Rails.application.routes.draw do
   get 'media', to: 'examples#media'
 
   get 'socket', to: 'socket#socket'
+  get 'send_msg', to: 'socket#send_msg'
 
-  get 'sns', to: 'social_media#index'
-  get 'sns_show', to: 'social_media#sns_show'
+  get 'followers', to: 'social_media#followers'
+  get 'followed', to: 'social_media#followed'
   resources :posts do
     resource :likes, only: [:create, :destroy]
     resource :comments, only: [:create, :destroy]
   end
+  resources :relationships, only: [:create, :destroy]
 
   get 'studies', to: 'studies#index'
   get 'japanese', to: 'studies#japanese'

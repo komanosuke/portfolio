@@ -15,4 +15,5 @@ document.addEventListener('turbolinks:load', function() {      // 発火タイ�
         loop: true,
     });
     console.log(swiper);
+    console.log('読み込めているよ');
 });

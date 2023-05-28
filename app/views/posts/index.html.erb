@@ -4,7 +4,7 @@
     </div>
 
     <div class="contents" id="sns-contents">
-        <div id="flash"><%= flash[:notice] %></div>
+        <div id="flash"><%= flash[:notice] %><%= flash[:success] %><%= flash[:error] %></div>
         <div class="works sns-posts" id="posts-each-do">
             <%= render 'posts', post: @post %>
         </div> 

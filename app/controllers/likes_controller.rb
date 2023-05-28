@@ -8,10 +8,10 @@ class LikesController < ApplicationController
                 format.html { redirect_to 'posts/index' }
                 format.js
             else
-                format.html { redirect_to @post, alert: "Failed to like post." }
+                flash[:error] = like.errors.full_messages.join(', ')
+                format.html { redirect_to posts_path }
             end
         end
-        # redirect_to posts_path
     end
 
     def destroy
@@ -26,6 +26,7 @@ class LikesController < ApplicationController
                 format.html { redirect_to @post, alert: "Failed to unlike post." }
             end
         end
-        # redirect_to posts_path
     end
 end
+
+

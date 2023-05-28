@@ -4,6 +4,7 @@
     </div>
 
     <div class="contents" id="sns-contents">
+        <div id="flash"><%= flash[:notice] %><%= flash[:success] %><%= flash[:error] %></div>
         <div class="post-name">
             <%= image_tag @post.user.image.url, class:"sns-thumb", alt:"" %>
             <p><%= @post.user.name %></p>
@@ -12,6 +13,30 @@
         <p><%= @post.content %></p>
         <% if @post.image.to_s != 'noimage.jpg' %>
             <%= image_tag @post.image.url, class:"sns-post-img", alt:"" %>
+        <% end %>
+
+        <% if logged_in? %>
+            <% if @post.user != current_user && @post.liked_by?(current_user) %>
+                <p id="delete-like"><%=link_to '❤︎', post_likes_path(@post.id), method: :delete, remote: true %><span><%= @post.likes.count %></span></p>
+            <% elsif @post.user != current_user %>
+                <p id="post-like"><%=link_to '♡', post_likes_path(@post.id), method: :post, remote: true %><span><%= @post.likes.count %></span></p>
+            <% end %>
+
+            <p>コメントしてみる</p>
+            <%= form_with model:@comment, url: post_comments_path(@post.id), method: :post do |form| %>
+                <%#= form.hidden_field :user_id, value: current_user %>
+                <%= form.text_area :content, autofocus: true, maxlength: 200, placeholder: "コメントを入力してください", required: true %>
+                <%= form.submit "コメント投稿する", class: "sns-btn" %>
+            <% end %>
+
+            <p>コメント投稿 一覧<span> / コメント数: <%= @post.comments.count %></span></p>
+            <% if @post.comments.count != 0 %>
+                <% @post.comments.each do |comment| %>
+                    <p><%= comment.user.name %>: <%= comment.content %></p>
+                <% end %>
+            <% else %>
+                <p>コメントはありません。</p>
+            <% end %>
         <% end %>
     </div>
 </main>

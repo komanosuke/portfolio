@@ -4,5 +4,7 @@
     <li>検索</li>
     <% if logged_in? %>
         <a href="/users/<%= current_user.id %>"><li>プロフィール</li></a>
+        <a href="/followers"><li>フォロワー 一覧</li></a>
+        <a href="/followed"><li>フォロー中 一覧</li></a>
     <% end %>
 </ul>

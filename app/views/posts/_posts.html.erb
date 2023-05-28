@@ -7,7 +7,23 @@
                 <p><%= post.user.username %></p>
             </div>
             <div class="follow-wrapper">
-                <div class="follow-btn">フォロー</div>
+                <% if logged_in? %>
+                    <% if post.user_id != current_user.id %>
+                        <%#= debug post.user.active_relationships %>
+                        <% if post.user.followed_by?(current_user) %>
+                            <% delete_id = post.user.active_relationships.find_by(followed_id: post.user_id).id %>
+                            <%= form_with model:@relationship, url: "/relationships/"+delete_id.to_s, method: :delete do |form| %>
+                                <%= form.submit "フォロー解除", class:"follow-btn" %>
+                            <% end %>
+                        <% else %>
+                            <%= form_with model:@relationship, url: relationships_path, method: :post, scope: :relationship do |form| %>
+                                <%= form.hidden_field :follower_id, value: current_user.id %>
+                                <%= form.hidden_field :followed_id, value: post.user_id %>
+                                <%= form.submit "フォロー", class:"follow-btn" %>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                <% end %>
             </div>
         </div>
         <a href="/posts/<%= post.id %>">
@@ -23,20 +39,10 @@
                 <p id="post-like"><%=link_to '♡', post_likes_path(post.id), method: :post, remote: true %><span><%= post.likes.count %></span></p>
             <% end %>
 
-            <% if post.commented_by?(current_user) %>
-                <p><span>コメント削除: </span><%=link_to post.comments.count, post_comments_path(post.id), method: :delete %></p>
-            <% else %>
-                <p><span>コメント投稿: </span><%=link_to post.comments.count, post_comments_path(post.id), method: :post %></p>
-            <% end %>
-            <% if current_user != post.user %>
-                <% if post.user.followed_by?(current_user) %>
-                    <p><%=link_to "フォロー済み", user_relationships_path(post.user.id), method: :delete %></p>
-                <% else %>
-                    <p><%=link_to "フォローする", user_relationships_path(post.user.id), method: :post %></p>
-                <% end %>
-            <% end %>
+            <p>コメント投稿数</p>
+            <p><%= post.comments.count %></p>
         <% else %>
-            <p><span>お気に入り数: </span><%= post.likes.count %></p>
+            <p>♡: <%= post.likes.count %> コメント: <%= post.comments.count %></p>
         <% end %>
     </div>
 <% end %>
