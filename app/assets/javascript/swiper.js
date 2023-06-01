@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function() {      // 発火タイミングを指定    
+// document.addEventListener('turbolinks:load', function() {      // 発火タイミングを指定    
     const swiper = new Swiper(".swiper", {
         // ページネーションが必要なら追加
         pagination: {
@@ -16,4 +16,4 @@ document.addEventListener('turbolinks:load', function() {      // 発火タイ�
     });
     console.log(swiper);
     console.log('読み込めているよ');
-});
+// });

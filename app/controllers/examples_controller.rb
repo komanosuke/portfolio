@@ -4,7 +4,19 @@ class ExamplesController < ApplicationController
 	layout 'example'
 	
 	def cost
-		
+		if logged_in?
+			@lifecost = Lifecost.find_by(user_id: current_user.id)
+		end
+	end
+
+	def update
+		@lifecost = Lifecost.find_by(user_id: current_user.id)
+		if @lifecost.update(lifecost_params)
+			redirect_to '/cost'
+		else
+			flash[:alert] = "作成に失敗しました"
+			redirect_to '/cost/'
+		end
 	end
 
 	def manga
@@ -23,5 +35,9 @@ class ExamplesController < ApplicationController
 		@articles = Kaminari.paginate_array(articles).page(params[:page]).per(9)
 	end
 
+	private
+	def lifecost_params
+		params.permit(:twenty, :thirty, :forty, :fifty, :sixty, :marriage, :child, :house, :car, :care, :rent, :utility, :internet, :insurance, :car_cost, :child_care, :lesson, :transport, :pocket_money, :other_cost, :food, :necessity, :medical_cost, :child_lesson, :clothes, :beauty, :companionship, :entertainment, :small_cost, :exception, :marriage_total, :child_total, :house_total, :car_total, :tax, :pension)
+	end
 
 end

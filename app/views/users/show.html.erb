@@ -18,6 +18,7 @@
             <hr>
             <p><span>投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
         <% end %>
+        
         <% if @like_posts.length != 0 %>
             <% @like_posts.each do |post| %>
                 <hr>

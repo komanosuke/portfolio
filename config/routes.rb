@@ -50,8 +50,8 @@ Rails.application.routes.draw do
   get 'terms', to: 'main#terms'
   get 'policy', to: 'main#policy'
 
-  get 'example', to: 'examples#index'
   get 'cost', to: 'examples#cost'
+  patch 'examples/update', to: 'examples#update'
   get 'doraemon', to: 'doraemon#doraemon'
   post 'doraemon', to: 'doraemon#doraemon'
   get 'manga', to: 'examples#manga'

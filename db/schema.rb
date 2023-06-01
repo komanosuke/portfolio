@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_25_062934) do
+ActiveRecord::Schema.define(version: 2023_05_30_053528) do
 
   create_table "admins", force: :cascade do |t|
     t.string "name"
@@ -76,6 +76,49 @@ ActiveRecord::Schema.define(version: 2023_04_25_062934) do
     t.text "message", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "lifecosts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "twenty"
+    t.integer "thirty"
+    t.integer "forty"
+    t.integer "fifty"
+    t.integer "sixty"
+    t.integer "marriage"
+    t.integer "child"
+    t.integer "house"
+    t.integer "car"
+    t.integer "care"
+    t.integer "rent"
+    t.integer "utility"
+    t.integer "internet"
+    t.integer "insurance"
+    t.integer "car_cost"
+    t.integer "child_care"
+    t.integer "lesson"
+    t.integer "transport"
+    t.integer "pocket_money"
+    t.integer "other_cost"
+    t.integer "food"
+    t.integer "necessity"
+    t.integer "medical_cost"
+    t.integer "child_lesson"
+    t.integer "clothes"
+    t.integer "beauty"
+    t.integer "companionship"
+    t.integer "entertainment"
+    t.integer "small_cost"
+    t.integer "exception"
+    t.integer "marriage_total"
+    t.integer "child_total"
+    t.integer "house_total"
+    t.integer "car_total"
+    t.integer "tax"
+    t.integer "pension"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_lifecosts_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -188,6 +231,7 @@ ActiveRecord::Schema.define(version: 2023_04_25_062934) do
   add_foreign_key "carts", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "lifecosts", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "news", "news_cats"

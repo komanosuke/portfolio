@@ -36,6 +36,7 @@ class User < ApplicationRecord
     # EC
     has_one :cart, dependent: :destroy
     # has_many :orders, dependent: :destroy
+    has_one :lifecost, dependent: :destroy
 
     mount_uploader :image, ImageUploader
     

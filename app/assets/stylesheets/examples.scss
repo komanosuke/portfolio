@@ -1,5 +1,5 @@
 @charset "utf-8";
-@import "swiper/swiper-bundle.min.css";
+// @import "swiper/swiper-bundle.min.css";
 
 .ex-hd-side {
     background-color: lightcoral;
@@ -10,13 +10,81 @@
     width: 100%;
 }
 
-#lifecost_total td, #cost {
+#cost-con p {
+    width: 80%;
+    margin: 10px auto;
+}
+
+#cost-con table, td, th {
+    min-width: 200px;
+}
+
+#cost-con input {
+    margin: 5px;
+    border: 1px solid orange;
+    height: 40px;
+}
+
+#cost-con h2 {
+    width: 80%;
+    margin: 5px auto;
+    padding: 5px 0;
+}
+
+#cost-con div {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.cost-section {
+    background-color: #FFE084;
+    width: 80%;
+    margin: 15px auto;
+    padding: 20px 0;
+}
+
+.underline {
+    text-decoration:underline;
+    color: blue;
+}
+
+.cost-table {
+    width: 80%;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.decided-cost {
+    background-color: #fff;
+    width: 80%;
+    margin: 5px auto;
+    font-size: 24px;
+    padding: 5px 0;
     font-weight: bold;
+}
+
+.cost-btn {
+    border: none !important;
+    border-radius: 5px !important;
+    font-size: 16px !important;
+    width: 120px !important;
+    cursor: pointer !important;
+    background-color: rgb(255, 191, 0) !important;
+    margin: 15px auto !important;
+    height: 50px !important;
+}
+
+.cost-btn:hover {
+    background-color: orange !important;
+}
+
+#lifecost_total td, #cost, #income td {
+    font-weight: bold;
+}
+
+#my_total {
     color: red;
 }
 
-#income td {
-    font-weight: bold;
+#income-td {
     color: orange;
 }
 
@@ -36,15 +104,12 @@
 }
 
 #simulate-box {
-    width: 800px;
+    width: 80%;
     margin: auto;
-    background-color: lightgray;
+    background-color: #FFE084;
     padding: 5px;
 }
 
-#simulate-box h3 {
-    color: green;
-}
 
 .option {
     display: inline-block;
@@ -52,6 +117,16 @@
     height: 30px;
     background-color: #fff;
     margin: 5px;
+    line-height: 30px;
+}
+
+.option_cost {
+    background-color: orange;
+}
+
+.set_input {
+    width: 100px;
+    margin: auto 5px;
 }
 
 
@@ -82,6 +157,7 @@
 #manga-genres li {
     width: 100%;
     cursor: pointer;
+    background-color: green;
 }
 
 #manga-article {
@@ -89,7 +165,7 @@
 }
 
 #manga-genres li:hover {
-    background-color: darkgray;
+    background-color: darkgreen;
     transition: 0.5s;
 }
 
@@ -267,6 +343,15 @@ ul {
 
 
 @media screen and (max-width:750px) {
+    .cost-table {
+        width: 90%;
+    }
+
+    #cost-con table, td, th {
+        min-width: auto;
+    }
+
+
 
     //english_grade1
     #e-g1-back {

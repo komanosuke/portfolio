@@ -5,9 +5,26 @@ let my_costs = document.getElementsByClassName('my_cost');
 let my_total = document.getElementById('my_total');
 
 //税金を定義
+let tax = 0.25;
 let income = document.getElementsByClassName('income_ex');
-costs[7].textContent = Number(income[0].textContent) * 0.25;
-my_costs[7].textContent = Number(income[1].textContent) * 0.25;
+costs[7].textContent = Number(income[0].textContent) * tax;
+my_costs[7].textContent = Number(income[1].textContent) * tax;
+
+let tax_set = document.getElementById('tax_set');
+tax_set.addEventListener('change', function(e) {
+	let value = parseInt(e.target.value);
+    if (value < Number(e.target.min)) {
+      	e.target.value = e.target.min;
+		value = e.target.min;
+    } else if (value > Number(e.target.max)) {
+      	e.target.value = e.target.max;
+		value = e.target.max;
+    } else {
+		e.target.value = value;
+	}
+	tax = value/100;
+	sumup();
+});
 
 let total_num = 0;
 for(let i = 0; i < costs.length; i++){
@@ -46,7 +63,17 @@ let basic_month = document.getElementsByClassName('basic_month');
 let basic_cost = document.getElementsByClassName('basic_cost');
 for(let i = 0; i < basic_month.length; i++){
 	basic_month[i].addEventListener('change', function(e) {
-		basic_cost[i].textContent = e.target.value * 12;
+		let value = parseInt(e.target.value);
+		if (value < 0) {
+			e.target.value = 0;
+			value = 0;
+		} else if (value > 10000000) {
+			e.target.value = 10000000;
+			value = 10000000;
+		} else {
+			e.target.value = value;
+		}
+		basic_cost[i].textContent = value * 12;
 		sumup();
 	});
 }
@@ -68,7 +95,7 @@ function sumup(){
 	for(let i = 0; i < lifeincome.length; i++){
 		lifeincome[i].textContent = year_sum;
 	}
-	my_costs[7].textContent = Number(income[1].textContent) * 0.25;
+	my_costs[7].textContent = Number(income[1].textContent) * tax;
 
 	let basic_year_total = 0;
 	for(let i = 0; i < basic_cost.length; i++){
@@ -115,13 +142,29 @@ default_mode.addEventListener('click', function(e) {
 	option[1].textContent = '子ども';
 });
 
-let marriage = document.getElementById('marriage');
+let marriage_set = document.getElementById('marriage_set');
+let marriage_set_value = parseInt(marriage_set.value);
+marriage_set.addEventListener('change', function(e) {
+	let value = parseInt(e.target.value);
+    if (value < Number(e.target.min)) {
+      	e.target.value = e.target.min;
+		value = e.target.min;
+    } else if (value > Number(e.target.max)) {
+      	e.target.value = e.target.max;
+		value = e.target.max;
+    } else {
+		e.target.value = value;
+	}
+	marriage_set_value = value;
+	my_costs[1].textContent = marriage_set_value;
+	sumup();
+});
 let marry_mode = document.getElementById('marry_mode');
 let marry_check = false;
 marry_mode.addEventListener('click', function(e) {
 	if(marry_check == false){
-		option[0].style.background = 'red';
-		my_costs[1].textContent = marriage.textContent;
+		option[0].style.background = 'orange';
+		my_costs[1].textContent = marriage_set_value;
 		sumup();
 		marry_check = true;
 	} else {
@@ -135,25 +178,25 @@ marry_mode.addEventListener('click', function(e) {
 	}
 });
 
-let child = document.getElementById('child');
+let child_set = document.getElementById('child_set');
 let child_mode = document.getElementById('child_mode');
 let child_count = 0;
 child_mode.addEventListener('click', function(e) {
-	option[1].style.background = 'red';
+	option[1].style.background = 'orange';
 	child_count++;
 	option[1].textContent = '子ども' + child_count;
-	my_costs[2].textContent = Number(my_costs[2].textContent) + Number(child.textContent);
+	my_costs[2].textContent = Number(my_costs[2].textContent) + Number(child_set.value);
 	sumup();
 });
 
 
-let house = document.getElementById('house');
+let house_set = document.getElementById('house_set');
 let house_mode = document.getElementById('house_mode');
 let house_check = false;
 house_mode.addEventListener('click', function(e) {
 	if(house_check == false){
-		option[2].style.background = 'red';
-		my_costs[3].textContent = house.textContent;
+		option[2].style.background = 'orange';
+		my_costs[3].textContent = house_set.value;
 		sumup();
 		house_check = true;
 	} else {
@@ -164,13 +207,13 @@ house_mode.addEventListener('click', function(e) {
 	}
 });
 
-let car = document.getElementById('car');
+let car_set = document.getElementById('car_set');
 let car_mode = document.getElementById('car_mode');
 let car_check = false;
 car_mode.addEventListener('click', function(e) {
 	if(car_check == false){
-		option[3].style.background = 'red';
-		my_costs[4].textContent = car.textContent;
+		option[3].style.background = 'orange';
+		my_costs[4].textContent = car_set.value;
 		sumup();
 		car_check = true;
 	} else {
@@ -186,7 +229,7 @@ let care_mode = document.getElementById('care_mode');
 let care_check = false;
 care_mode.addEventListener('click', function(e) {
 	if(care_check == false){
-		option[4].style.background = 'red';
+		option[4].style.background = 'orange';
 		sumup();
 		care_check = true;
 	} else {
