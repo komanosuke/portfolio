@@ -22,6 +22,14 @@
     display: none;
 }
 
+#dora-alert {
+    position: absolute;
+    top: 135px;
+    right: 40px;
+    color: #fff;
+    font-family: 'Kiwi Maru', serif;
+}
+
 #doraemon {
     width: 100%;
     margin: 0;
@@ -83,6 +91,12 @@
     #dora-wrapper form {
         top: 25px;
         width: 100%;
+    }
+
+    #dora-alert {
+        top: 120px;
+        right: 10px;
+        font-size: 12px;
     }
 
     #dora-wrapper input {

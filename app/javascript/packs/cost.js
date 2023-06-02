@@ -7,16 +7,16 @@ let my_total = document.getElementById('my_total');
 //税金を定義
 let tax = 0.25;
 let income = document.getElementsByClassName('income_ex');
-costs[7].textContent = Number(income[0].textContent) * tax;
-my_costs[7].textContent = Number(income[1].textContent) * tax;
+costs[7].textContent = parseInt(income[0].textContent) * tax;
+my_costs[7].textContent = parseInt(income[1].textContent) * tax;
 
 let tax_set = document.getElementById('tax_set');
 tax_set.addEventListener('change', function(e) {
 	let value = parseInt(e.target.value);
-    if (value < Number(e.target.min)) {
+    if (value < parseInt(e.target.min)) {
       	e.target.value = e.target.min;
 		value = e.target.min;
-    } else if (value > Number(e.target.max)) {
+    } else if (value > parseInt(e.target.max)) {
       	e.target.value = e.target.max;
 		value = e.target.max;
     } else {
@@ -28,14 +28,14 @@ tax_set.addEventListener('change', function(e) {
 
 let total_num = 0;
 for(let i = 0; i < costs.length; i++){
-	total_num += Number(costs[i].textContent);
+	total_num += parseInt(costs[i].textContent);
 }
 total.textContent = total_num;
 
 
 let my_total_num = 0;
 for(let i = 0; i < my_costs.length; i++){
-	my_total_num += Number(my_costs[i].textContent);
+	my_total_num += parseInt(my_costs[i].textContent);
 }
 my_total.textContent = my_total_num;
 
@@ -46,7 +46,17 @@ let my_year_total = document.getElementById('my_year_total');
 let gene_costs = [0,0,0,0,0];
 for(let i = 0; i < gene_cost.length; i++){
 	gene_cost[i].addEventListener('change', function(e) {
-		gene_costs[i] = Number(e.target.value);
+		gene_costs[i] = parseInt(e.target.value);
+		let value = parseInt(e.target.value);
+		if (value < 0) {
+			e.target.value = 0;
+			value = 0;
+		} else if (value > 1000000000) {
+			e.target.value = 1000000000;
+			value = 1000000000;
+		} else {
+			e.target.value = value;
+		}
 		my_lifecost_total.textContent = gene_costs.reduce((sum, element) => sum + element, 0);
 		gene_cost_yaer[i].textContent = gene_costs[i] * 10;
 		sumup();
@@ -81,51 +91,7 @@ for(let i = 0; i < basic_month.length; i++){
 let basic_total = document.getElementById('basic_total');
 let basic_total_month = document.getElementById('basic_total_month');
 
-function sumup(){
-	let month_sum = 0;
-	let year_sum = 0;
-	for(let i = 0; i < gene_cost_yaer.length; i++){
-		gene_cost_yaer[i].textContent = gene_cost[i].value * 10;
-		month_sum += Number(gene_cost[i].value);
-		year_sum += Number(gene_cost_yaer[i].textContent);
-	}
-	my_lifecost_total.textContent = month_sum;
-	my_year_total.textContent = year_sum;
-	income[1].textContent = year_sum;
-	for(let i = 0; i < lifeincome.length; i++){
-		lifeincome[i].textContent = year_sum;
-	}
-	my_costs[7].textContent = Number(income[1].textContent) * tax;
 
-	let basic_year_total = 0;
-	for(let i = 0; i < basic_cost.length; i++){
-		basic_cost[i].textContent = basic_month[i].value * 12;
-		basic_year_total += Number(basic_cost[i].textContent);
-	}
-	basic_total.textContent = basic_year_total;
-	basic_total_month.textContent = basic_year_total/12;
-	my_costs[0].textContent = basic_year_total * 42;
-	//老後
-	my_costs[6].textContent = basic_year_total * 30;
-
-	let my_total_num = 0;
-	for(let i = 0; i < my_costs.length; i++){
-		// console.log(my_costs[i].textContent);
-		my_total_num += Number(my_costs[i].textContent);
-	}
-	my_total.textContent = my_total_num;
-
-	// 最後
-	cost.textContent = my_total.textContent;
-	diff = Number(year_sum) - Number(cost.textContent)
-	if(diff < 0){
-		difference.textContent = -diff;
-	} else {
-		difference.textContent = diff + '円、足りています';
-	}
-	
-}
-sumup();
 
 let option = document.getElementsByClassName('option');
 let default_mode = document.getElementById('default_mode');
@@ -136,20 +102,24 @@ default_mode.addEventListener('click', function(e) {
 	for(let i = 1; i < 5; i++){
 		my_costs[i].textContent = 0;
 	}
-	sumup();
 	marry_check = false;
 	child_count = 0;
+	house_count = 0;
+	car_count = 0;
 	option[1].textContent = '子ども';
+	option[2].textContent = '住宅';
+	option[3].textContent = '車';
+	sumup();
 });
 
 let marriage_set = document.getElementById('marriage_set');
 let marriage_set_value = parseInt(marriage_set.value);
 marriage_set.addEventListener('change', function(e) {
 	let value = parseInt(e.target.value);
-    if (value < Number(e.target.min)) {
+    if (value < parseInt(e.target.min)) {
       	e.target.value = e.target.min;
 		value = e.target.min;
-    } else if (value > Number(e.target.max)) {
+    } else if (value > parseInt(e.target.max)) {
       	e.target.value = e.target.max;
 		value = e.target.max;
     } else {
@@ -169,12 +139,9 @@ marry_mode.addEventListener('click', function(e) {
 		marry_check = true;
 	} else {
 		option[0].style.background = '#fff';
-		my_costs[1].textContent = 0;
 		sumup();
+		my_costs[1].textContent = 0;
 		marry_check = false;
-		house_check = false;
-		car_check = false;
-		care_check = false;
 	}
 });
 
@@ -185,56 +152,215 @@ child_mode.addEventListener('click', function(e) {
 	option[1].style.background = 'orange';
 	child_count++;
 	option[1].textContent = '子ども' + child_count;
-	my_costs[2].textContent = Number(my_costs[2].textContent) + Number(child_set.value);
+	my_costs[2].textContent = parseInt(my_costs[2].textContent) + parseInt(child_set.value);
+	sumup();
+});
+child_set.addEventListener('change', function(e) {
+	let value = parseInt(e.target.value);
+    if (value < parseInt(e.target.min)) {
+      	e.target.value = e.target.min;
+		value = e.target.min;
+    } else if (value > parseInt(e.target.max)) {
+      	e.target.value = e.target.max;
+		value = e.target.max;
+    } else {
+		e.target.value = value;
+	}
+	child_set_value = value;
+	my_costs[2].textContent = child_set_value;
 	sumup();
 });
 
 
 let house_set = document.getElementById('house_set');
 let house_mode = document.getElementById('house_mode');
-let house_check = false;
+let house_count = 0;
 house_mode.addEventListener('click', function(e) {
-	if(house_check == false){
-		option[2].style.background = 'orange';
-		my_costs[3].textContent = house_set.value;
-		sumup();
-		house_check = true;
-	} else {
-		option[2].style.background = '#fff';
-		my_costs[3].textContent = 0;
-		sumup();
-		house_check = false;
+	option[2].style.background = 'orange';
+	house_count++;
+	option[2].textContent = '住宅' + house_count;
+	my_costs[3].textContent = parseInt(my_costs[3].textContent) + parseInt(house_set.value);
+	sumup();
+});
+house_set.addEventListener('change', function(e) {
+	let value = parseInt(e.target.value);
+    if (value < parseInt(e.target.min)) {
+      	e.target.value = e.target.min;
+		value = e.target.min;
+    } else if (value > parseInt(e.target.max)) {
+      	e.target.value = e.target.max;
+		value = e.target.max;
+    } else {
+		e.target.value = value;
 	}
+	house_set_value = value;
+	my_costs[3].textContent = house_set_value;
+	sumup();
 });
 
 let car_set = document.getElementById('car_set');
 let car_mode = document.getElementById('car_mode');
-let car_check = false;
+let car_count = 0;
 car_mode.addEventListener('click', function(e) {
-	if(car_check == false){
-		option[3].style.background = 'orange';
-		my_costs[4].textContent = car_set.value;
-		sumup();
-		car_check = true;
-	} else {
-		option[3].style.background = '#fff';
-		my_costs[4].textContent = 0;
-		sumup();
-		car_check = false;
+	option[3].style.background = 'orange';
+	car_count++;
+	option[3].textContent = '車' + car_count;
+	my_costs[4].textContent = parseInt(my_costs[4].textContent) + parseInt(car_set.value);
+	sumup();
+});
+car_set.addEventListener('change', function(e) {
+	let value = parseInt(e.target.value);
+    if (value < parseInt(e.target.min)) {
+      	e.target.value = e.target.min;
+		value = e.target.min;
+    } else if (value > parseInt(e.target.max)) {
+      	e.target.value = e.target.max;
+		value = e.target.max;
+    } else {
+		e.target.value = value;
 	}
+	car_set_value = value;
+	my_costs[4].textContent = car_set_value;
+	sumup();
 });
 
-
-let care_mode = document.getElementById('care_mode');
-let care_check = false;
-care_mode.addEventListener('click', function(e) {
-	if(care_check == false){
-		option[4].style.background = 'orange';
-		sumup();
-		care_check = true;
-	} else {
-		option[4].style.background = '#fff';
-		sumup();
-		care_check = false;
+insurance_set.addEventListener('change', function(e) {
+	let value = parseInt(e.target.value);
+    if (value < parseInt(e.target.min)) {
+      	e.target.value = e.target.min;
+		value = e.target.min;
+    } else if (value > parseInt(e.target.max)) {
+      	e.target.value = e.target.max;
+		value = e.target.max;
+    } else {
+		e.target.value = value;
 	}
+	insurance_set_value = value;
+	my_costs[5].textContent = insurance_set_value;
+	sumup();
 });
+
+after_retire_set.addEventListener('change', function(e) {
+	let value = parseInt(e.target.value);
+    if (value < parseInt(e.target.min)) {
+      	e.target.value = e.target.min;
+		value = e.target.min;
+    } else if (value > parseInt(e.target.max)) {
+      	e.target.value = e.target.max;
+		value = e.target.max;
+    } else {
+		e.target.value = value;
+	}
+	after_retire_set_value = value;
+	my_costs[6].textContent = after_retire_set_value;
+	sumup();
+});
+
+// let house_set = document.getElementById('house_set');
+// let house_mode = document.getElementById('house_mode');
+// let house_check = false;
+// house_mode.addEventListener('click', function(e) {
+// 	if(house_check == false){
+// 		option[2].style.background = 'orange';
+// 		my_costs[3].textContent = house_set.value;
+// 		sumup();
+// 		house_check = true;
+// 	} else {
+// 		option[2].style.background = '#fff';
+// 		my_costs[3].textContent = 0;
+// 		sumup();
+// 		house_check = false;
+// 	}
+// });
+
+// let car_set = document.getElementById('car_set');
+// let car_mode = document.getElementById('car_mode');
+// let car_check = false;
+// car_mode.addEventListener('click', function(e) {
+// 	if(car_check == false){
+// 		option[3].style.background = 'orange';
+// 		my_costs[4].textContent = car_set.value;
+// 		sumup();
+// 		car_check = true;
+// 	} else {
+// 		option[3].style.background = '#fff';
+// 		my_costs[4].textContent = 0;
+// 		sumup();
+// 		car_check = false;
+// 	}
+// });
+
+
+// let care_mode = document.getElementById('care_mode');
+// let care_check = false;
+// care_mode.addEventListener('click', function(e) {
+// 	if(care_check == false){
+// 		option[4].style.background = 'orange';
+// 		sumup();
+// 		care_check = true;
+// 	} else {
+// 		option[4].style.background = '#fff';
+// 		sumup();
+// 		care_check = false;
+// 	}
+// });
+
+
+
+function sumup(){
+	let month_sum = 0;
+	let year_sum = 0;
+	for(let i = 0; i < gene_cost_yaer.length; i++){
+		gene_cost_yaer[i].textContent = gene_cost[i].value * 10;
+		month_sum += parseInt(gene_cost[i].value);
+		year_sum += parseInt(gene_cost_yaer[i].textContent);
+	}
+	my_lifecost_total.textContent = month_sum;
+	my_year_total.textContent = year_sum;
+	income[1].textContent = year_sum;
+	for(let i = 0; i < lifeincome.length; i++){
+		lifeincome[i].textContent = year_sum;
+	}
+	my_costs[7].textContent = parseInt(income[1].textContent) * tax;
+
+	let basic_year_total = 0;
+	for(let i = 0; i < basic_cost.length; i++){
+		basic_cost[i].textContent = basic_month[i].value * 12;
+		basic_year_total += parseInt(basic_cost[i].textContent);
+	}
+	basic_total.textContent = basic_year_total;
+	basic_total_month.textContent = basic_year_total/12;
+	my_costs[0].textContent = basic_year_total * 42;
+	if(marry_check == true){
+		my_costs[1].textContent = marriage_set.value;
+	}
+	if(child_count != 0){
+		parseInt(my_costs[2].textContent) + parseInt(child_set.value);
+	}
+	if(house_count != 0){
+		parseInt(my_costs[3].textContent) + parseInt(house_set.value);
+	}
+	if(car_count != 0){
+		parseInt(my_costs[4].textContent) + parseInt(car_set.value);
+	}
+	my_costs[5].textContent = insurance_set.value;
+	my_costs[6].textContent = after_retire_set.value;
+
+	let my_total_num = 0;
+	for(let i = 0; i < my_costs.length; i++){
+		// console.log(my_costs[i].textContent);
+		my_total_num += parseInt(my_costs[i].textContent);
+	}
+	my_total.textContent = my_total_num;
+
+	// 最後
+	cost.textContent = my_total.textContent;
+	diff = parseInt(year_sum) - parseInt(cost.textContent)
+	if(diff < 0){
+		difference.textContent = '不足額 = ' + -diff;
+	} else {
+		difference.textContent = '足りている金額 = ' + diff;
+	}
+	
+}
+sumup();

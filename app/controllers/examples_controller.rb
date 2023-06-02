@@ -19,7 +19,7 @@ class ExamplesController < ApplicationController
 		end
 	end
 
-	def manga
+	def portrait
 		
 	end
 

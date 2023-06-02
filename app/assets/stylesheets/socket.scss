@@ -37,9 +37,18 @@ input[type="color"]{
     margin: 100px auto 40px;
 }
 
+#socket-con h2 {
+    width: 90%;
+    margin: auto;
+}
+
 #socket-con-exp {
     width: 80%;
     margin: 0 auto 20px;
+}
+
+#demo-img {
+    width: 400px;
 }
 
 .form_item input[type="text"], #volume_input, #pdf_file, #movie_file, #audio_file {
@@ -115,12 +124,16 @@ input[type="color"]{
     
     #socket-con {
         width: 100%;
-        margin: 0px auto 0;
+        margin: 100px auto 0;
         height: auto;
     }
 
     .panel_item_wrap {
         flex-flow: column;
+    }
+
+    #demo-img {
+        width: 80%;
     }
 
     input[type="color"]{

@@ -26,7 +26,13 @@ class WorksController < ApplicationController
         @cart = Cart.create
         session[:cart_id] = @cart.id
       else
-        @cart = Cart.find(session[:cart_id])
+        begin
+          @cart = Cart.find(session[:cart_id])
+        rescue => exception
+          p 'セッションIDで何らかのエラー!新しいセッションIDでカートを再作成します'
+          @cart = Cart.create
+          session[:cart_id] = @cart.id
+        end
       end
       @cart_works = CartWork.where(cart_id: session[:cart_id])
       @cart_works_view = @cart.cart_works

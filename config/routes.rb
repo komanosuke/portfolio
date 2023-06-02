@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   patch 'examples/update', to: 'examples#update'
   get 'doraemon', to: 'doraemon#doraemon'
   post 'doraemon', to: 'doraemon#doraemon'
-  get 'manga', to: 'examples#manga'
+  get 'portrait', to: 'examples#portrait'
   get 'english_grade1', to: 'examples#english_grade1'
   get 'media', to: 'examples#media'
 

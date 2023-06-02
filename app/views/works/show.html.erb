@@ -67,13 +67,6 @@
         <div class="btn"><a href="/purchase">購入確認画面へ</a></div>
     <% end %>
     <div class="btn"><a href="/works">商品一覧に戻る</a></div>
-    <p>現在のカートID: <%= @cart.id %></p>
-    <% @cart_works.each do |cw| %>
-        <p>Cart_id: <%= cw.cart_id %><p>
-        <p>Work_id: <%= cw.work_id %><p>
-        <p>Status: <%= cw.status %><p>
-    <% end %>
-    
 </div>
 
 <%= image_tag "/image/mid_main4.png", class:"footer-img", alt:"" %>

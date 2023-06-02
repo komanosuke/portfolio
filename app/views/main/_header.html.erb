@@ -16,7 +16,7 @@
 			<div>Sew</div>
 		</a>
 		<% if admin_logged_in? %>
-			<%= link_to "Log out", admin_logout_path, method: :delete, class:"hd-side" %>
+			<%= link_to "Admin Log out", admin_logout_path, method: :delete, class:"hd-side" %>
 		<% else %>
 			<% if logged_in? %>
 				<%= link_to "Log out", logout_path, method: :delete, class:"hd-side" %>
