@@ -9,7 +9,12 @@
 #sns-contents {
     padding-top: 40px;
     width: 80%;
-    margin: 70px auto 30px 20%;
+    margin: 30px auto 30px 20%;
+}
+
+#sns-container {
+    width: 80%;
+    margin: auto;
 }
 
 .sns-form input {
@@ -134,6 +139,12 @@
     width: 50%;
 }
 
+.post-name p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .follow-wrapper {
     width: 50%;
 }
@@ -163,6 +174,46 @@
     border-radius: 100px;
 }
 
+#profile-sns {
+    border: 1px solid darkcyan;
+    margin: 15px 0;
+}
+
+#profile-sns h2 {
+    background-color: darkcyan;
+    color: #fff;
+    margin: 0;
+    padding: 5px;
+}
+
+#profile-sns p {
+    margin: 15px;
+}
+
+#profile-cxxsew {
+    border: 1px solid indianred;
+    margin: 15px 0;
+}
+
+#profile-cxxsew h2 {
+    background-color: indianred;
+    color: #fff;
+    margin: 0;
+    padding: 5px;
+}
+
+#profile-study {
+    border: 1px solid orange;
+    margin: 15px 0;
+}
+
+#profile-study h2 {
+    background-color: orange;
+    color: #fff;
+    margin: 0;
+    padding: 5px;
+}
+
 #sns-footer {
     background-color: darkcyan;
 }
@@ -186,15 +237,56 @@
     display: none;
 }
 
+.relational-users {
+    width: 80%;
+    margin: 15px auto;
+    box-shadow: 1px 1px 10px grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.relational-users p, .relational-users img {
+    margin: 15px;
+}
+
+#sns-contents textarea {
+    display: block;
+    padding: 15px;
+    border: 1px solid darkcyan;
+}
+
 @media screen and (max-width:750px) {
     #sns-contents {
         width: 100%;
-        margin-left: 0;
+        margin: 20px auto 30px 0;
+    }
+
+    #sns-container {
+        width: 90%;
     }
 
     .sns-post-img {
         aspect-ratio: 3/2 !important;
         width: 80% !important;
+        object-fit: cover;
+    }
+
+    .thumb-wrapper {
+        display: block;
+    }
+
+    .post-name-wrapper {
+        display: flex;
+        width: 100%;
+    }
+
+    .follow-wrapper {
+        width: 100%;
+    }
+
+    .follow-btn {
+        float: none;
     }
 
     #sns-footer {

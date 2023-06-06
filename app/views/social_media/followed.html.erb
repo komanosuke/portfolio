@@ -5,8 +5,19 @@
 
     <div class="contents" id="sns-contents">
         <h2>フォロー中 一覧</h2>
-        <% @relationships.each do |r| %>
-            <%= r.followed_id %>
+        <% if @relationships.count != 0 %>
+            <% @relationships.each do |r| %>
+                <a href="/posted/<%= r.followed.id %>">
+                    <div class="relational-users">
+                        <%= image_tag r.followed.image.url, class:"sns-thumb", alt:"" %>
+                        <p>ユーザー名: <%= r.followed.name %></p>
+                        <p>ID: <%= r.followed.username %></p>
+                    </div>
+                </a>
+            <% end %>
+        <% else %>
+            <p>フォロー中のユーザーはいません。誰かをフォローしてみましょう！</p>
+            <%= image_tag "/image/wolf.png", class:"profile-thumb", alt:"" %>
         <% end %>
     </div>
 </main>

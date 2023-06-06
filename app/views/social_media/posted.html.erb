@@ -1,0 +1,42 @@
+
+<main>
+    <div class="side-bar pc">
+        <%= render 'social_media/sidebar' %>
+    </div>
+
+    <div class="contents" id="sns-contents">
+        <div id="sns-container">
+            <h1>基本情報</h1>
+            <p>Name: <%= @user.name %></p>
+            <p>ID: <%= @user.username %></p>
+            <%= image_tag @user.image.url, class:"profile-thumb", alt:"" %>
+            <p>紹介文: <%= @user.profile %></p>
+
+            <h2>投稿内容</h2>
+            <% @posts.each do |post| %>
+                <p><span>投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
+                <hr>
+            <% end %>
+
+            <h2>Likeした投稿</h2>
+            <% if @like_posts.length != 0 %>
+                <% @like_posts.each do |post| %>
+                    <p><span>Likeした投稿の内容: </span><%=link_to post.content, post_path(post.id) %></p>
+                    <hr>
+                <% end %>
+            <% else %>
+                <p>Likeした投稿はありません。</p>
+            <% end %>
+
+            <h2>コメントした投稿</h2>
+            <% if @comment_posts.length != 0 %>
+                <% @comment_posts.each do |post| %>
+                    <p><span>コメントした投稿の内容: </span><%=link_to post.content, post_path(post.id) %></p>
+                    <hr>
+                <% end %>
+            <% else %>
+                <p>コメントした投稿はありません。</p>
+            <% end %>
+        </div>
+    </div>
+</main>

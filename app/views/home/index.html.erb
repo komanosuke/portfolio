@@ -78,5 +78,8 @@
                 </a>
             </div>
         </div>
+        <% if logged_in? %>
+            <a href="/users/<%= current_user.id %>"><div class="btn sub-btn" id="my-profile">My Profile</div></a>
+        <% end %>
     </div>
 </main>

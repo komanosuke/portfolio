@@ -7,7 +7,7 @@
         <h1>- 新規投稿作成 -</h1>
         <%= form_with(model: @post, url: { controller: 'posts', action: 'create' }, class:'sns-form') do |f| %>
             <label for="content"></label>
-            <%= f.text_field :content, required: true %>
+            <%= f.text_area :content, required: true %>
             <div class="btn sns-btn" id="add-post-image">画像を追加する</div>
             <div id="image-option">
                 <%= f.file_field :image, id:'sns-img-file', accept:'image/*' %>

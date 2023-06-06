@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   get 'socket', to: 'socket#socket'
   get 'send_msg', to: 'socket#send_msg'
 
+  get 'posted/:id', to: 'social_media#posted#:id'
   get 'followers', to: 'social_media#followers'
   get 'followed', to: 'social_media#followed'
   resources :posts do

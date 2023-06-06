@@ -10,7 +10,7 @@ class RelationshipsController < ApplicationController
     end
 
     def destroy
-        relationship = Relationship.find_by(params[:id])
+        relationship = Relationship.find(params[:id])
         relationship.destroy
         flash[:success] = "フォローを解除しました！"
         redirect_to "/posts"

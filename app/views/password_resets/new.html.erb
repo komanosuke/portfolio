@@ -6,7 +6,7 @@
     <%= form_with(scope: :password_reset, url: password_resets_path, local: true) do |f| %>
       <label for="email">メールアドレス</label>
       <%= f.email_field :email, placeholder:'メールアドレスを入力してください', required: true %>
-    <%= f.submit '送信する', class:"btn", id:'submit-btn' %>
+    <%= f.submit '送信する', class:"btn submit-btn" %>
     <% end %>
   </div>
 </main>

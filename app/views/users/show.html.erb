@@ -4,42 +4,26 @@
         <div id="flash"><%= flash[:notice] %></div>
 
         <h2>基本情報</h2>
-        <p>ID: <%= @user.id %></p>
         <p>Name: <%= @user.name %></p>
-        <p>SNS ID: <%= @user.username %></p>
+        <p>ID: <%= @user.username %></p>
         <%= image_tag @user.image.url, class:"profile-thumb", alt:"" %>
         <p>紹介文: <%= @user.profile %></p>
 
-        <h2>カート内容</h2>
-        <div class="btn sub-btn"><%= link_to "カート内容を確認", "/purchase" %></div>
-
-        <h2>SNS投稿内容</h2>
-        <% @posts.each do |post| %>
-            <hr>
-            <p><span>投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
-        <% end %>
+        <% if current_user.id == params[:id].to_i %>
+            <div id="profile-cxxsew">
+                <h2>カート内容</h2>
+                <div class="btn sub-btn"><%= link_to "カート内容を確認", "/purchase" %></div>
+            </div>
         
-        <% if @like_posts.length != 0 %>
-            <% @like_posts.each do |post| %>
-                <hr>
-                <p><span>Likeした投稿の内容: </span><%=link_to post.content, post_path(post.id) %></p>
-            <% end %>
-        <% else %>
-            <p>Likeした投稿はありません。</p>
+            <div id="profile-study">
+                <h2>学習記録</h2>
+                <div class="btn sub-btn"><%= link_to "学習記録を見る", "/collection" %></div>
+            </div>
+
+            <div id="profile-sns">
+                <h2>投稿内容</h2>
+                <div class="btn sub-btn"><%= link_to "SNS投稿内容を確認", "/posted/" + current_user.id.to_s %></div>
+            </div>
         <% end %>
-
-        <% if @comment_posts.length != 0 %>
-            <% @comment_posts.each do |post| %>
-                <hr>
-                <p><span>コメントした投稿の内容: </span><%=link_to post.content, post_path(post.id) %></p>
-            <% end %>
-        <% else %>
-            <p>コメントした投稿はありません。</p>
-        <% end %>
-
-        <h2>学習記録</h2>
-        <div class="btn sub-btn"><%= link_to "学習記録を見る", "/collection" %></div>
-
-        <h2>人生のコスト計算の記録</h2>
     </div>
 </main>

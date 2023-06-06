@@ -193,6 +193,17 @@ main {
     color: #000;
 }
 
+#guest-login-wrapper {
+    border: 1px solid #000;
+    padding: 15px 0;
+    margin: 30px 0;
+}
+
+#my-profile {
+    background-color: #000;
+    border: none;
+}
+
 #login-con p {
     text-align: left;
 }

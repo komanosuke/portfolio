@@ -10,6 +10,15 @@
             <div id="flash"><%= flash[:alert] %></div>
             <p>ログインすると、Portfolio内の全てのサービスで、アカウントにひもづくデータの保存が可能になります。</p>
 
+            <div id="guest-login-wrapper">
+                <p class="center">ポートフォリオ閲覧用のゲストログインボタンはこちらです。</p>
+                <%= form_for(:session, url: login_path) do |f| %>
+                    <%= f.hidden_field :email, value: 'user@example.com' %>
+                    <%= f.hidden_field :password, value: 'aaaaaaaa' %>
+                    <%= f.submit 'Guest Log in', class:'btn submit-btn' %>
+                <% end %>
+            </div>
+
             <%= form_for(:session, url: login_path) do |f| %>
                 <label for="email">メールアドレス</label>
                     <%= f.email_field :email, placeholder:'メールアドレスを入力してください', required: true %>
@@ -18,13 +27,6 @@
                 <%= f.submit 'Log in', class:'btn submit-btn' %>
             <div class="btn sub-btn"><%= link_to "Forget Password?", '/password_resets/new' %></div>
             <div class="btn sub-btn"><%= link_to "アカウント作成", "/users/new" %></div>
-            <% end %>
-
-            <p class="center">ポートフォリオ閲覧用のゲストログインボタンはこちらです。</p>
-            <%= form_for(:session, url: login_path) do |f| %>
-                <%= f.hidden_field :email, value: 'user@example.com' %>
-                <%= f.hidden_field :password, value: 'aaaaaaaa' %>
-                <%= f.submit 'Guest Log in', class:'btn submit-btn' %>
             <% end %>
         </div>
     <% end %>

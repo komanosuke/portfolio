@@ -11,7 +11,7 @@
                     <% if post.user_id != current_user.id %>
                         <%#= debug post.user.active_relationships %>
                         <% if post.user.followed_by?(current_user) %>
-                            <% delete_id = post.user.active_relationships.find_by(followed_id: post.user_id).id %>
+                            <% delete_id = post.user.active_relationships.find_by(follower_id: current_user.id).id %>
                             <%= form_with model:@relationship, url: "/relationships/"+delete_id.to_s, method: :delete do |form| %>
                                 <%= form.submit "フォロー解除", class:"follow-btn" %>
                             <% end %>

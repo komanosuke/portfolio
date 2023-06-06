@@ -12,7 +12,7 @@
 
 # Admin.create(name: 'fashion', password: 'fashionable')
 
-# User.create(name: 'John Lennon', username: '@john', email: 'user@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '', prefecture: '', city: '', street: '', address: '', tel: '', profile: '', activated: true)
+# User.create(name: 'Guest User', username: '@user', email: 'user@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '', prefecture: '', city: '', street: '', address: '', tel: '', profile: '', activated: true)
 # User.create(name: 'Monkey.D.Luffy', username: '@luffy', email: 'luffy@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '', prefecture: '', city: '', street: '', address: '', tel: '', profile: '', activated: true)
 # User.create(name: 'Boa Hancock', username: '@female_emperor', email: 'snake@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '', prefecture: '', city: '', street: '', address: '', tel: '', profile: '', activated: true)
 
@@ -70,4 +70,3 @@
 # StudyRecord.create(user_id:1,grade1:'00000000000000000000000000000000000000000000000000000000000000000000000000000000',grade2:'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',grade3:'00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',grade4:'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',grade5:'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',grade6:'00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000')
 
 # Lifecost.create(user_id:1, twenty:3000000, thirty:4000000, forty:5000000, fifty:6000000, sixty:2000000, marriage:0, child:0, house:0, car:0, care:0, rent:0, utility:0, internet:0, insurance:0, car_cost:0, child_care:0, lesson:0, transport:0, pocket_money:0, other_cost:0, food:0, necessity:0, medical_cost:0, child_lesson:0, clothes:0, beauty:0, companionship:0, entertainment:0, small_cost:0, exception:0, marriage_total:5130000, child_total:12750000, house_total: 39450000, car_total:15000000, tax:20, pension:0)
-

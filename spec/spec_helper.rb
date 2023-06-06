@@ -48,7 +48,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   
   config.before(:suite) do
-    FactoryBot.find_definitions
+    FactoryBot.reload
   end
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
