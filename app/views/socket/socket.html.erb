@@ -1,100 +1,18 @@
 <main>
     <div class="contents" id="socket-con">
         <h1>IoT機器へのコマンド送信アプリ（DEMO）</h1>
-        <p id="socket-con-exp">IoT機器側でTCPソケットの受信プログラムを書くことで、ブラウザからIoT機器を操作できるようになります。</p>
-
-        <h2>IoT機器からのデータ受信（DEMO）</h2>
-        <div id="data"></div>
-        <div id="graphs">
-            <div class="graph_item">
-                <div>IoT機器のバッテリー残量</div>
-                <div>
-                    <canvas class="ex_chart"></canvas>
-                    <div class="graph_value"><p>現在の電圧</p><span>0</span>V</div>
-                </div>
-            </div>
-            <div class="graph_item">
-                <div>IoT機器の基盤温度</div>
-                <div>
-                    <canvas class="ex_chart"></canvas>
-                    <div class="graph_value"><p>現在の基盤温度</p><span>0</span>℃</div>
-                </div>
-            </div>
-            <div class="graph_item">
-                <div>IoT機器周辺の外気温</div>
-                <div>
-                    <canvas class="ex_chart"></canvas>
-                    <div class="graph_value"><p>現在の外気温</p><span>0</span>℃</div>
-                </div>
-            </div>
-            <div class="graph_item">
-                <div>Wi-Fi接続台数</div>
-                <div>
-                    <canvas class="ex_chart"></canvas>
-                    <div class="graph_value"><p>現在の接続台数</p><span>0</span>台</div>
-                </div>
-            </div>
-            <div class="graph_item">
-                <div>IoT機器周辺の湿度</div>
-                <div>
-                    <canvas class="ex_chart"></canvas>
-                    <div class="graph_value"><p>現在の湿度</p><span>0</span>%RH</div>
-                </div>
-            </div>
-            <div class="graph_item">
-                <div>IoT機器周辺の照度</div>
-                <div>
-                    <canvas class="ex_chart"></canvas>
-                    <div class="graph_value"><p>現在の照度</p><span>0</span>LX</div>
-                </div>
-            </div>
-            <div class="graph_item">
-                <div>IoT機器周辺の気圧</div>
-                <div>
-                    <canvas class="ex_chart"></canvas>
-                    <div class="graph_value"><p>現在の気圧</p><span>0</span>hPa</div>
-                </div>
-            </div>
-            <div class="graph_item">
-                <div>IoT機器周辺のノイズ</div>
-                <div>
-                    <canvas class="ex_chart"></canvas>
-                    <div class="graph_value"><p>現在のノイズ</p><span>0</span>dB</div>
-                </div>
-            </div>
-            <div class="graph_item">
-                <div>IoT機器周辺の揮発性有機化合物濃度</div>
-                <div>
-                    <canvas class="ex_chart"></canvas>
-                    <div class="graph_value"><p>現在の揮発性有機化合物濃度</p><span>0</span>ppmC</div>
-                </div>
-            </div>
-            <div class="graph_item">
-                <div>IoT機器周辺のCO2濃度</div>
-                <div>
-                    <canvas class="ex_chart"></canvas>
-                    <div class="graph_value"><p>現在のCO2濃度</p><span>0</span>ppm</div>
-                </div>
-            </div>
-            <div class="graph_item">
-                <div>IoT機器周辺の不快指数</div>
-                <div>
-                    <canvas class="ex_chart"></canvas>
-                    <div class="graph_value"><p>現在の不快指数</p><span>0</span></div>
-                </div>
-            </div>
-            <div class="graph_item">
-                <div>IoT機器周辺の熱中症警戒度</div>
-                <div>
-                    <canvas class="ex_chart"></canvas>
-                    <div class="graph_value"><p>現在の熱中症警戒度</p><span>0</span></div>
-                </div>
-            </div>
-        </div>
+        <p id="socket-con-exp">IoT機器側でTCPソケットの受信プログラムを書くことで、ブラウザからIoT機器を操作できるようになります。※DEMOでは画面上のロボットに反映されます。</p>
 
 
         <h2>IoT機器の操作パネル（DEMO）</h2>
-        <%= image_tag "/image/wolf.png", id:"demo-img" %>
+        <div id="demo-wrapper">
+            <%= image_tag "/image/robota.png", id:"demo-img-back" %>
+            <div id="demo-img">
+                <div class="robot-eyes" id="left-eye"></div>
+                <div class="robot-eyes" id="right-eye"></div>
+                <%= image_tag "/image/robota.png" %>
+            </div>
+        </div>
         <div class="panel_item_wrap">
 
             <div class="panel_item">
@@ -145,7 +63,7 @@
                                     <iframe src="<%= @bench_image_now.pdf_url %>" id="preview_image"></iframe>
                                     <%#= image_tag @bench_image_now.image.to_s, id:"preview_image" %>
                                 <% else %>
-                                    <%= image_tag "/image/wolf.png", id: "preview_dummy", alt: "プレビューファイル" %>
+                                    <%= image_tag "/image/noimage.jpg", id: "preview_dummy", alt: "プレビューファイル" %>
                                 <% end %>
                             </div>
                         </div>
@@ -244,6 +162,95 @@
                     </div>
                 </div>
             </div>
+
+        <h2>IoT機器からのデータ受信（DEMO）</h2>
+        <div id="data"></div>
+        <div id="graphs">
+            <div class="graph_item">
+                <div>IoT機器のバッテリー残量</div>
+                <div>
+                    <canvas class="ex_chart"></canvas>
+                    <div class="graph_value"><p>現在の電圧</p><span>0</span>V</div>
+                </div>
+            </div>
+            <div class="graph_item">
+                <div>IoT機器の基盤温度</div>
+                <div>
+                    <canvas class="ex_chart"></canvas>
+                    <div class="graph_value"><p>現在の基盤温度</p><span>0</span>℃</div>
+                </div>
+            </div>
+            <div class="graph_item">
+                <div>IoT機器周辺の外気温</div>
+                <div>
+                    <canvas class="ex_chart"></canvas>
+                    <div class="graph_value"><p>現在の外気温</p><span>0</span>℃</div>
+                </div>
+            </div>
+            <div class="graph_item">
+                <div>Wi-Fi接続台数</div>
+                <div>
+                    <canvas class="ex_chart"></canvas>
+                    <div class="graph_value"><p>現在の接続台数</p><span>0</span>台</div>
+                </div>
+            </div>
+            <div class="graph_item">
+                <div>IoT機器周辺の湿度</div>
+                <div>
+                    <canvas class="ex_chart"></canvas>
+                    <div class="graph_value"><p>現在の湿度</p><span>0</span>%RH</div>
+                </div>
+            </div>
+            <div class="graph_item">
+                <div>IoT機器周辺の照度</div>
+                <div>
+                    <canvas class="ex_chart"></canvas>
+                    <div class="graph_value"><p>現在の照度</p><span>0</span>LX</div>
+                </div>
+            </div>
+            <div class="graph_item">
+                <div>IoT機器周辺の気圧</div>
+                <div>
+                    <canvas class="ex_chart"></canvas>
+                    <div class="graph_value"><p>現在の気圧</p><span>0</span>hPa</div>
+                </div>
+            </div>
+            <div class="graph_item">
+                <div>IoT機器周辺のノイズ</div>
+                <div>
+                    <canvas class="ex_chart"></canvas>
+                    <div class="graph_value"><p>現在のノイズ</p><span>0</span>dB</div>
+                </div>
+            </div>
+            <div class="graph_item">
+                <div>IoT機器周辺の揮発性有機化合物濃度</div>
+                <div>
+                    <canvas class="ex_chart"></canvas>
+                    <div class="graph_value"><p>現在の揮発性有機化合物濃度</p><span>0</span>ppmC</div>
+                </div>
+            </div>
+            <div class="graph_item">
+                <div>IoT機器周辺のCO2濃度</div>
+                <div>
+                    <canvas class="ex_chart"></canvas>
+                    <div class="graph_value"><p>現在のCO2濃度</p><span>0</span>ppm</div>
+                </div>
+            </div>
+            <div class="graph_item">
+                <div>IoT機器周辺の不快指数</div>
+                <div>
+                    <canvas class="ex_chart"></canvas>
+                    <div class="graph_value"><p>現在の不快指数</p><span>0</span></div>
+                </div>
+            </div>
+            <div class="graph_item">
+                <div>IoT機器周辺の熱中症警戒度</div>
+                <div>
+                    <canvas class="ex_chart"></canvas>
+                    <div class="graph_value"><p>現在の熱中症警戒度</p><span>0</span></div>
+                </div>
+            </div>
+        </div>
             
         </div>
     </div>

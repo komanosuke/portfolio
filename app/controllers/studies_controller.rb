@@ -5,9 +5,11 @@ class StudiesController < ApplicationController
         @user = current_user
     end
 
-    def kanji1
-        @study_record = StudyRecord.find_by(user_id: current_user.id)
-        correct_data = [@study_record.grade1, @study_record.grade2, @study_record.grade3, @study_record.grade4, @study_record.grade5, @study_record.grade6]
+    def kanji
+        @kanji_grade = params[:grade]
+        if logged_in?
+            @study_record = StudyRecord.find_by(user_id: current_user.id)
+            correct_data = [@study_record.grade1, @study_record.grade2, @study_record.grade3, @study_record.grade4, @study_record.grade5, @study_record.grade6]
 
             @correct_to_js = ['','','','','','']
 
@@ -18,21 +20,7 @@ class StudiesController < ApplicationController
                     end
                 end
             end
-    end
-
-    def kanji2
-    end
-
-    def kanji3
-    end
-
-    def kanji4
-    end
-
-    def kanji5
-    end
-
-    def kanji6
+        end
     end
 
     def collection

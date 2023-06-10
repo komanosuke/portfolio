@@ -3,12 +3,9 @@
 
     <div class="study-contents">
         <%= image_tag "japanese_coming.jpg", class: "not_yet" %>
-        <p>↓　おしてね　↓</p>
         <div class="japanese" id="contents_link">
-            <%= link_to '漢字の読み方クイズ', {action: 'kanji1'} %>
+            <%= link_to '漢字の読み方クイズ', {action: 'kanji', grade: '1'} %>
         </div>
-    
-        
     
     <%= javascript_pack_tag 'toggle'%>
     </div>

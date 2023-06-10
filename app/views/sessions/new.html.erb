@@ -11,7 +11,7 @@
             <p>ログインすると、Portfolio内の全てのサービスで、アカウントにひもづくデータの保存が可能になります。</p>
 
             <div id="guest-login-wrapper">
-                <p class="center">ポートフォリオ閲覧用のゲストログインボタンはこちらです。</p>
+                <p class="center marker">ポートフォリオ閲覧用のゲストログインボタンはこちらです。</p>
                 <%= form_for(:session, url: login_path) do |f| %>
                     <%= f.hidden_field :email, value: 'user@example.com' %>
                     <%= f.hidden_field :password, value: 'aaaaaaaa' %>

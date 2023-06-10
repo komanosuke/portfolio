@@ -76,12 +76,7 @@ Rails.application.routes.draw do
   get 'social', to: 'studies#social'
   get 'science', to: 'studies#science'
   get 'english', to: 'studies#english'
-  get 'kanji1', to: 'studies#kanji1'
-  get 'kanji2', to: 'studies#kanji2'
-  get 'kanji3', to: 'studies#kanji3'
-  get 'kanji4', to: 'studies#kanji4'
-  get 'kanji5', to: 'studies#kanji5'
-  get 'kanji6', to: 'studies#kanji6'
+  get 'kanji/:grade', to: 'studies#kanji#:grade'
   get 'collection', to: 'studies#collection'
 
   get 'contact', to: 'contacts#new'

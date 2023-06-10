@@ -154,12 +154,25 @@
 
 // portrait
 #portrait-back {
-    background-color: rgb(199, 241, 144);
+    background-image: url("/image/gallery.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#portrait-back-cover {
+    background-color: rgba(255, 255, 255, 0.4);
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 0;
 }
 
 #portrait-con {
     margin: 100px auto 0;
     padding-bottom: 70px;
+    z-index: 1;
+    position: relative;
 }
 
 #portrait-article {
@@ -321,7 +334,21 @@ ul {
 
 // media
 #media-main {
-    background-color: #012;
+    background-image: url("/image/ai_space.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#media-back-cover {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+}
+
+#media-con {
+    position: relative;
 }
 
 #media-main h1, .color-white {

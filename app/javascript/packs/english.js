@@ -603,11 +603,8 @@ const quizList = {
 };
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const makeAddButton = document.getElementById("nextButton");
-    makeAddButton.addEventListener("click", () => { nextQuiz() });
-});
-
+const makeAddButton = document.getElementById("nextButton");
+makeAddButton.addEventListener("click", () => { nextQuiz() });
 
 
 let counter = 0;
@@ -688,7 +685,7 @@ const buttonLength = $button.length
 const setUpQuiz = () => {
     document.getElementById('quiz').textContent = '[ ' + quiz[quizIndex].question + ' ]';
     document.getElementById('quiz_count').textContent = '（' + (quizIndex+1) + '問目/' + quizLength + '問中）';
-	document.getElementById('correct_message').textContent = '';
+        document.getElementById('correct_message').textContent = '';
     let buttonList = [];
     buttonList.push(quiz[quizIndex].answer);
 	let randomList = [];
@@ -740,12 +737,10 @@ function nextQuiz() {
 	}
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const speakButton = document.getElementsByClassName("voiceButton");
-    for(let i = 0; i < speakButton.length; i++){
-		speakButton[i].addEventListener("click", () => { speak(i) });
-	}
-});
+const speakButton = document.getElementsByClassName("voiceButton");
+for(let i = 0; i < speakButton.length; i++){
+        speakButton[i].addEventListener("click", () => { speak(i) });
+}
 
 
 function speak(i){
@@ -764,12 +759,10 @@ function speak(i){
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const quizButton = document.getElementsByClassName("quiz_button");
-    for(let i = 0; i < quizButton.length; i++){
-		quizButton[i].addEventListener('click', speakQuiz, false);
-	}
-});
+const quizButton = document.getElementsByClassName("quiz_button");
+for(let i = 0; i < quizButton.length; i++){
+        quizButton[i].addEventListener('click', speakQuiz, false);
+}
 
 function speakQuiz(e){
 	speechSynthesis.cancel();

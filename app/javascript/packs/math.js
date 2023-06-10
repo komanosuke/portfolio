@@ -1,3 +1,4 @@
+
 //マスの複製
 let cloneCounter = 0;
 while(cloneCounter < 9){
@@ -13,47 +14,29 @@ while(cloneCounter < 9){
 }
 
 //ボタンの設定
-document.addEventListener('DOMContentLoaded', () => {
-    const makeAddButton = document.getElementById("makeAddButton");
-    makeAddButton.addEventListener("click", () => { changeToPlus() });
-});
+const makeAddButton = document.getElementById("makeAddButton");
+makeAddButton.addEventListener("click", () => { changeToPlus() });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const makeSubButton = document.getElementById("makeSubButton");
-    makeSubButton.addEventListener("click", () => { changeToMinus() });
-});
+const makeSubButton = document.getElementById("makeSubButton");
+makeSubButton.addEventListener("click", () => { changeToMinus() });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const makeMultiButton = document.getElementById("makeMultiButton");
-    makeMultiButton.addEventListener("click", () => { changeToMultiple() });
-});
+const makeMultiButton = document.getElementById("makeMultiButton");
+makeMultiButton.addEventListener("click", () => { changeToMultiple() });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const hyakumasuAnswerButton = document.getElementById("hyakumasuAnswerButton");
-    hyakumasuAnswerButton.addEventListener("click", () => { judge() });
-});
+const hyakumasuAnswerButton = document.getElementById("hyakumasuAnswerButton");
+hyakumasuAnswerButton.addEventListener("click", () => { judge() });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const resetButton = document.getElementById("resetButton");
-    resetButton.addEventListener("click", () => { resetAnswers() });
-});
+const resetButton = document.getElementById("resetButton");
+resetButton.addEventListener("click", () => { resetAnswers() });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const hyakuwariRandomButton = document.getElementById("hyakuwariRandomButton");
-    hyakuwariRandomButton.addEventListener("click", () => { hyakuwariSetNumbers() });
-});
+const hyakuwariRandomButton = document.getElementById("hyakuwariRandomButton");
+hyakuwariRandomButton.addEventListener("click", () => { hyakuwariSetNumbers() });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const hyakuwariAnswerButton = document.getElementById("hyakuwariAnswerButton");
-    hyakuwariAnswerButton.addEventListener("click", () => { hyakuwariCheckAnswers() });
-});
+const hyakuwariAnswerButton = document.getElementById("hyakuwariAnswerButton");
+hyakuwariAnswerButton.addEventListener("click", () => { hyakuwariCheckAnswers() });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const hyakuwariResetButton = document.getElementById("hyakuwariResetButton");
-    hyakuwariResetButton.addEventListener("click", () => { hyakuwariResetAnswers() });
-});
-
-
+const hyakuwariResetButton = document.getElementById("hyakuwariResetButton");
+hyakuwariResetButton.addEventListener("click", () => { hyakuwariResetAnswers() });
 
 //算術記号変更
 function changeToPlus(){
@@ -282,63 +265,48 @@ function hyakuwariResetAnswers() {
 
 
 //ボタンの設定
-document.addEventListener('DOMContentLoaded', () => {
-    const setAddButton = document.getElementById("setAddButton");
-    setAddButton.addEventListener("click", () => { setPlus() });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const setSubButton = document.getElementById("setSubButton");
-    setSubButton.addEventListener("click", () => { setMinus() });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const setMultiButton = document.getElementById("setMultiButton");
-    setMultiButton.addEventListener("click", () => { setMultiple() });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const setDivideButton = document.getElementById("setDivideButton");
-    setDivideButton.addEventListener("click", () => { setDivide() });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const answerCalcButton = document.getElementById("answerCalcButton");
-    answerCalcButton.addEventListener("click", () => { calcJudge() });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const resetCalcButton = document.getElementById("resetCalcButton");
-    resetCalcButton.addEventListener("click", () => { resetCalcAnswers() });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const clearCanvasButton = document.getElementById("clearCanvas");
-    clearCanvasButton.addEventListener("click", () => { clearCanvas() });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const prevCanvasButton = document.getElementById("prevCanvas");
-    prevCanvasButton.addEventListener("click", () => { prevCanvas() });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const nextCanvasButton = document.getElementById("nextCanvas");
-    nextCanvasButton.addEventListener("click", () => { nextCanvas() });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const graphButton = document.getElementById("graphButton");
-    graphButton.addEventListener("click", () => { graph() });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const proportionalButton = document.getElementById("proportionalButton");
-    proportionalButton.addEventListener("click", () => { proportional() });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const shapeButton = document.getElementById("shapeButton");
-    shapeButton.addEventListener("click", () => { shape() });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const triShapeButton = document.getElementById("triShapeButton");
-    triShapeButton.addEventListener("click", () => { triShape() });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const fractionButton = document.getElementById("fractionButton");
-    fractionButton.addEventListener("click", () => { fraction() });
-});
 
+const setAddButton = document.getElementById("setAddButton");
+setAddButton.addEventListener("click", () => { setPlus() });
+
+const setSubButton = document.getElementById("setSubButton");
+setSubButton.addEventListener("click", () => { setMinus() });
+
+const setMultiButton = document.getElementById("setMultiButton");
+setMultiButton.addEventListener("click", () => { setMultiple() });
+
+const setDivideButton = document.getElementById("setDivideButton");
+setDivideButton.addEventListener("click", () => { setDivide() });
+
+const answerCalcButton = document.getElementById("answerCalcButton");
+answerCalcButton.addEventListener("click", () => { calcJudge() });
+
+const resetCalcButton = document.getElementById("resetCalcButton");
+resetCalcButton.addEventListener("click", () => { resetCalcAnswers() });
+
+const clearCanvasButton = document.getElementById("clearCanvas");
+clearCanvasButton.addEventListener("click", () => { clearCanvas() });
+
+const prevCanvasButton = document.getElementById("prevCanvas");
+prevCanvasButton.addEventListener("click", () => { prevCanvas() });
+
+const nextCanvasButton = document.getElementById("nextCanvas");
+nextCanvasButton.addEventListener("click", () => { nextCanvas() });
+
+const graphButton = document.getElementById("graphButton");
+graphButton.addEventListener("click", () => { graph() });
+
+const proportionalButton = document.getElementById("proportionalButton");
+proportionalButton.addEventListener("click", () => { proportional() });
+
+const shapeButton = document.getElementById("shapeButton");
+shapeButton.addEventListener("click", () => { shape() });
+
+const triShapeButton = document.getElementById("triShapeButton");
+triShapeButton.addEventListener("click", () => { triShape() });
+
+const fractionButton = document.getElementById("fractionButton");
+fractionButton.addEventListener("click", () => { fraction() });
 
 //計算練習
 const NumList = [

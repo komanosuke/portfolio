@@ -24,7 +24,7 @@
             <span class="btn-line"></span>
         </button>
         <% if logged_in? %>
-            <div class="study-btn" id="collection_btn"><%= link_to '学習記録', action: 'collection' %></div>
+            <a href="/collection"><div class="study-btn" id="collection_btn">学習記録</div></a>
             <%= link_to "ログアウト", logout_path, method: :delete, class:"study-btn", id:"login_btn" %>
         <% else %>
             <a href="/login"><div class="study-btn" id="login_btn">ログイン</div></a>

@@ -2,6 +2,23 @@ document.addEventListener('turbolinks:load', function() {
     window.scrollTo(0, 0);
 });
 
+$(function () {
+    let demo = $('#demo-img');
+    let demoBack = $('#demo-img-back');
+    let offset = demo.offset();
+    
+    $(window).on('scroll', function () {
+        if ($(window).scrollTop() > offset.top - 100) {
+            demo.addClass('fixed');
+            demoBack.addClass('appear');
+        } else {
+            demo.removeClass('fixed');
+            demoBack.removeClass('appear');
+        }
+    });
+});
+
+
 //RGBの取得
 let rgb_select = ''; //現在選択されている色を格納
 
@@ -347,15 +364,22 @@ function hex2rgb ( hex ) {
 function postData(command){
     let request_cmd =  command;
     console.log('コマンド: ' + request_cmd + ' を送信');
-    $.ajax({
-        url: '/send_msg',
-        type: 'GET',
-        dataType: 'text',
-        async: true,
-        data: {
-            cmd: request_cmd
-        },
-    });
+    // 実機送信時の通信
+    // $.ajax({
+    //     url: '/send_msg',
+    //     type: 'GET',
+    //     dataType: 'text',
+    //     async: true,
+    //     data: {
+    //         cmd: request_cmd
+    //     },
+    // });
+    if(command.includes('COLOR')){
+        rgb = command.split(":").slice(1).map(item => parseInt(item, 10));
+        hex = "rgb(" + rgb.join(",") + ")";
+        $('.robot-eyes').css('background-color', hex);
+        $("#demo-img img").css("boxShadow", "1px 1px 50px " + hex);
+    }
 }
 
 
@@ -402,18 +426,30 @@ function updateData(){
     // IoT機器周辺の熱中症警戒度
     // データ通信使用量
     pushed_data = [
-        Number(data["BATTERY"]),
-        Number(data["TEMPERATURE"]),
-        Number(data["GTEMPERATURE"]),
-        Number(data["WIFIUSE"]),
-        Number(data["HUMIDITY"]),
-        Number(data["LIGHT"]),
-        Number(data["PRESS"]),
-        Number(data["NOISE"]),
-        Number(data["ETVOC"]),
-        Number(data["CO2"]),
-        Number(data["DISCOMFORT"]),
-        Number(data["HEAT"]),
+        // Number(data["BATTERY"]),
+        // Number(data["TEMPERATURE"]),
+        // Number(data["GTEMPERATURE"]),
+        // Number(data["WIFIUSE"]),
+        // Number(data["HUMIDITY"]),
+        // Number(data["LIGHT"]),
+        // Number(data["PRESS"]),
+        // Number(data["NOISE"]),
+        // Number(data["ETVOC"]),
+        // Number(data["CO2"]),
+        // Number(data["DISCOMFORT"]),
+        // Number(data["HEAT"]),
+        (Math.random() * (5.785 - 4.987) + 4.987).toFixed(3),
+        (Math.random() * (19.76 - 19.73) + 19.73).toFixed(2),
+        (Math.random() * (23.67 - 23.64) + 23.64).toFixed(2),
+        Math.floor(Math.random() * 3),
+        (Math.random() * (58.05 - 58.02) + 58.02).toFixed(2),
+        Math.floor(Math.random() * (27 - 25) + 25),
+        (Math.random() * (1025.856 - 1025.756) + 1025.756).toFixed(3),
+        (Math.random() * (52.49 - 52.29) + 52.29).toFixed(2),
+        Math.floor(Math.random() * (47 - 45) + 45),
+        Math.floor(Math.random() * (704 - 700) + 700),
+        (Math.random() * (70.83 - 70.73) + 70.73).toFixed(2),
+        (Math.random() * (21.33 - 21.23) + 21.23).toFixed(2)
     ];
     for(let i = 0; i < ctx.length; i++){
         chart_data[i].shift();
