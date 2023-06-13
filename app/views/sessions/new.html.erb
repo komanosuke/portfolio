@@ -2,7 +2,7 @@
     <% if logged_in? %>
         <div class="contents">
             <h1>- ログインしています -</h1>
-            <%= link_to "トップページへ", '/', class:'btn' %>
+            <%= link_to "トップページへ", '/', class:'btn block' %>
         </div>
     <% else %>
         <div class="contents" id="login-con">
@@ -31,3 +31,7 @@
         </div>
     <% end %>
 </main>
+
+<script>
+    $("#hd-right").css("visibility", "hidden");
+</script>

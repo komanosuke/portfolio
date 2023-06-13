@@ -71,24 +71,6 @@
                 </div>
             </div>
 
-            <div class="panel_item" id="audio_item">
-                <div id="audio_lock"></div>
-                <div class="panel_item_content">
-                    <div class="panel_item_ttl">
-                        <h2>スピーカーの音量調節</h2>
-                        <p>IoT機器のスピーカーの音量調節が可能です。●ボタンをスライドさせることで音量を調節することができます。</p>
-                    </div>
-                    <div>
-                        <div id="volume_container">
-                            <div id="volume_subcontainer">
-                                <div class="volume">現在のボリューム<br><p>0</p></div>
-                            </div>
-                        </div>
-                        <input type="range" value="0" id="volume_input">
-                    </div>
-                </div>
-            </div>
-
             <div class="panel_item">
                 <div class="panel_item_content">
                     <div class="panel_item_ttl">
@@ -151,15 +133,6 @@
                     <% if @bench_audio_now %>
                         <audio src= "<%= "#{@bench_audio_now.audio}" %>" controls="" id="audio_player">
                     <% end %>
-                </div>
-            </div>
-
-            <div class="panel_item">
-                <div class="panel_item_content">
-                    <div class="panel_item_ttl">
-                        <h2>カメラ</h2>
-                        <p>IoT機器のカメラを再生することが可能です。</p>
-                    </div>
                 </div>
             </div>
 

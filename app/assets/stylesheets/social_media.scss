@@ -1,15 +1,23 @@
 #sns-body {
-    background-color: darkcyan;
+    background-color: #000;
 }
 
 .sns-hd-side, #sns-tgl {
-    background-color: darkcyan !important;
+    background: linear-gradient(to bottom, rgb(150, 227, 227), darkcyan);
+    border-radius: 30px;
 }
 
 #sns-contents {
-    padding-top: 40px;
+    padding-top: 70px;
     width: 80%;
-    margin: 30px auto 30px 20%;
+    margin: 0 auto 0 20%;
+}
+
+.sns-top {
+    padding-top: 40px !important;
+    background-image: url("/image/blue_back.png");
+    background-repeat: repeat;
+    background-size: contain;
 }
 
 #sns-container {
@@ -28,7 +36,7 @@
     height: 4vw;
     margin: 0;
     padding: 0;
-    height: 4vw;
+    height: 7vw;
 }
 
 #new-post-container {
@@ -53,7 +61,7 @@
     position: fixed;
     width: 20%;
     height: 100%;
-    background-color: rgb(51, 160, 160);
+    background-color: #000;
     top: 0px;
     left: 0;
     z-index: 998;
@@ -66,7 +74,7 @@
 }
 
 .side-bar ul {
-    margin-top: 80px;
+    margin-top: 100px;
 }
 
 .side-bar li {
@@ -188,7 +196,7 @@
 }
 
 #profile-table td, #profile-table th {
-    background-color: lightgray;
+    background-color: #f1f1f1;
     border: none;
 }
 
@@ -250,12 +258,16 @@
 }
 
 #sns-footer {
-    background-color: darkcyan;
+    width: 80%;
+    float: right;
+    background-image: url("/image/forest_closet.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
 }
 
 #sns-footer-side {
-    width: 70%;
-    margin-left: 25%;
+    width: 100%;
 }
 
 .post-name {
@@ -294,7 +306,7 @@
 @media screen and (max-width:750px) {
     #sns-contents {
         width: 100%;
-        margin: 20px auto 30px 0;
+        margin: 0 auto 0 0;
     }
 
     #sns-container {
@@ -322,6 +334,10 @@
 
     .follow-btn {
         float: none;
+    }
+
+    #sns-img-file {
+        height: 16vw;
     }
 
     #sns-footer {

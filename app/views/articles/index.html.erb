@@ -5,29 +5,26 @@
     <div class="article">
         <h1>- Contents -</h1>
         
-        <p>ここでは、CxxSewのデザイナーによる写真や文章をブログ形式でご覧いただけます。</p>
+        <p class="center">ここでは、CxxSewのデザイナーによる写真や文章をブログ形式でご覧いただけます。</p>
     </div>
     
     <% if @articles.empty? %>
         <p>まだコンテンツが投稿されていません。</p>
     <% else %>
-        <div class="left" id="content">
-        <% @articles.each do |article| %>
+        <div id="content">
             <div class="works">
-                <div class="work">
-                    <a href="/articles/<%= article.id %>">
-                        <%= image_tag article.image.url, alt:"" %>
-                        <div>
-                            <p class="date"><%= article.updated_at %></p>
-                            <p><%= article.title %></p>
-                        </div>
-                    </a>
-                </div>
+                <% @articles.each do |article| %>
+                    <div class="work">
+                        <a href="/articles/<%= article.id %>">
+                            <%= image_tag article.image.url, alt:"" %>
+                            <div>
+                                <p class="date"><%= article.updated_at %></p>
+                                <p><%= article.title %></p>
+                            </div>
+                        </a>
+                    </div>
+                <% end %>
             </div>
-        <% end %>
+        </div>
     <% end %>
-    </div>
-    
-    
 </div>
-

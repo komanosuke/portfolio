@@ -25,6 +25,11 @@
     display: none !important;
 }
 
+.block {
+    display: block;
+    background-color: #000 !important;
+}
+
 body {
     margin: 0;
     width: 100%;
@@ -173,6 +178,10 @@ header img {
     object-fit: cover;
 }
 
+.fit-edit {
+    object-position: 50% 23%;
+}
+
 main {
     overflow: hidden;
     background-color: #fff;
@@ -222,7 +231,7 @@ main {
 
 #cxxsew-contents {
     width: 85%;
-    margin: 20px auto;
+    margin: 50px auto;
     text-align: center;
 }
 
@@ -343,6 +352,9 @@ main {
     background-color: indianred;
 }
 
+.rect-row a:hover, .be-pink:hover {
+    background-color: rgb(230, 129, 129);
+}
 
 .rect-row p {
     transform: rotate(-45deg);
@@ -468,6 +480,17 @@ small {
     cursor: pointer;
 }
 
+#cxxsew-contents h1 {
+    margin: 50px auto;
+}
+
+#cxxsew-contents h2 {
+    margin: 80px auto 30px;
+}
+
+#cxxsew-contents .article {
+    margin-bottom: 60px;
+}
 
 /* Works */
 
@@ -534,7 +557,6 @@ small {
 
 
 /* Content */
-
 #content p {
     width: 90%;
     font-size: 12px;
@@ -1157,6 +1179,14 @@ input[type="checkbox"]{
 
     .main-photo {
         aspect-ratio: 4/3;
+    }
+
+    #cxxsew-contents h1 {
+        margin: 30px auto;
+    }
+
+    #cxxsew-contents h2 {
+        margin: 50px auto 30px;
     }
 
     input, textarea {

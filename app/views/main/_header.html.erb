@@ -1,7 +1,7 @@
 <header>
 	<div id="hd-flex">
 		<a href="/" class="pc">
-			<div class="hd-side">HOME</div>
+			<div class="hd-side be-pink">home</div>
 		</a>
 		<div class="toggle-btn sp">
 			<div id="cross">
@@ -19,9 +19,9 @@
 			<%= link_to "Admin Log out", admin_logout_path, method: :delete, class:"hd-side" %>
 		<% else %>
 			<% if logged_in? %>
-				<%= link_to "Log out", logout_path, method: :delete, class:"hd-side" %>
+				<%= link_to "Log out", logout_path, method: :delete, class:"hd-side be-pink" %>
 			<% else%>
-				<a href="/login"><div class="hd-side">log in</div></a>
+				<a href="/login"><div class="hd-side be-pink">log in</div></a>
 			<% end %>
 		<% end %>
 	</div>
