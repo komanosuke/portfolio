@@ -1,11 +1,10 @@
 // JSONデータを格納する変数
 let quiz;
-let kanji_json;
 let which_grade = Number(document.getElementById('which_grade').textContent);
 let grade_text = document.getElementById('grade');
 let card_image = document.getElementById('card_image1');
 
-function readJson(kanji_json){
+function readJson(){
 	kanji_json = "/json/kanji" + String(which_grade) + ".json"
 	grade_text.textContent = "小学校" + String(which_grade) + "年生の漢字";
 	card_image.src = "/image/card" + String(which_grade) + ".jpg";
@@ -16,7 +15,7 @@ function readJson(kanji_json){
 	.then(jsonData => {
 	// 読み込んだJSONデータを変数に格納
 		quiz = jsonData;
-		console.log(quiz);
+		// console.log(quiz);
 		setUpQuiz(kanjiNumber, quiz);
 		document.getElementById('kanji').textContent = kanjiList[kanjiGrade][0];
 		document.getElementById('on_yomi').textContent = '音読み： ' + quiz[kanjiNumber].pronunciation[0];
@@ -36,16 +35,17 @@ const kanjiList = [
     ['胃','異','遺','域','宇','映','延','沿','恩','我','灰','拡','革','閣','割','株','干','巻','看','簡','危','机','揮','貴','疑','吸','供','胸','郷','勤','筋','系','敬','警','劇','激','穴','券','絹','権','憲','源','厳','己','呼','誤','后','孝','皇','紅','降','鋼','刻','穀','骨','困','砂','座','済','裁','策','冊','蚕','至','私','姿','視','詞','誌','磁','射','捨','尺','若','樹','収','宗','就','衆','従','縦','縮','熟','純','処','署','諸','除','承','将','傷','障','蒸','針','仁','垂','推','寸','盛','聖','誠','舌','宣','専','泉','洗','染','銭','善','奏','窓','創','装','層','操','蔵','臓','存','尊','退','宅','担','探','誕','段','暖','値','宙','忠','著','庁','頂','腸','潮','賃','痛','敵','展','討','党','糖','届','難','乳','認','納','脳','派','拝','背','肺','俳','班','晩','否','批','秘','俵','腹','奮','並','陛','閉','片','補','暮','宝','訪','亡','忘','棒','枚','幕','密','盟','模','訳','郵','優','預','幼','欲','翌','乱','卵','覧','裏','律','臨','朗','論']
 ];
 
-window.onload = function () {
 
-    if (window.name != "any") {
-        location.reload();
-        window.name = "any";
-    } else {
-        window.name = "";
-    }
+// window.onload = function () {
 
-}
+// 	if (window.name != "any") {
+// 		location.reload();
+// 		window.name = "any";
+// 	} else {
+// 		window.name = "";
+// 	}
+
+// }
 
 let kanjiGrade = which_grade-1;
 let kanjiNumber = 0;
@@ -54,16 +54,19 @@ let passData = 0;
 
 //漢字の読みクイズのセットアップ
 const setUpQuiz = (kanjiNumber, quiz) => {
-	
-	//指定学年に合わせて漢字ボタンを作成
-	let kanjiCloneCounter = 0;
-	while(kanjiCloneCounter < kanjiList[kanjiGrade].length-1){
-		let kanjiClone = document.getElementsByClassName('kanjis');
-		let cloneElement = kanjiClone[kanjiCloneCounter].cloneNode(true);
-		kanjiClone[kanjiCloneCounter].after(cloneElement);
-		kanjiCloneCounter++;
+
+	//漢字リストの有無をチェック
+	if($('.kanjis').length == 1){
+		//指定学年に合わせて漢字ボタンを作成
+		let kanjiCloneCounter = 0;
+		while(kanjiCloneCounter < kanjiList[kanjiGrade].length-1){
+			let kanjiClone = document.getElementsByClassName('kanjis');
+			let cloneElement = kanjiClone[kanjiCloneCounter].cloneNode(true);
+			kanjiClone[kanjiCloneCounter].after(cloneElement);
+			kanjiCloneCounter++;
+		}
+		setKanji(kanjiGrade);
 	}
-	setKanji(kanjiGrade);
 	
 	//漢字の読みクイズをあるだけ作成
 	let cloneCounter = 0;
@@ -176,9 +179,6 @@ function setHover(color){
 }
 
 
-
-
-
 //指定された学年の漢字をボタンに書き込む
 function setKanji(kanjiGrade){
 	const $kanjiList = document.getElementsByClassName('kanjis');
@@ -193,9 +193,6 @@ function setKanji(kanjiGrade){
 }
 
 
-
-
-
 //前回のクイズ削除
 function removeQuiz(){
 	removeAnswer();
@@ -208,9 +205,6 @@ function removeQuiz(){
 }
 
 
-
-
-
 //前回の学年の漢字削除
 function removeKanji(){
 	let cloneRemoveCounter = kanjiList[kanjiGrade].length-1;
@@ -221,8 +215,6 @@ function removeKanji(){
 		}
 	document.getElementsByClassName('kanjis')[0].textContent = kanjiList[kanjiGrade][0];
 }
-
-
 
 
 //漢字ボタンを押すと、その漢字を大きく表示
@@ -257,19 +249,22 @@ const answerButton = document.getElementById("answerButton");
 answerButton.addEventListener("click", () => { judge() });
 
 
+const update_data = document.getElementById('update_data');
 //railsに正解した漢字のデータをpost
 function postData(){
-
-	$.ajax({
-		url: '/kanji_quiz/update',
-		type: 'GET',
-		dataType: 'text',
-		async: true,
-		data: {
-			grade: String(kanjiGrade),
-			passData: String(passData),
-		},
-	});
+	grade_input.value = String(kanjiGrade);
+	pass_data_input.value = String(passData);
+	update_data.click();
+	// $.ajax({
+	// 	url: '/kanji_update',
+	// 	type: 'POST',
+	// 	dataType: 'text',
+	// 	async: true,
+	// 	data: {
+	// 		grade: String(kanjiGrade),
+	// 		pass_data: String(passData),
+	// 	},
+	// });
 }
 
 
@@ -283,10 +278,10 @@ if(login_checker.textContent == 'true'){
 //合格時のアニメーション
 function openPopup(grade, num){
 	let img = document.getElementById('image_file');
-	let imgName = '/image' + grade + '_' + num + '.jpg';
+	let imgName = '/monsters/image' + grade + '_' + num + '.jpg';
 	
 	if(grade > 0){
-		imgName = '/dummy.jpg';
+		imgName = '/monsters/dummy.jpg';
 	}
 	img.src = imgName;
 	document.querySelector('#image_file').animate(
@@ -326,13 +321,13 @@ function closePopUp() {
 		popup.classList.remove('is-show');
 		document.getElementById('pass_message').style.visibility = 'hidden';
 		document.getElementById('char_name').style.visibility = 'hidden';
-		img.src = '/white.jpg';
+		img.src = '/monsters/white.jpg';
 	});
 	closeBtn.addEventListener('click', function() {
 		popup.classList.remove('is-show');
 		document.getElementById('pass_message').style.visibility = 'hidden';
 		document.getElementById('char_name').style.visibility = 'hidden';
-		img.src = '/white.jpg';
+		img.src = '/monsters/white.jpg';
 	});
 }
 closePopUp();

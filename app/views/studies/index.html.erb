@@ -8,7 +8,7 @@
         <%= image_tag "welcome.jpg", id: "welcome" %>
     
     <% if logged_in? then %>
-        <p>「<%= @user.email %>」でログインしてるよ！</p>
+        <p class="pink">「<%= @user.name %>」でログイン中</p>
     <% else %>
         <p>ログインすると<ruby>学<rt>まな</rt></ruby>びの<ruby>記録<rt>きろく</rt></ruby>がのこせるよ！<br>※現在「国語」のみ利用可能</p>
     <% end %>
@@ -25,7 +25,6 @@
     <%= image_tag "/image/intro5.jpg", class: "intro" %>
     <%= image_tag "/image/intro6.jpg", class: "intro" %>
     
-        
     <%= javascript_pack_tag 'hello_image' %>
     <%= javascript_pack_tag 'toggle' %>
     </div>

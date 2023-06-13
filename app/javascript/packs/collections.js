@@ -71,9 +71,9 @@ function openPopup(num){
 		document.getElementById('collection_char_name').style.visibility = 'visible';
 	}
 
-	let imgName = '/image' + grade + '_' + this.num + '.jpg';
+	let imgName = '/monsters/image' + grade + '_' + this.num + '.jpg';
 	if(this.num > 80){
-		imgName = '/dummy.jpg';
+		imgName = '/monsters/dummy.jpg';
 	}
 	img.src = imgName;
 
@@ -88,11 +88,11 @@ function closePopUp() {
 	let img = document.getElementById('image_file');
 	blackBg.addEventListener('click', function() {
 		popup.classList.remove('is-show');
-		img.src = '/white.jpg';
+		img.src = '/monsters/white.jpg';
 	});
 	closeBtn.addEventListener('click', function() {
 		popup.classList.remove('is-show');
-		img.src = '/white.jpg';
+		img.src = '/monsters/white.jpg';
 	});
 	
 }
@@ -107,33 +107,17 @@ closePopUp();
 
 let delete_collections = document.getElementById('delete_collections');
 delete_collections.addEventListener('click', confirmDelete, false);
+let collection_reset = document.getElementById('collection_reset');
 
 function confirmDelete(){
 	let confirmDelete = confirm('今までの学習記録が消えてしまいます。本当に削除しますか？');
 
 	if(confirmDelete){
-		decide = 'true';
-		postData(decide);
+		collection_reset.click();
 		alert('削除しました！また新しい気持ちでがんばろう！');
 	}else{
-		decide = 'false';
-		postData(decide);
 		alert('削除をとりやめました！引き続きがんばろう！');
 	}
-}
-
-
-function postData(decide){
-
-	$.ajax({
-		url: '/kanji_quiz/delete',  
-		type: 'GET',
-		dataType: 'text',
-		async: true,
-		data: {
-			confirmDelete: decide,
-		},
-	});
 }
 
 

@@ -1050,7 +1050,7 @@ input[type="checkbox"]{
     }
     
     .sp {
-        display: block;
+        display: block !important;
     }
 
     .sp-flex {

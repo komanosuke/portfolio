@@ -68,7 +68,12 @@
         
         <% if logged_in? %>
             <div class="congratulations">おめでとう！カードをほぞんしよう</div>
-            <div class="btn" id="registerButton"><a href="/studies/index">カードを<ruby>学習記録<rt>がくしゅうきろく</rt></ruby>に<ruby>保存<rt>ほぞん</rt></ruby>する</a></div>
+            <div class="btn" id="registerButton">カードを<ruby>学習記録<rt>がくしゅうきろく</rt></ruby>に<ruby>保存<rt>ほぞん</rt></ruby>する</div>
+            <%= form_with url: "/kanji_update", method: :post, html: { id: "hidden_form" } do |form| %>
+                <%= form.hidden_field :grade, value: '', id:'grade_input' %>
+                <%= form.hidden_field :pass_data, value: '',  id:'pass_data_input' %>
+                <%= form.submit "更新", id:'update_data' %>
+            <% end %>
         <% else %>
             <div class="congratulations">おめでとう！！</div>
         <% end %>
@@ -76,7 +81,7 @@
     <div class="popup" id="js-popup">
         <div class="popup-inner">
             <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
-            <%= image_tag "/white.jpg", id:"image_file" %>
+            <%= image_tag "/monsters/white.jpg", id:"image_file" %>
         </div>
         <div class="black-background" id="js-black-bg"></div>
     </div>

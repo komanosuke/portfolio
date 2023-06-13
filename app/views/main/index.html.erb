@@ -68,7 +68,7 @@
         
 
         <h2>- Works -</h2>
-        <p class="left">全ての作品にCxxSewの思いが込められていますので、ぜひご覧ください。作品は本サイトでご注文いただけます。</p>
+        <p>全ての作品にCxxSewの思いが込められていますので、ぜひご覧ください。作品は本サイトでご注文いただけます。</p>
         <p class="subtext">◆のついているものは、一点物のハンドメイド作品です。</p>
         <div class="works">
             <% @works.each do |work| %>
@@ -115,5 +115,7 @@
         <%= video_tag "/movie/fashion_movie.mp4", controls: true, poster:"/image/fashion_movie.jpeg", id:"concept-movie" %>
     </div>
 
-    <%= image_tag "/image/mid_main4.png", class:"footer-img", alt:"" %>
+    
 </div>
+
+<%= javascript_pack_tag 'swiper' %>

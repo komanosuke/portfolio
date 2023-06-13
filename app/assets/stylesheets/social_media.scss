@@ -175,6 +175,40 @@
     border-radius: 100px;
 }
 
+#profile-user {
+    border: 1px solid #000;
+    margin: 15px 0;
+}
+
+#profile-table {
+    width: 100%;
+    margin: 0 auto 15px;
+    border: none;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#profile-table td, #profile-table th {
+    background-color: lightgray;
+    border: none;
+}
+
+#profile-table th {
+    width: 150px;
+    height: 40px;
+}
+
+#profile-user-wrapper {
+    width: 80%;
+    margin: 30px auto;
+}
+
+#profile-user h2 {
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 5px;
+}
+
 #profile-sns {
     border: 1px solid darkcyan;
     margin: 15px 0;

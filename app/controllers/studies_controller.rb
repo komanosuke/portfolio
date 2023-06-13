@@ -38,10 +38,61 @@ class StudiesController < ApplicationController
                     end
                 end
             end
-
         else
-            redirect_to '/studies/index'
+            redirect_to '/studies'
         end
     end
 
+    def update
+        if logged_in?
+            study_record = StudyRecord.find_by(user_id: current_user.id)
+
+            #javascriptから問題の正解情報を取得
+            grade = params[:grade].to_i
+            pass_data = params[:pass_data].to_i
+
+            logger.debug grade
+            logger.debug pass_data
+
+            if grade == 0 
+                updated = study_record.grade1
+                updated[pass_data] = '1'
+                study_record.update(grade1: updated)
+                redirect_to '/kanji/1'
+            elsif grade == 1
+                updated = study_record.grade2
+                updated[pass_data] = '1'
+                study_record.update(grade2: updated)
+                redirect_to '/kanji/2'
+            elsif grade == 2
+                updated = study_record.grade3
+                updated[pass_data] = '1'
+                study_record.update(grade3: updated)
+                redirect_to '/kanji/3'
+            elsif grade == 3
+                updated = study_record.grade4
+                updated[pass_data] = '1'
+                study_record.update(grade4: updated)
+                redirect_to '/kanji/4'
+            elsif grade == 4
+                updated = study_record.grade5
+                updated[pass_data] = '1'
+                study_record.update(grade5: updated)
+                redirect_to '/kanji/5'
+            elsif grade == 5
+                updated = study_record.grade6
+                updated[pass_data] = '1'
+                study_record.update(grade6: updated)
+                redirect_to '/kanji/6'
+            end
+        end
+    end
+
+    def delete
+        if params[:confirm] == 'delete'
+            study_record = StudyRecord.find_by(user_id: current_user.id)
+            study_record.update(grade1:'00000000000000000000000000000000000000000000000000000000000000000000000000000000',grade2:'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',grade3:'00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',grade4:'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',grade5:'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',grade6:'00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000')
+            redirect_to '/collection'
+        end
+    end
 end

@@ -828,3 +828,19 @@ function fraction(){
 	});
 	chart.render();
 }
+
+let numbers = document.getElementsByClassName('numbers');
+for (let i = 0; i < numbers.length; i++){
+	numbers[i].addEventListener('change', function(e) {
+		let value = parseInt(e.target.value);
+		if (value < parseInt(e.target.min)) {
+			e.target.value = e.target.min;
+			value = e.target.min;
+		} else if (value > parseInt(e.target.max)) {
+			e.target.value = e.target.max;
+			value = e.target.max;
+		} else {
+			e.target.value = value;
+		}
+	});
+}

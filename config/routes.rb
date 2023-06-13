@@ -77,6 +77,8 @@ Rails.application.routes.draw do
   get 'science', to: 'studies#science'
   get 'english', to: 'studies#english'
   get 'kanji/:grade', to: 'studies#kanji#:grade'
+  post 'kanji_update', to: 'studies#update'
+  post 'collection_delete', to: 'studies#delete'
   get 'collection', to: 'studies#collection'
 
   get 'contact', to: 'contacts#new'

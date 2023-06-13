@@ -3,11 +3,32 @@
         <h1>- Account Information -</h1>
         <div id="flash"><%= flash[:notice] %></div>
 
-        <h2>基本情報</h2>
-        <p>Name: <%= @user.name %></p>
-        <p>ID: <%= @user.username %></p>
-        <%= image_tag @user.image.url, class:"profile-thumb", alt:"" %>
-        <p>紹介文: <%= @user.profile %></p>
+        <div id="profile-user">
+            <h2>基本情報</h2>
+            <div id="profile-user-wrapper">
+                <table id="profile-table">
+                    <tr>
+                        <th>名前</th>
+                        <td><%= @user.name %></td>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <td><%= @user.username %></td>
+                    </tr>
+                    <tr>
+                        <th>紹介文</th>
+                        <td>
+                            <% if @user.profile =! "" %>
+                                <%= @user.profile %>
+                            <% else %>
+                                紹介文が登録されていません。
+                            <% end %>
+                        </td>
+                    </tr>
+                </table>
+                <%= image_tag @user.image.url, class:"profile-thumb", alt:"" %>
+            </div>
+        </div>
 
         <% if current_user.id == params[:id].to_i %>
             <div id="profile-cxxsew">
