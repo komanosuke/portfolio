@@ -2,44 +2,44 @@ class CreateLifecosts < ActiveRecord::Migration[6.1]
   def change
     create_table :lifecosts do |t|
       t.references :user, null: false, foreign_key: true
-      t.integer :twenty
-      t.integer :thirty
-      t.integer :forty
-      t.integer :fifty
-      t.integer :sixty
+      t.integer :twenty, null: false
+      t.integer :thirty, null: false
+      t.integer :forty, null: false
+      t.integer :fifty, null: false
+      t.integer :sixty, null: false
 
-      t.integer :marriage
-      t.integer :child
-      t.integer :house
-      t.integer :car
-      t.integer :care
+      t.integer :marriage, null: false
+      t.integer :child, null: false
+      t.integer :house, null: false
+      t.integer :car, null: false
+      t.integer :care, null: false
 
-      t.integer :rent
-      t.integer :utility
-      t.integer :internet
-      t.integer :insurance
-      t.integer :car_cost
-      t.integer :child_care
-      t.integer :lesson
-      t.integer :transport
-      t.integer :pocket_money
-      t.integer :other_cost
-      t.integer :food
-      t.integer :necessity
-      t.integer :medical_cost
-      t.integer :child_lesson
-      t.integer :clothes
-      t.integer :beauty
-      t.integer :companionship
-      t.integer :entertainment
-      t.integer :small_cost
-      t.integer :exception
-      t.integer :marriage_total
-      t.integer :child_total
-      t.integer :house_total
-      t.integer :car_total
-      t.integer :tax
-      t.integer :pension
+      t.integer :rent, null: false
+      t.integer :utility, null: false
+      t.integer :internet, null: false
+      t.integer :insurance, null: false
+      t.integer :car_cost, null: false
+      t.integer :child_care, null: false
+      t.integer :lesson, null: false
+      t.integer :transport, null: false
+      t.integer :pocket_money, null: false
+      t.integer :other_cost, null: false
+      t.integer :food, null: false
+      t.integer :necessity, null: false
+      t.integer :medical_cost, null: false
+      t.integer :child_lesson, null: false
+      t.integer :clothes, null: false
+      t.integer :beauty, null: false
+      t.integer :companionship, null: false
+      t.integer :entertainment, null: false
+      t.integer :small_cost, null: false
+      t.integer :exception, null: false
+      t.integer :marriage_total, null: false
+      t.integer :child_total, null: false
+      t.integer :house_total, null: false
+      t.integer :car_total, null: false
+      t.integer :tax, null: false
+      t.integer :pension, null: false
 
       t.timestamps
     end

@@ -5,12 +5,12 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :username, null: false, index: { unique: true }
       t.string :email, null: false, index: { unique: true }
       t.string :password_digest, null: false
-      t.string :zip
-      t.string :prefecture
-      t.string :city
-      t.string :street
+      t.string :zip, null: false
+      t.string :prefecture, null: false
+      t.string :city, null: false
+      t.string :street, null: false
       t.string :address
-      t.string :tel
+      t.string :tel, null: false
       t.string :image
       t.text :profile
       t.string :remember_digest

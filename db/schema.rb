@@ -13,32 +13,32 @@
 ActiveRecord::Schema.define(version: 2023_05_30_053528) do
 
   create_table "admins", force: :cascade do |t|
-    t.string "name"
-    t.string "password_digest"
+    t.string "name", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "article_cats", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "articles", force: :cascade do |t|
-    t.integer "article_cat_id"
-    t.string "title"
-    t.string "image"
-    t.string "image_title"
-    t.text "text"
+    t.integer "article_cat_id", null: false
+    t.string "title", null: false
+    t.string "image", null: false
+    t.string "image_title", null: false
+    t.text "text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["article_cat_id"], name: "index_articles_on_article_cat_id"
   end
 
   create_table "cart_works", force: :cascade do |t|
-    t.integer "cart_id"
-    t.integer "work_id"
+    t.integer "cart_id", null: false
+    t.integer "work_id", null: false
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.integer "quantity"
     t.string "status"
     t.string "discount"
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
-    t.integer "user_id"
-    t.integer "post_id"
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -80,42 +80,42 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
 
   create_table "lifecosts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "twenty"
-    t.integer "thirty"
-    t.integer "forty"
-    t.integer "fifty"
-    t.integer "sixty"
-    t.integer "marriage"
-    t.integer "child"
-    t.integer "house"
-    t.integer "car"
-    t.integer "care"
-    t.integer "rent"
-    t.integer "utility"
-    t.integer "internet"
-    t.integer "insurance"
-    t.integer "car_cost"
-    t.integer "child_care"
-    t.integer "lesson"
-    t.integer "transport"
-    t.integer "pocket_money"
-    t.integer "other_cost"
-    t.integer "food"
-    t.integer "necessity"
-    t.integer "medical_cost"
-    t.integer "child_lesson"
-    t.integer "clothes"
-    t.integer "beauty"
-    t.integer "companionship"
-    t.integer "entertainment"
-    t.integer "small_cost"
-    t.integer "exception"
-    t.integer "marriage_total"
-    t.integer "child_total"
-    t.integer "house_total"
-    t.integer "car_total"
-    t.integer "tax"
-    t.integer "pension"
+    t.integer "twenty", null: false
+    t.integer "thirty", null: false
+    t.integer "forty", null: false
+    t.integer "fifty", null: false
+    t.integer "sixty", null: false
+    t.integer "marriage", null: false
+    t.integer "child", null: false
+    t.integer "house", null: false
+    t.integer "car", null: false
+    t.integer "care", null: false
+    t.integer "rent", null: false
+    t.integer "utility", null: false
+    t.integer "internet", null: false
+    t.integer "insurance", null: false
+    t.integer "car_cost", null: false
+    t.integer "child_care", null: false
+    t.integer "lesson", null: false
+    t.integer "transport", null: false
+    t.integer "pocket_money", null: false
+    t.integer "other_cost", null: false
+    t.integer "food", null: false
+    t.integer "necessity", null: false
+    t.integer "medical_cost", null: false
+    t.integer "child_lesson", null: false
+    t.integer "clothes", null: false
+    t.integer "beauty", null: false
+    t.integer "companionship", null: false
+    t.integer "entertainment", null: false
+    t.integer "small_cost", null: false
+    t.integer "exception", null: false
+    t.integer "marriage_total", null: false
+    t.integer "child_total", null: false
+    t.integer "house_total", null: false
+    t.integer "car_total", null: false
+    t.integer "tax", null: false
+    t.integer "pension", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_lifecosts_on_user_id"
@@ -132,18 +132,18 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
   end
 
   create_table "news", force: :cascade do |t|
-    t.integer "news_cat_id"
-    t.string "title"
-    t.string "image"
-    t.string "image_title"
-    t.text "text"
+    t.integer "news_cat_id", null: false
+    t.string "title", null: false
+    t.string "image", null: false
+    t.string "image_title", null: false
+    t.text "text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["news_cat_id"], name: "index_news_on_news_cat_id"
   end
 
   create_table "news_cats", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -158,8 +158,8 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
@@ -169,12 +169,12 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
 
   create_table "study_records", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.text "grade1"
-    t.text "grade2"
-    t.text "grade3"
-    t.text "grade4"
-    t.text "grade5"
-    t.text "grade6"
+    t.text "grade1", null: false
+    t.text "grade2", null: false
+    t.text "grade3", null: false
+    t.text "grade4", null: false
+    t.text "grade5", null: false
+    t.text "grade6", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_study_records_on_user_id"
@@ -185,12 +185,12 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
     t.string "username", null: false
     t.string "email", null: false
     t.string "password_digest", null: false
-    t.string "zip"
-    t.string "prefecture"
-    t.string "city"
-    t.string "street"
+    t.string "zip", null: false
+    t.string "prefecture", null: false
+    t.string "city", null: false
+    t.string "street", null: false
     t.string "address"
-    t.string "tel"
+    t.string "tel", null: false
     t.string "image"
     t.text "profile"
     t.string "remember_digest"
@@ -207,13 +207,13 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
   end
 
   create_table "work_cats", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "works", force: :cascade do |t|
-    t.integer "work_cat_id"
+    t.integer "work_cat_id", null: false
     t.string "title"
     t.string "image"
     t.integer "price"
