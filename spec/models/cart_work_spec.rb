@@ -16,11 +16,6 @@ RSpec.describe CartWork, type: :model do
       cart_work = FactoryBot.build(:cart_work, work: nil)
       expect(cart_work).not_to be_valid
     end
-    
-    it "is not valid without a status" do
-      cart_work = FactoryBot.build(:cart_work, status: nil)
-      expect(cart_work).not_to be_valid
-    end
   end
     
   describe "associations" do

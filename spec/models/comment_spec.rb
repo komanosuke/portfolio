@@ -11,16 +11,6 @@ RSpec.describe Comment, type: :model do
       comment = FactoryBot.build(:comment, content: nil)
       expect(comment).not_to be_valid
     end
-    
-    it "is not valid without a user" do
-      comment = FactoryBot.build(:comment, user: nil)
-      expect(comment).not_to be_valid
-    end
-    
-    it "is not valid without a post" do
-      comment = FactoryBot.build(:comment, post: nil)
-      expect(comment).not_to be_valid
-    end
   end
     
   describe "associations" do

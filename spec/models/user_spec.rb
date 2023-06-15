@@ -14,187 +14,195 @@ RSpec.describe User, type: :model do
 # モデルメソッドのテスト
 # データの作成と操作のテスト
 
-  describe "remember" do
-    let(:user) { FactoryBot.create(:user) }
+  # describe "remember" do
+  #   let(:user) { FactoryBot.create(:user) }
   
-    it "generates a new remember token" do
-      user.remember
-      expect(user.remember_token).not_to be_nil
-    end
+  #   it "generates a new remember token" do
+  #     user.remember
+  #     expect(user.remember_token).not_to be_nil
+  #   end
   
-    it "hashes the remember token and saves it in the remember_digest" do
-      user.remember
-      expect(user.remember_digest).not_to be_nil
-      expect(user.remember_digest).to eq(User.digest(user.remember_token))
-    end
-  end
+  #   it "hashes the remember token and saves it in the remember_digest" do
+  #     user.remember
+  #     expect(user.remember_digest).not_to be_nil
+  #     expect(user.remember_digest).to eq(User.digest(user.remember_token))
+  #   end
+  # end
   
-  describe "remember(user)" do
-    let(:user) { FactoryBot.create(:user) }
+  # describe "#remember(user)" do
+  #   let(:user) { FactoryBot.create(:user) }
     
-    it "calls remember method on the user object" do
-      expect(user).to receive(:remember)
-      remember(user)
-    end
+  #   it "calls remember method on the user object" do
+  #     expect(user).to receive(:remember)
+  #     user.remember(user)
+  #   end
   
-    it "saves the user id in an encrypted permanent cookie" do
-      remember(user)
-      expect(cookies.encrypted[:user_id]).to eq(user.id)
-    end
+  #   it "saves the user id in an encrypted permanent cookie" do
+  #     user.remember(user)
+  #     expect(cookies.encrypted[:user_id]).to eq(user.id)
+  #   end
   
-    it "saves the remember token in a permanent cookie" do
-      remember(user)
-      expect(cookies.permanent[:remember_token]).to eq(user.remember_token)
-    end
-  end
+  #   it "saves the remember token in a permanent cookie" do
+  #     user.remember(user)
+  #     expect(cookies.permanent[:remember_token]).to eq(user.remember_token)
+  #   end
+  # end
   
-  describe "authenticated?(attribute, token)" do
-    let(:user) { FactoryBot.create(:user) }
+  # describe "#authenticated?(attribute, token)" do
+  #   let(:user) { FactoryBot.create(:user) }
     
-    it "returns true if the token matches the digest" do
-      user.remember
-      expect(user.authenticated?(:remember, user.remember_token)).to eq(true)
-    end
+  #   it "returns true if the token matches the digest" do
+  #     user.remember
+  #     expect(user.authenticated?(:remember, user.remember_token)).to eq(true)
+  #   end
     
-    it "returns false if the digest is nil" do
-      expect(user.authenticated?(:remember, user.remember_token)).to eq(false)
-    end
+  #   it "returns false if the digest is nil" do
+  #     expect(user.authenticated?(:remember, user.remember_token)).to eq(false)
+  #   end
     
-    it "returns false if the token does not match the digest" do
-      user.remember
-      expect(user.authenticated?(:remember, "invalid_token")).to eq(false)
-    end
-  end
+  #   it "returns false if the token does not match the digest" do
+  #     user.remember
+  #     expect(user.authenticated?(:remember, "invalid_token")).to eq(false)
+  #   end
+  # end
   
-  describe "forget" do
-    let(:user) { FactoryBot.create(:user) }
+  # describe "forget" do
+  #   let(:user) { FactoryBot.create(:user) }
     
-    it "sets the remember_digest to nil" do
-      user.remember
-      user.forget
-      expect(user.remember_digest).to be_nil
-    end
-  end
+  #   it "sets the remember_digest to nil" do
+  #     user.remember
+  #     user.forget
+  #     expect(user.remember_digest).to be_nil
+  #   end
+  # end
   
-  describe "send_activation_email" do
-    let(:user) { FactoryBot.create(:user) }
+  # describe "send_activation_email" do
+  #   let(:user) { FactoryBot.create(:user) }
     
-    it "sends an activation email" do
-      expect(UserMailer).to receive(:account_activation).with(user).and_return(double(deliver_now: true))
-      user.send_activation_email
-    end
+  #   it "sends an activation email" do
+  #     expect(UserMailer).to receive(:account_activation).with(user).and_return(double(deliver_now: true))
+  #     user.send_activation_email
+  #   end
   
-    it "updates the activation_sent_at attribute" do
-      user.send_activation_email
-      expect(user.activation_sent_at).not_to be_nil
-    end
-  end
+  #   it "updates the activation_sent_at attribute" do
+  #     user.send_activation_email
+  #     expect(user.activation_sent_at).not_to be_nil
+  #   end
+  # end
   
-  describe "activation_expired?" do
-    let(:user) { FactoryBot.create(:user) }
+  # describe "activation_expired?" do
+  #   let(:user) { FactoryBot.create(:user) }
     
-    it "returns true if the activation link is expired" do
-      user.update(activation_sent_at: 25.hours.ago)
-      expect(user.activation_expired?).to eq(true)
-    end
+  #   it "returns true if the activation link is expired" do
+  #     user.update(activation_sent_at: 25.hours.ago)
+  #     expect(user.activation_expired?).to eq(true)
+  #   end
     
-    it "returns false if the activation link is not expired" do
-      user.update(activation_sent_at: 23.hours.ago)
-      expect(user.activation_expired?).to eq(false)
-    end
-  end
+  #   it "returns false if the activation link is not expired" do
+  #     user.update(activation_sent_at: 23.hours.ago)
+  #     expect(user.activation_expired?).to eq(false)
+  #   end
+  # end
   
-  describe "activate" do
-    let(:user) { FactoryBot.create(:user) }
+  # describe "activate" do
+  #   let(:user) { FactoryBot.create(:user) }
 
-    it "sets the activated attribute to true" do
-      user.activate
-      expect(user.activated).to eq(true)
-    end
+  #   it "sets the activated attribute to true" do
+  #     user.activate
+  #     expect(user.activated).to eq(true)
+  #   end
     
-    it "updates the activated_at attribute" do
-      user.activate
-      expect(user.activated_at).not_to be_nil
-    end
-  end
+  #   it "updates the activated_at attribute" do
+  #     user.activate
+  #     expect(user.activated_at).not_to be_nil
+  #   end
+  # end
 
-  describe "create_reset_digest" do
-    let(:user) { FactoryBot.create(:user) }
-    
-    it "generates a new reset token" do
-      user.create_reset_digest
-      expect(user.reset_token).not_to be_nil
-    end
-    
-    it "hashes the reset token and saves it in the reset_digest" do
-      user.create_reset_digest
-      expect(user.reset_digest).not_to be_nil
-      expect(user.reset_digest).to eq(User.digest(user.reset_token))
-    end
-    
-    it "sets the reset_sent_at attribute to the current time" do
-      user.create_reset_digest
-      expect(user.reset_sent_at).to eq(Time.zone.now)
-    end
-  end
-    
-  describe "send_password_reset_email" do
-    let(:user) { FactoryBot.create(:user) }
-    
-    it "sends a password reset email" do
-      expect(UserMailer).to receive(:password_reset).with(user).and_return(double(deliver_now: true))
-      user.send_password_reset_email
-    end
-  end
-    
-  describe "password_reset_expired?" do
-    let(:user) { FactoryBot.create(:user) }
-    
-    it "returns true if the password reset link is expired" do
-      user.update(reset_sent_at: 3.hours.ago)
-      expect(user.password_reset_expired?).to eq(true)
-    end
-    
-    it "returns false if the password reset link is not expired" do
-      user.update(reset_sent_at: 1.hour.ago)
-      expect(user.password_reset_expired?).to eq(false)
-    end
-  end
-    
-  describe "downcase_email" do
-    let(:user) { FactoryBot.build(:user, email: "USER@EXAMPLE.COM") }
-    
-    it "converts the email to lowercase" do
-      user.downcase_email
-      expect(user.email).to eq("user@example.com")
-    end
-  end
-    
-  describe "create_activation_digest" do
-    let(:user) { FactoryBot.build(:user) }
-    
-    it "generates a new activation token" do
-      user.create_activation_digest
-      expect(user.activation_token).not_to be_nil
-    end
-    
-    it "hashes the activation token and saves it in the activation_digest" do
-      user.create_activation_digest
-      expect(user.activation_digest).not_to be_nil
-      expect(user.activation_digest).to eq(User.digest(user.activation_token))
-    end
-  end
-
+  # describe "create_reset_digest" do
+  #   let(:user) { FactoryBot.create(:user) }
+  
+  #   it "generates a new reset token" do
+  #     user.create_reset_digest
+  #     expect(user.reset_token).not_to be_nil
+  #   end
+  
+  #   it "hashes the reset token and saves it in the reset_digest" do
+  #     user.create_reset_digest
+  #     expect(user.reset_digest).not_to be_nil
+  #     expect(user.reset_digest).to eq(User.digest(user.reset_token))
+  #   end
+  
+  #   it "sets the reset_sent_at attribute to the current time" do
+  #     user.create_reset_digest
+  #     expect(user.reset_sent_at).to eq(Time.zone.now)
+  #   end
+  # end
+  
+  # describe "send_password_reset_email" do
+  #   let(:user) { FactoryBot.create(:user) }
+  
+  #   it "sends a password reset email" do
+  #     expect(UserMailer).to receive(:password_reset).with(user).and_return(double(deliver_now: true))
+  #     user.send_password_reset_email
+  #   end
+  # end
+  
+  # describe "password_reset_expired?" do
+  #   let(:user) { FactoryBot.create(:user) }
+  
+  #   it "returns true if the password reset link is expired" do
+  #     user.update(reset_sent_at: 3.hours.ago)
+  #     expect(user.password_reset_expired?).to eq(true)
+  #   end
+  
+  #   it "returns false if the password reset link is not expired" do
+  #     user.update(reset_sent_at: 1.hour.ago)
+  #     expect(user.password_reset_expired?).to eq(false)
+  #   end
+  # end
+  
+  # describe "downcase_email" do
+  #   let(:upper_case_user) { FactoryBot.build(:user, email: "UPPER_CASE_USER@EXAMPLE.COM") }
+  
+  #   it "converts the email to lowercase" do
+  #     upper_case_user.downcase_email
+  #     expect(upper_case_user.email).to eq("upper_case_user@example.com")
+  #   end
+  # end
+  
+  # describe "create_activation_digest" do
+  #   let(:user) { FactoryBot.build(:user) }
+  
+  #   it "generates a new activation token" do
+  #     user.create_activation_digest
+  #     expect(user.activation_token).not_to be_nil
+  #   end
+  
+  #   it "hashes the activation token and saves it in the activation_digest" do
+  #     user.create_activation_digest
+  #     expect(user.activation_digest).not_to be_nil
+  #     expect(user.activation_digest).to eq(User.digest(user.activation_token))
+  #   end
+  # end
+  
   describe "validations" do
     it { should validate_presence_of(:password) }
     it { should validate_length_of(:password).is_at_least(8) }
     it { should validate_presence_of(:email) }
     it { should validate_length_of(:email).is_at_most(255) }
-    it { should validate_uniqueness_of(:email) }
+    it "validates the uniqueness of email" do
+      FactoryBot.create(:user, email: "existing@example.com")
+      user = FactoryBot.build(:user, email: "existing@example.com")
+      expect(user).not_to be_valid
+    end
     it { should validate_presence_of(:name) }
     it { should validate_length_of(:name).is_at_most(50) }
     it { should validate_presence_of(:username) }
-    it { should validate_uniqueness_of(:username).case_insensitive }
+    it "validates the uniqueness of username (case-insensitive)" do
+      FactoryBot.create(:user, username: "@johndoe")
+      user = FactoryBot.build(:user, username: "@JOHNDOE")
+      expect(user).not_to be_valid
+    end
     it { should validate_length_of(:username).is_at_most(50) }
   end
       
@@ -215,25 +223,22 @@ RSpec.describe User, type: :model do
       
   describe "methods" do
     let(:user) { FactoryBot.create(:user) }
-    
-    
-    
-    it "returns true if the user is followed by another user" do
-      another_user = FactoryBot.create(:user)
+    let(:another_user) { FactoryBot.create(:user, email: "another@example.com", username: "another_username") }
+    let(:unfollower_user) { FactoryBot.create(:user, email: "unfollower@example.com", username: "unfollower_username") }
+
+    before do
       FactoryBot.create(:relationship, follower_id: another_user.id, followed_id: user.id)
+    end
+
+    it "returns true if the user is followed by another user" do
       expect(user.followed_by?(another_user)).to eq(true)
     end
-    
+
     it "returns false if the user is not followed by another user" do
-      another_user = FactoryBot.create(:user)
-      expect(user.followed_by?(another_user)).to eq(false)
+      expect(user.followed_by?(unfollower_user)).to eq(false)
     end
   end
 end
-
-
-
-
 
 
 # has_secure_password

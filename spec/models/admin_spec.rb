@@ -13,10 +13,10 @@ RSpec.describe Admin, type: :model do
       expect(admin.errors[:name]).to include("can't be blank")
     end
 
-    it "is not valid without a password_digest" do
-      admin = FactoryBot.build(:admin, password_digest: nil)
+    it "is not valid without a password" do
+      admin = FactoryBot.build(:admin, password: nil)
       expect(admin).not_to be_valid
-      expect(admin.errors[:password_digest]).to include("can't be blank")
+      expect(admin.errors[:password]).to include("can't be blank")
     end
   end
 end

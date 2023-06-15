@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "content"
+    t.text "content", null: false
     t.integer "user_id", null: false
     t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -214,12 +214,12 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
 
   create_table "works", force: :cascade do |t|
     t.integer "work_cat_id", null: false
-    t.string "title"
-    t.string "image"
-    t.integer "price"
-    t.text "text"
-    t.integer "onlyone"
-    t.integer "status"
+    t.string "title", null: false
+    t.string "image", null: false
+    t.integer "price", null: false
+    t.text "text", null: false
+    t.integer "onlyone", null: false
+    t.integer "status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["work_cat_id"], name: "index_works_on_work_cat_id"

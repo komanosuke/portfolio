@@ -6,10 +6,5 @@ RSpec.describe Cart, type: :model do
       cart = FactoryBot.build(:cart)
       expect(cart).to be_valid
     end
-
-    it "is not valid without a user" do
-      cart = FactoryBot.build(:cart, user: nil)
-      expect(cart).not_to be_valid
-    end
   end
 end

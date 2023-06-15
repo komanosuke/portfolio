@@ -6,6 +6,12 @@ class User < ApplicationRecord
     validates :email, presence: true,
                         length: { maximum: 255 },
                         uniqueness: true
+    validates :username, presence: true
+    validates :zip, presence: true
+    validates :prefecture, presence: true
+    validates :city, presence: true
+    validates :street, presence: true
+    validates :tel, presence: true
     attr_accessor  :remember_token, :activation_token, :reset_token
     before_save   :downcase_email
     before_create :create_activation_digest

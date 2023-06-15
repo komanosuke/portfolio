@@ -14,4 +14,11 @@ class Work < ApplicationRecord
         now_on_sale: 1, #販売中
         sold_out: 0, #売り切れ
     }
+
+    validates :title, presence: true
+    validates :image, presence: true
+    validates :price, presence: true
+    validates :text, presence: true
+    validates :onlyone, presence: true
+    validates :status, presence: true
 end
