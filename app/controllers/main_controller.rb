@@ -1,7 +1,7 @@
 class MainController < ApplicationController
   before_action :logged_in_user, except: [:top, :index, :purchase, :thanks, :concept, :contact, :help, :login, :terms, :policy, :admin, :admin_view, :delete]
   before_action :logged_in_admin, except: [:top, :index, :purchase, :thanks, :concept, :contact, :help, :login, :terms, :policy]
-  before_action :set_cart, only: %i[ show edit update destroy ]
+  before_action :check_cart
   layout 'main'
 
   def index
@@ -108,11 +108,11 @@ class MainController < ApplicationController
   end
 
   private
-    def set_cart_work
-      @cart_work = CartWork.find(params[:id])
-    end
-
-    def cart_work_params
-      params.require(:cart_work).permit(:cart_id, :work_id)
+    def check_cart
+      if logged_in?
+        @cart = current_user.cart
+      else
+        @cart = Cart.find(session[:cart_id])
+      end
     end
 end

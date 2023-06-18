@@ -1,5 +1,5 @@
 <div class="brand-theme">Anti Nihilism Fashion Brand</div>
-<%= image_tag "/image/fashion_movie.jpeg", class:"header-img", alt:"" %>
+<%= image_tag "/image/fashion_movie.jpeg", class:"header-img sp", alt:"" %>
 
 <div id="cxxsew-contents">
     <div class="article">
@@ -11,23 +11,21 @@
     <% if @news.empty? %>
         <p>まだニュースが投稿されていません。</p>
     <% else %>
-        <div class="left" id="content">
-        <% @news.each do |news| %>
+        <div id="content">
             <div class="works">
-                <div class="work">
-                    <a href="/news/<%= news.id %>">
-                        <%= image_tag news.image.url, alt:"" %>
-                        <div>
-                            <p class="date"><%= news.updated_at %></p>
-                            <p><%= news.title %></p>
-                        </div>
-                    </a>
-                </div>
+                <% @news.each do |news| %>
+                    <div class="work">
+                        <a href="/news/<%= news.id %>">
+                            <%= image_tag news.image.url, alt:"" %>
+                            <div>
+                                <p class="date"><%= news.updated_at %></p>
+                                <p class="center"><%= news.title %></p>
+                            </div>
+                        </a>
+                    </div>
+                <% end %>
             </div>
-        <% end %>
+        </div>
     <% end %>
-    </div>
-    
-    
 </div>
 

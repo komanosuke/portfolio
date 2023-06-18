@@ -1,5 +1,5 @@
 class StudyRecord < ApplicationRecord
-    belongs_to :user
+    belongs_to :user, dependent: :destroy
     validates :grade1, presence: true
     validates :grade2, presence: true
     validates :grade3, presence: true

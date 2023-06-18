@@ -133,6 +133,11 @@
     margin: 5px;
 }
 
+.comment-wrapper {
+    box-shadow: 1px 1px 10px grey;
+    padding: 10px;
+}
+
 .thumb-wrapper p {
     margin: 0 5px;
     line-height: 50px;
@@ -319,6 +324,10 @@
         object-fit: cover;
     }
 
+    .sns-show-img {
+        aspect-ratio: 1/1 !important;
+    }
+
     .thumb-wrapper {
         display: block;
     }
@@ -348,5 +357,9 @@
     #sns-footer-side {
         width: 100%;
         margin-left: 0;
+    }
+
+    #profile-table th {
+        width: 80px;
     }
 }

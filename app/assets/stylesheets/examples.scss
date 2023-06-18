@@ -181,16 +181,14 @@
 
 .portrait {
     aspect-ratio: 1/1 !important;
-}
-
-.portrait-work {
+    width: 30% !important;
+    margin: 5px;
     transition: transform 0.3s ease;
 }
 
-.portrait-work:hover {
+.portrait:hover {
     transform: scale(1.2);
 }
-
 
 
 
@@ -363,7 +361,7 @@ ul {
     text-overflow: ellipsis !important;
 }
 
-.page a, .next a, .last a {
+.page a, .next a, .last a, .prev a, .first a {
     color: #fff !important;
 }
 
@@ -442,13 +440,8 @@ ul {
 
     
     // portrait
-
-    .portrait-work {
-        transition: none;
+    .portrait {
         aspect-ratio: 1/1 !important;
-    }
-    
-    .portrait-work:hover {
-        transform: none;
+        width: 45% !important;
     }
 }

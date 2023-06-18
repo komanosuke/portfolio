@@ -8,7 +8,13 @@ $(function () {
     let offset = demo.offset();
     
     $(window).on('scroll', function () {
-        if ($(window).scrollTop() > offset.top - 100) {
+        if($(window).width() < 480){
+            position = 75;
+        } else {
+            position = 100;
+        }
+        console.log(position);
+        if ($(window).scrollTop() > offset.top - position) {
             demo.addClass('fixed');
             demoBack.addClass('appear');
         } else {

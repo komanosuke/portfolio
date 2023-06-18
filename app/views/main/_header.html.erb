@@ -50,5 +50,11 @@
 			<a href="/terms">TERMS</a>
 		</div>
 	</div>
+	<a href="/" id="go-top"><< Back to Portfolio Top</a>
 </div>
-	  
+
+<% if @cart and @cart.cart_works.length != 0 %>
+	<a href="/purchase" id="cart-sign">
+		<%= image_tag '/image/cart.png', alt:"" %>
+	</a>
+<% end %>

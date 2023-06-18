@@ -44,7 +44,7 @@ class User < ApplicationRecord
     # has_many :orders, dependent: :destroy
     has_one :lifecost, dependent: :destroy
 
-    has_many :study_records
+    has_one :study_record, dependent: :destroy
 
     mount_uploader :image, ImageUploader
     

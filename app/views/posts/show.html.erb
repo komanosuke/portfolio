@@ -13,7 +13,7 @@
             </div>
             <p class="left"><%= @post.content %></p>
             <% if @post.image.to_s != 'noimage.jpg' %>
-                <%= image_tag @post.image.url, class:"sns-post-img", alt:"" %>
+                <%= image_tag @post.image.url, class:"sns-post-img sns-show-img", alt:"" %>
             <% end %>
 
             <% if logged_in? %>
@@ -33,7 +33,14 @@
                 <p>コメント投稿 一覧<span> / コメント数: <%= @post.comments.count %></span></p>
                 <% if @post.comments.count != 0 %>
                     <% @post.comments.each do |comment| %>
-                        <p><%= comment.user.name %>: <%= comment.content %></p>
+                        <div class="thumb-wrapper comment-wrapper">
+                            <div class="post-name-wrapper">
+                                <%= image_tag comment.user.image.url, class:"sns-thumb", alt:"" %>
+                                <p><%= comment.user.name %></p>
+                                <p><%= comment.user.username %></p>
+                            </div>
+                            <p class="left"><%= comment.content %></p>
+                        </div>
                     <% end %>
                 <% else %>
                     <p>コメントはありません。</p>

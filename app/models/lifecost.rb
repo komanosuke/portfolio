@@ -1,5 +1,5 @@
 class Lifecost < ApplicationRecord
-    belongs_to :user
+    belongs_to :user, dependent: :destroy
 
     validates :twenty, presence: true
     validates :thirty, presence: true

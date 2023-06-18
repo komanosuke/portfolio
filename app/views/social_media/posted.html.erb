@@ -7,8 +7,8 @@
     <div class="contents" id="sns-contents">
         <div id="sns-container">
             <h1>基本情報</h1>
-            <p>Name: <%= @user.name %></p>
-            <p>ID: <%= @user.username %></p>
+            <p>ユーザー名: <%= @user.name %></p>
+            <p>ユーザーID: <%= @user.username %></p>
             <%= image_tag @user.image.url, class:"profile-thumb", alt:"" %>
             <p>紹介文: <%= @user.profile %></p>
 

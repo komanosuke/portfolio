@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.integer "quantity"
     t.string "status"
     t.string "discount"

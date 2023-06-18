@@ -184,6 +184,42 @@ input[type="color"]{
         height: auto;
     }
 
+    #demo-wrapper {
+        height: 200px;
+        width: 200px;
+    }
+    
+    #demo-img {
+        width: 200px;
+        height: 200px;
+    }
+
+    #demo-img.fixed {
+        top: 175px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    #demo-img-back {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .robot-eyes {
+        width: 21px;
+        height: 21px;
+    }
+    
+    #left-eye {
+        top: 62px;
+        left: 64px;
+    }
+    
+    #right-eye {
+        top: 62px;
+        left: 110px;
+    }
+
     .panel_item_wrap {
         flex-flow: column;
     }
