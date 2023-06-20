@@ -2,6 +2,7 @@ class WorksController < ApplicationController
   before_action :logged_in_user, except: [:index, :show, :new, :edit, :create, :update]
   before_action :logged_in_admin, except: [:index, :show]
   before_action :set_work, only: %i[ show edit update destroy ]
+  before_action :check_cart
   layout 'main'
 
   # GET /works or /works.json
@@ -120,5 +121,16 @@ class WorksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def work_params
       params.require(:work).permit(:work_cat_id, :title, :image, :price, :text, :onlyone, :status)
+    end
+
+    def check_cart
+      if logged_in?
+        @cart = current_user.cart
+      else
+        if !(Cart.find_by(id: session[:cart_id]).present?)
+          @cart = Cart.create
+          session[:cart_id] = @cart.id
+        end
+      end
     end
 end

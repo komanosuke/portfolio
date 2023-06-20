@@ -1,6 +1,6 @@
 // ハンバーガーメニュー開閉
 $(function() {
-	$('.toggle-btn').click(function() {
+	$('.toggle-btn, #menu-close').click(function() {
 	  $('.menu-line-top, .menu-line-middle, .menu-line-bottom, #sp-menu, #sp-bg').toggleClass('open');
 	})
 });

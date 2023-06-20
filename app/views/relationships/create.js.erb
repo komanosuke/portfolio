@@ -1,0 +1,8 @@
+<% if @params_url.include?('followed') %>
+    $("#followed-relationships").html("<%= j(render 'social_media/followed_relationships', relationships: @relationships) %>");
+<% elsif @params_url.include?('posts') %>
+    $("#posts-each-do").html("<%= j(render 'posts/posts', posts: @posts) %>");
+<% elsif @params_url.include?('posted') %>
+    $("#show-follow-wrapper").html("<%= j(render 'social_media/posted_relationships', user: @user) %>");
+    $("#posts-each-do").html("<%= j(render 'posts/posts', posts: @posts) %>");
+<% end %>

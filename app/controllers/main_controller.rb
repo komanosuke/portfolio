@@ -26,13 +26,14 @@ class MainController < ApplicationController
   def thanks
     if logged_in?
       @cart = current_user.cart
+      @cart_works = CartWork.where(cart_id: @cart.id)
+      @cart_works.each do |cw|
+        cw.destroy
+      end
     else
       @cart = Cart.find(session[:cart_id])
-    end
-    @cart_works = CartWork.where(cart_id: @cart.id)
-    @cart_works.each do |cw|
-      cw.destroy
-    end
+      @cart.destroy
+    end  
   end
 
   def admin_view
@@ -112,7 +113,10 @@ class MainController < ApplicationController
       if logged_in?
         @cart = current_user.cart
       else
-        @cart = Cart.find(session[:cart_id])
+        if !(Cart.find_by(id: session[:cart_id]).present?)
+          @cart = Cart.create
+          session[:cart_id] = @cart.id
+        end
       end
     end
 end

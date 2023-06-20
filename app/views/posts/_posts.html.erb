@@ -1,24 +1,27 @@
 <% @posts.each do |post| %>
     <div class="work sns-post">
         <div class="thumb-wrapper">
-            <div class="post-name-wrapper">
-                <%= image_tag post.user.image.url, class:"sns-thumb", alt:"" %>
-                <p><%= post.user.name %></p>
-                <p><%= post.user.username %></p>
-            </div>
-            <div class="follow-wrapper">
+            <a href="/posted/<%= post.user.id %>" class="sns-users-link">
+                <div class="post-name-wrapper">
+                    <%= image_tag post.user.image.url, class:"sns-thumb", alt:"" %>
+                    <p><%= post.user.name %></p>
+                    <p><%= post.user.username %></p>
+                </div>
+            </a>
+            <div class="follow-wrapper" id="posts-relationships">
                 <% if logged_in? %>
                     <% if post.user_id != current_user.id %>
-                        <%#= debug post.user.active_relationships %>
                         <% if post.user.followed_by?(current_user) %>
                             <% delete_id = post.user.active_relationships.find_by(follower_id: current_user.id).id %>
-                            <%= form_with model:@relationship, url: "/relationships/"+delete_id.to_s, method: :delete do |form| %>
+                            <%= form_with model:@relationship, url: "/relationships/"+delete_id.to_s, local: false, method: :delete do |form| %>
+                                <%= form.hidden_field :url, value: "/posts", class:'relationship_url' %>
                                 <%= form.submit "フォロー解除", class:"follow-btn" %>
                             <% end %>
                         <% else %>
-                            <%= form_with model:@relationship, url: relationships_path, method: :post, scope: :relationship do |form| %>
+                            <%= form_with model:@relationship, url: relationships_path, local: false, method: :post, scope: :relationship do |form| %>
                                 <%= form.hidden_field :follower_id, value: current_user.id %>
                                 <%= form.hidden_field :followed_id, value: post.user_id %>
+                                <%= form.hidden_field :url, value: "/posts", class:'relationship_url' %>
                                 <%= form.submit "フォロー", class:"follow-btn" %>
                             <% end %>
                         <% end %>
@@ -33,16 +36,19 @@
             <% end %>
         </a>
         <% if logged_in? %>
-            <% if post.user != current_user && post.liked_by?(current_user) %>
-                <p id="delete-like"><%=link_to '❤︎', post_likes_path(post.id), method: :delete, remote: true %><span><%= post.likes.count %></span></p>
-            <% elsif post.user != current_user %>
-                <p id="post-like"><%=link_to '♡', post_likes_path(post.id), method: :post, remote: true %><span><%= post.likes.count %></span></p>
-            <% end %>
-
-            <p>コメント投稿数</p>
-            <p><%= post.comments.count %></p>
+            <div class="like-com-wrapper">
+                <% if post.user != current_user && post.liked_by?(current_user) %>
+                    <div class="sns-like-com" id="delete-like"><%=link_to '❤︎', post_likes_path(post.id), method: :delete, remote: true %></div><div><%= post.likes.count %></div>
+                <% elsif post.user != current_user %>
+                    <div class="sns-like-com" id="post-like"><%=link_to '♡', post_likes_path(post.id), method: :post, remote: true %></div><div><%= post.likes.count %></div>
+                <% end %>
+                <div class="sns-like-com"><%= image_tag '/image/comment.jpeg', class:"icon" %></div><div><%= post.comments.count %></div>
+            </div>
         <% else %>
-            <p>♡: <%= post.likes.count %> コメント: <%= post.comments.count %></p>
+            <div class="like-com-wrapper">
+                <div class="sns-like-com">♡</div><div><%= post.likes.count %></div>
+                <div class="sns-like-com"><%= image_tag '/image/comment.jpeg', class:"icon" %></div><div><%= post.comments.count %></div>
+            </div>
         <% end %>
     </div>
 <% end %>

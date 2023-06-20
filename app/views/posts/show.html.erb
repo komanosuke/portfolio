@@ -6,11 +6,34 @@
     <div class="contents" id="sns-contents">
         <div id="sns-container">
             <div id="flash"><%= flash[:notice] %><%= flash[:success] %><%= flash[:error] %></div>
-            <div class="post-name">
-                <%= image_tag @post.user.image.url, class:"sns-thumb", alt:"" %>
-                <p><%= @post.user.name %></p>
-                <p><%= @post.user.username %></p>
-            </div>
+            
+            
+                <div class="posts-show-container">
+                    <a href="/users/<%= @post.user.id %>" class="post-name" id="sns-show-post-name">
+                        <%= image_tag @post.user.image.url, class:"sns-thumb", alt:"" %>
+                        <p><%= @post.user.name %></p>
+                        <p><%= @post.user.username %></p>
+                    </a>
+                    <div class="follow-wrapper" id="show-follow-wrapper">
+                        <% if @post.user.id != current_user.id %>
+                            <% if @post.user.followed_by?(current_user) %>
+                                <% delete_id = @post.user.active_relationships.find_by(follower_id: current_user.id).id %>
+                                <%= form_with model:@relationship, url: "/relationships/"+delete_id.to_s, method: :delete do |form| %>
+                                    <%= form.hidden_field :url, value: "/posts/"+@post.id.to_s %>
+                                    <%= form.submit "フォロー解除", class:"follow-btn" %>
+                                <% end %>
+                            <% else %>
+                                <%= form_with model:@relationship, url: relationships_path, method: :post, scope: :relationship do |form| %>
+                                    <%= form.hidden_field :follower_id, value: current_user.id %>
+                                    <%= form.hidden_field :followed_id, value: @post.user_id %>
+                                    <%= form.hidden_field :url, value: "/posts/"+@post.id.to_s %>
+                                    <%= form.submit "フォロー", class:"follow-btn" %>
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
+            
             <p class="left"><%= @post.content %></p>
             <% if @post.image.to_s != 'noimage.jpg' %>
                 <%= image_tag @post.image.url, class:"sns-post-img sns-show-img", alt:"" %>
@@ -34,12 +57,14 @@
                 <% if @post.comments.count != 0 %>
                     <% @post.comments.each do |comment| %>
                         <div class="thumb-wrapper comment-wrapper">
-                            <div class="post-name-wrapper">
-                                <%= image_tag comment.user.image.url, class:"sns-thumb", alt:"" %>
-                                <p><%= comment.user.name %></p>
-                                <p><%= comment.user.username %></p>
-                            </div>
-                            <p class="left"><%= comment.content %></p>
+                            <a href="/users/<%= comment.user.id %>" class="sns-users-link-comment">
+                                <div class="post-name-wrapper">
+                                    <%= image_tag comment.user.image.url, class:"sns-thumb", alt:"" %>
+                                    <p><%= comment.user.name %></p>
+                                    <p><%= comment.user.username %></p>
+                                </div>
+                            </a>
+                            <p class="left link-comment-content"><%= comment.content %></p>
                         </div>
                     <% end %>
                 <% else %>

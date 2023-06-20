@@ -50,10 +50,11 @@
 			<a href="/terms">TERMS</a>
 		</div>
 	</div>
-	<a href="/" id="go-top"><< Back to Portfolio Top</a>
+	<a href="/" id="go-top">Portfolio トップに戻る</a>
+	<div id="menu-close">×</div>
 </div>
 
-<% if @cart and @cart.cart_works.length != 0 %>
+<% if @cart.present? and @cart.cart_works.length != 0 %>
 	<a href="/purchase" id="cart-sign">
 		<%= image_tag '/image/cart.png', alt:"" %>
 	</a>

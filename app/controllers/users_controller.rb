@@ -9,9 +9,7 @@ class UsersController < ApplicationController
 
     # GET /users/1 or /users/1.json
     def show
-        @posts = current_user.posts
-        @like_posts = current_user.like_posts
-        @comment_posts = current_user.comment_posts
+        
     end
 
     # GET /users/new

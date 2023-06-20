@@ -22,7 +22,7 @@
 
 #sns-container {
     width: 80%;
-    margin: auto;
+    margin: 40px auto;
 }
 
 .sns-form input {
@@ -95,6 +95,16 @@
     background: transparent;
 }
 
+#menu-close {
+    border: 1px solid #fff;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    text-align: center;
+    margin: 40px auto;
+}
+
 #sns-ul li {
     display: block;
 }
@@ -136,6 +146,7 @@
 .comment-wrapper {
     box-shadow: 1px 1px 10px grey;
     padding: 10px;
+    align-items: center;
 }
 
 .thumb-wrapper p {
@@ -143,20 +154,36 @@
     line-height: 50px;
 }
 
+.followed-wrapper {
+    width: 80%;
+    margin: 5px auto;
+}
+
 .sns-thumb {
     width: 50px !important;
     border-radius: 25px;
+    margin: 0 5%;
 }
 
 .post-name-wrapper {
     display: flex;
-    width: 50%;
+    width: 100%;
 }
 
-.post-name p {
+.post-name p, .post-name-wrapper p {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    width: 100%;
+}
+
+#sns-show-post-name {
+    width: 70%;
+    margin: auto;
+}
+
+#posts-each-do {
+    font-family:'Times New Roman', Times, serif;
 }
 
 .follow-wrapper {
@@ -176,12 +203,38 @@
     cursor: pointer;
     float: right;
     border: none;
+    padding: 0;
 }
 
 .follow-btn:hover {
     background-color: rgb(92, 182, 182);
 }
 
+.like-com-wrapper {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin: 0 auto 20px;
+    width: fit-content;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.sns-like-com {
+    height: 22px;
+    margin: 0 2px;
+}
+
+.sns-like-com a {
+    width: 22px;
+    margin: 0;
+    height: 22px;
+    line-height: 22px;
+}
+
+.sns-like-com span {
+    line-height: 22px;
+    height: 22px;
+}
 
 .profile-thumb {
     width: 200px;
@@ -296,10 +349,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 70px;
 }
 
 .relational-users p, .relational-users img {
     margin: 15px;
+}
+
+.relational-users p {
+    width: 20% !important;
 }
 
 #sns-contents textarea {
@@ -308,7 +366,58 @@
     border: 1px solid darkcyan;
 }
 
+#change-post {
+    display: flex;
+}
+
+#change-post form {
+    margin: 1px;
+}
+
+#show-follow-wrapper {
+    width: 100%;
+}
+
+#show-follow-wrapper .follow-btn {
+    float: none;
+}
+
+#followpage-follow-wrapper {
+    width: auto;
+}
+
+.sns-users-link {
+    width: 100%;
+}
+
+.sns-users-link-comment {
+    width: 40%;
+}
+
+.followed-link {
+    width: 75%;
+}
+
+.link-comment-content {
+    line-height: 30px !important;
+}
+
+.posts-show-container {
+    display: flex;
+    margin: auto;
+    width: 450px;
+}
+
+.posts-show-container #show-follow-wrapper {
+    width: 30%;
+}
+
+
 @media screen and (max-width:750px) {
+    .side-bar ul {
+        margin-top: 30px;
+    }
+
     #sns-contents {
         width: 100%;
         margin: 0 auto 0 0;

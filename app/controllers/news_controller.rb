@@ -2,6 +2,7 @@ class NewsController < ApplicationController
   before_action :logged_in_user, except: [:index, :show, :new, :edit, :create, :update]
   before_action :logged_in_admin, except: [:index, :show]
   before_action :set_news, only: %i[ show edit update destroy ]
+  before_action :check_cart
   layout 'main'
 
   # GET /news or /news.json
@@ -93,5 +94,16 @@ class NewsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def news_params
       params.require(:news).permit(:news_cat_id, :title, :image, :image_title, :text)
+    end
+
+    def check_cart
+      if logged_in?
+        @cart = current_user.cart
+      else
+        if !(Cart.find_by(id: session[:cart_id]).present?)
+          @cart = Cart.create
+          session[:cart_id] = @cart.id
+        end
+      end
     end
 end

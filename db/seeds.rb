@@ -1,23 +1,12 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
-
-
 
 # Admin.create(name: 'fashion', password: 'fashionable')
 
 # User.create(name: 'Guest User', username: '@user', email: 'user@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '', activated: true)
-# User.create(name: 'Dragon', username: '@dragon', image:File.open("./public/image/dragon.png"), email: 'dragon@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '', activated: true)
-# User.create(name: 'Gorilla', username: '@gorilla', image:File.open("./public/image/gorilla.png"), email: 'gorilla@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '', activated: true)
-# User.create(name: 'Panda', username: '@panda', image:File.open("./public/image/panda.png"), email: 'panda@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '', activated: true)
-# User.create(name: 'Cat', username: '@cat', image:File.open("./public/image/cat.png"), email: 'cat@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '', activated: true)
-# User.create(name: 'Penguin', username: '@penguin', image:File.open("./public/image/penguin.png"), email: 'penguin@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '', activated: true)
+# User.create(name: 'Dragon', username: '@dragon', image:File.open("./public/image/dragon.png"), email: 'dragon@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '幻獣系デザイナーのドラゴンです。よろしくお願いします。', activated: true)
+# User.create(name: 'Gorilla', username: '@gorilla', image:File.open("./public/image/gorilla.png"), email: 'gorilla@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '筋肉系デザイナーのゴリラです。よろしくお願いします。', activated: true)
+# User.create(name: 'Panda', username: '@panda', image:File.open("./public/image/panda.png"), email: 'panda@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '珍獣系デザイナーのパンダです。よろしくお願いします。', activated: true)
+# User.create(name: 'Cat', username: '@cat', image:File.open("./public/image/cat.png"), email: 'cat@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: 'キュート系デザイナーのキャットです。よろしくお願いします。', activated: true)
+# User.create(name: 'Penguin', username: '@penguin', image:File.open("./public/image/penguin.png"), email: 'penguin@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '癒し系デザイナーのペンギンです。よろしくお願いします。', activated: true)
 # Cart.create(user_id: 1)
 # Cart.create(user_id: 2)
 # Cart.create(user_id: 3)
@@ -82,40 +71,32 @@
 # Post.create(user_id: 2, image:File.open("./public/image/clothes2.png"), content: "ピンクタイガーの衣服は、力強さと優雅さが融合したデザインです。タイガーの野性的なエッセンスを取り入れつつも、ピンクの柔らかな色合いが繊細さを加えます。大胆なグラフィックと独自のパターンが、個性的なスタイルを表現。強さと女性らしさが溢れ、自信と魅力を纏った一着となっています。")
 # Post.create(user_id: 2, image:File.open("./public/image/clothes3.png"), content: "ドラゴンの衣服は、神秘的なエネルギーと力強さを感じさせるデザインです。独特なシルエットと鱗のような質感が、ドラゴンの存在感を表現しています。ダークなカラーパレットとドラゴンのモチーフが融合し、ユニークな魅力を放つ一着となっています。勇気とパワーを纏い、まさに異世界から抜け出したようなスタイルを演出します。")
 # Post.create(user_id: 2, image:File.open("./public/image/clothes4.png"), content: "ライオンの衣服は、野性的な魅力と王者の風格が融合したデザインです。ライオンのメインとなる要素を独自のアプローチで再解釈し、大胆なプリントや刺繍で表現しています。堂々としたシルエットと豪華な装飾が、自信と気品を与えます。まさに野生の美しさと力強さを体現した一着となっています。")
-# Post.create(user_id: 2, image:File.open("./public/image/clothes5.png"), content: "「グレープ＆レモン」の衣服は、爽やかな果実の香りと鮮やかな色彩が溶け合うデザインです。グレープの優雅さとレモンの活気をモチーフに、柔らかな素材と鮮やかなプリントを組み合わせました。さわやかでエネルギッシュな印象を与える一方、洗練されたシルエットで女性らしさも引き立てます。まるで夏のフルーツを纏ったような、楽しさと魅力に満ちた一着です。")
+# Post.create(user_id: 3, image:File.open("./public/image/clothes5.png"), content: "「グレープ＆レモン」の衣服は、爽やかな果実の香りと鮮やかな色彩が溶け合うデザインです。グレープの優雅さとレモンの活気をモチーフに、柔らかな素材と鮮やかなプリントを組み合わせました。さわやかでエネルギッシュな印象を与える一方、洗練されたシルエットで女性らしさも引き立てます。まるで夏のフルーツを纏ったような、楽しさと魅力に満ちた一着です。")
 
 # Post.create(user_id: 3, image:File.open("./public/image/clothes6.png"), content: "「アップル」の衣服は、新鮮なりんごの魅力を表現したデザインです。豊かな色合いと独特の形状を取り入れ、シンプルでありながら個性的なアイテムを生み出しました。りんごのシンボルとしての健康と活力をイメージし、快適な素材と遊び心のあるディテールを組み合わせました。さわやかな鮮度とアピール力で、着る人に元気と魅力を与える一着です。")
 # Post.create(user_id: 3, image:File.open("./public/image/clothes7.png"), content: "「フレイム」の衣服は、炎のような情熱とエネルギーを込めたデザインです。燃え盛る炎の動きや輝きを表現し、ダイナミックなシルエットと炎の模様を取り入れました。熱い情熱と自己表現を象徴し、勇気と強さを感じさせるデザインアイテムです。鮮やかな色彩と刺激的なディテールで、着る人の内なる輝きを引き出します。")
 # Post.create(user_id: 3, image:File.open("./public/image/clothes8.png"), content: "「クリーム」の衣服は、柔らかな風合いと滑らかなテクスチャーが特徴です。クリームのような優雅さと上品さを表現し、女性の美しさを引き立てます。豊かな色調と繊細なデザインで、肌に溶け込むような優しい印象を与えます。洗練されたシルエットと贅沢な素材で、上品さと快適さを兼ね備えたアイテムです。まるでクリームを纏ったような魅力を放ちます。")
-# Post.create(user_id: 3, image:File.open("./public/image/clothes9.png"), content: "「ソーセージ」の衣服は、遊び心とユニークさが溢れるデザインです。色とりどりのソーセージの形状やパターンを取り入れ、楽しさとおしゃれさを融合させました。ユニークなシルエットや素材の組み合わせによって、個性的で魅力的なスタイルを演出します。ソーセージのエネルギッシュなイメージを取り入れつつも、快適さや着心地にもこだわりました。自由な発想と遊び心が詰まった衣服で、ファッションを楽しむ人々に新たな魅力を提案します。")
-# Post.create(user_id: 3, image:File.open("./public/image/clothes10.png"), content: "「氷」の衣服は、冷たさと清涼感を表現したデザインです。透明な素材やクリスタルの装飾を取り入れ、凍りついた美しさを演出します。シャープなシルエットと鮮やかな色彩で、氷のような冷たさと輝きを身にまといましょう。着る人に涼しさと高貴さを与える衣服で、洗練されたスタイルを完成させます。氷の美しい世界をファッションに昇華し、周囲を魅了する存在になりましょう。")
+# Post.create(user_id: 4, image:File.open("./public/image/clothes9.png"), content: "「ソーセージ」の衣服は、遊び心とユニークさが溢れるデザインです。色とりどりのソーセージの形状やパターンを取り入れ、楽しさとおしゃれさを融合させました。ユニークなシルエットや素材の組み合わせによって、個性的で魅力的なスタイルを演出します。ソーセージのエネルギッシュなイメージを取り入れつつも、快適さや着心地にもこだわりました。自由な発想と遊び心が詰まった衣服で、ファッションを楽しむ人々に新たな魅力を提案します。")
+# Post.create(user_id: 4, image:File.open("./public/image/clothes10.png"), content: "「氷」の衣服は、冷たさと清涼感を表現したデザインです。透明な素材やクリスタルの装飾を取り入れ、凍りついた美しさを演出します。シャープなシルエットと鮮やかな色彩で、氷のような冷たさと輝きを身にまといましょう。着る人に涼しさと高貴さを与える衣服で、洗練されたスタイルを完成させます。氷の美しい世界をファッションに昇華し、周囲を魅了する存在になりましょう。")
 
 # Post.create(user_id: 4, image:File.open("./public/image/clothes11.png"), content: "「宇宙と波」のテーマでデザインされた衣服は、宇宙の神秘と海の波の美しさを融合させた特別な存在です。流れるような柔らかな素材と、宇宙を彷彿させる輝く装飾が特徴であり、宇宙と海の神秘的なエネルギーを体現しています。色彩は深い青や紫をベースに、星や波のモチーフを織り交ぜたデザインが施されています。宇宙の広がりと海の奥深さを感じさせる衣服で、人々の心を引き込み、無限の可能性と自由を表現します。")
 # Post.create(user_id: 4, image:File.open("./public/image/clothes12.png"), content: "「カタストロフィ」というテーマでデザインされた衣服は、美と破壊の対比を表現した特異な存在です。構築と崩壊、力強さと脆さが共存するデザインが特徴であり、刺激的でドラマチックな雰囲気を醸し出しています。激しい色彩や不規則なシルエットが、混沌とした感情と不安定な世界の反映です。破壊された美しさや混沌が生み出す魅力を追求した衣服であり、人々に衝撃と驚きを与えながら、自己表現の可能性を広げます。")
-# Post.create(user_id: 4, image:File.open("./public/image/clothes13.png"), content: "「Twitter」というテーマでデザインされた衣服は、現代の情報社会とコミュニケーションの力を象徴しています。ツイートの文字列やアイコン、ハッシュタグをアートに昇華し、個性的でユニークなデザインを生み出しました。情報の流れや交流のダイナミズムを体現し、社会的なつながりと自己表現の融合を促進します。鮮やかなカラーパレットやグラフィックなパターンが、人々に魅力的な視覚体験と共感を提供します。Twitterのエッセンスを取り込んだこの衣服は、ファッションとデジタル世界の融合を象徴する存在です。")
-# Post.create(user_id: 4, image:File.open("./public/image/clothes14.png"), content: "「日本」というテーマでデザインされた衣服は、和の美学と現代の洗練が融合した究極の表現です。伝統的な柄や着物の要素をモダンに再解釈し、独自のデザインを生み出しました。日本の四季や風景、文化的な象徴をインスピレーションに取り入れ、日本の美を世界に発信します。緻密な技術と品質へのこだわりが実現した衣服は、日本の精神とクラフトマンシップを体現しています。日本の魅力とモダンなエッセンスが融合したこの衣服は、着る人に誇りと個性を与えます。")
-# Post.create(user_id: 4, image:File.open("./public/image/clothes15.png"), content: "「雲と雨」というテーマでデザインされた衣服は、自然の神秘と感性を映し出す作品です。雲の柔らかな質感や雨の優美な流れを表現し、独特の雰囲気と魅力を纏いました。柔らかな素材と繊細なディテールが調和し、着る人に優雅さと軽やかさをもたらします。雲のように自由な表現と、雨のような情熱的な感情を感じさせるこの衣服は、人々に夢とロマンを与えます。空気感と流れるような美しさが、個性的なスタイルを演出します。")
+# Post.create(user_id: 5, image:File.open("./public/image/clothes13.png"), content: "「Twitter」というテーマでデザインされた衣服は、現代の情報社会とコミュニケーションの力を象徴しています。ツイートの文字列やアイコン、ハッシュタグをアートに昇華し、個性的でユニークなデザインを生み出しました。情報の流れや交流のダイナミズムを体現し、社会的なつながりと自己表現の融合を促進します。鮮やかなカラーパレットやグラフィックなパターンが、人々に魅力的な視覚体験と共感を提供します。Twitterのエッセンスを取り込んだこの衣服は、ファッションとデジタル世界の融合を象徴する存在です。")
+# Post.create(user_id: 5, image:File.open("./public/image/clothes14.png"), content: "「日本」というテーマでデザインされた衣服は、和の美学と現代の洗練が融合した究極の表現です。伝統的な柄や着物の要素をモダンに再解釈し、独自のデザインを生み出しました。日本の四季や風景、文化的な象徴をインスピレーションに取り入れ、日本の美を世界に発信します。緻密な技術と品質へのこだわりが実現した衣服は、日本の精神とクラフトマンシップを体現しています。日本の魅力とモダンなエッセンスが融合したこの衣服は、着る人に誇りと個性を与えます。")
+# Post.create(user_id: 5, image:File.open("./public/image/clothes15.png"), content: "「雲と雨」というテーマでデザインされた衣服は、自然の神秘と感性を映し出す作品です。雲の柔らかな質感や雨の優美な流れを表現し、独特の雰囲気と魅力を纏いました。柔らかな素材と繊細なディテールが調和し、着る人に優雅さと軽やかさをもたらします。雲のように自由な表現と、雨のような情熱的な感情を感じさせるこの衣服は、人々に夢とロマンを与えます。空気感と流れるような美しさが、個性的なスタイルを演出します。")
 
 # Post.create(user_id: 5, image:File.open("./public/image/clothes16.png"), content: "「ブロックとマインクラフト」というテーマでデザインされた衣服は、創造力と冒険心を融合させた作品です。マインクラフトの世界から着想を得て、ブロックの美しい幾何学的な形状や色彩を取り入れました。その結果、斬新で遊び心溢れるデザインが実現しました。ブロック同士が組み合わさり、新たな景色を作り出すように、この衣服は個性とスタイルを引き立てます。自由な発想と驚きに満ちたディテールが、着る人に刺激とクリエイティブなエネルギーをもたらします。マインクラフトの世界観を身にまとい、新たな冒険へと導く存在となるでしょう。")
-# Post.create(user_id: 5, image:File.open("./public/image/clothes17.png"), content: "「buzz-cut」というテーマでデザインされた衣服は、エッジの効いたスタイルと自己表現の象徴です。ショートヘアの清潔感とクールさを反映し、シンプルながらも強烈な印象を与えます。鮮やかな色彩やボールドなパターンが、個性と自信を引き立てます。さまざまなテクスチャーや切り替えによって、洗練されたシルエットが生まれ、動きやすさと快適さも追求しました。この衣服は、自由奔放な精神と大胆さを持つ人々に向けてデザインされ、彼らのスタイルと個性を際立たせます。バズカットのような短くて斬新なデザインが、ファッションの世界に刺激と新たなエネルギーをもたらします。")
-# Post.create(user_id: 5, image:File.open("./public/image/clothes18.png"), content: "「バナナ」というテーマでデザインされた衣服は、遊び心とポップさを取り入れた楽しいスタイルです。鮮やかな黄色や柔らかな曲線が特徴で、バナナの形やパターンがユニークなアクセントとなっています。フレッシュなイメージとエネルギーを与えるこの衣服は、明るさと陽気さを表現し、着る人の笑顔を引き出します。さわやかな素材や軽快なシルエットで、快適さと動きやすさも追求しました。この衣服は、自由な発想とカラフルな個性を持つ人々に向けてデザインされ、彼らのスタイルと楽しさを演出します。バナナの魅力をファッションに昇華し、新たな鮮やかな世界を創り出します。")
-# Post.create(user_id: 5, image:File.open("./public/image/clothes19.png"), content: "「グリーンキャット」というテーマでデザインされた衣服は、自然と個性の融合を表現した特別なコレクションです。緑の色合いと猫の柔らかな魅力が融合し、ユニークなパターンとディテールが特徴です。自然の美しさや生命力を感じさせる素材と、猫の優雅さや遊び心を反映したシルエットが調和し、穏やかなエネルギーを放ちます。また、猫の目や耳、しっぽのモチーフが随所にちりばめられ、遊び心と親しみを演出します。この衣服は、自然と動物への尊敬と愛情を表現し、着る人に優雅さと個性を与えます。グリーンキャットの世界に身を包んで、新たな魅力と自然の調和を楽しんでください。")
-# Post.create(user_id: 5, image:File.open("./public/image/clothes20.png"), content: "「オクトパス」というテーマでデザインされた衣服は、神秘と柔軟性の融合を表現した特別なコレクションです。蛸の優雅な動きや多彩な姿勢にインスパイアされ、独特なプリントやドレープを取り入れました。柔らかな素材と流れるようなシルエットが、蛸の魅力を再現し、身に纏った人に自由な表現と自信を与えます。また、テクスチャーやエンボス加工を活用し、蛸の触覚や肌触りを再現したディテールが際立ちます。この衣服は、神秘的な海の生物の美しさと力強さを象徴し、着る人にエレガントな魅力と自由な創造性をもたらします。蛸の魅力に包まれて、新たな海の世界への冒険を楽しんでください。")
+# Post.create(user_id: 6, image:File.open("./public/image/clothes17.png"), content: "「buzz-cut」というテーマでデザインされた衣服は、エッジの効いたスタイルと自己表現の象徴です。ショートヘアの清潔感とクールさを反映し、シンプルながらも強烈な印象を与えます。鮮やかな色彩やボールドなパターンが、個性と自信を引き立てます。さまざまなテクスチャーや切り替えによって、洗練されたシルエットが生まれ、動きやすさと快適さも追求しました。この衣服は、自由奔放な精神と大胆さを持つ人々に向けてデザインされ、彼らのスタイルと個性を際立たせます。バズカットのような短くて斬新なデザインが、ファッションの世界に刺激と新たなエネルギーをもたらします。")
+# Post.create(user_id: 6, image:File.open("./public/image/clothes18.png"), content: "「バナナ」というテーマでデザインされた衣服は、遊び心とポップさを取り入れた楽しいスタイルです。鮮やかな黄色や柔らかな曲線が特徴で、バナナの形やパターンがユニークなアクセントとなっています。フレッシュなイメージとエネルギーを与えるこの衣服は、明るさと陽気さを表現し、着る人の笑顔を引き出します。さわやかな素材や軽快なシルエットで、快適さと動きやすさも追求しました。この衣服は、自由な発想とカラフルな個性を持つ人々に向けてデザインされ、彼らのスタイルと楽しさを演出します。バナナの魅力をファッションに昇華し、新たな鮮やかな世界を創り出します。")
+# Post.create(user_id: 6, image:File.open("./public/image/clothes19.png"), content: "「グリーンキャット」というテーマでデザインされた衣服は、自然と個性の融合を表現した特別なコレクションです。緑の色合いと猫の柔らかな魅力が融合し、ユニークなパターンとディテールが特徴です。自然の美しさや生命力を感じさせる素材と、猫の優雅さや遊び心を反映したシルエットが調和し、穏やかなエネルギーを放ちます。また、猫の目や耳、しっぽのモチーフが随所にちりばめられ、遊び心と親しみを演出します。この衣服は、自然と動物への尊敬と愛情を表現し、着る人に優雅さと個性を与えます。グリーンキャットの世界に身を包んで、新たな魅力と自然の調和を楽しんでください。")
+# Post.create(user_id: 6, image:File.open("./public/image/clothes20.png"), content: "「オクトパス」というテーマでデザインされた衣服は、神秘と柔軟性の融合を表現した特別なコレクションです。蛸の優雅な動きや多彩な姿勢にインスパイアされ、独特なプリントやドレープを取り入れました。柔らかな素材と流れるようなシルエットが、蛸の魅力を再現し、身に纏った人に自由な表現と自信を与えます。また、テクスチャーやエンボス加工を活用し、蛸の触覚や肌触りを再現したディテールが際立ちます。この衣服は、神秘的な海の生物の美しさと力強さを象徴し、着る人にエレガントな魅力と自由な創造性をもたらします。蛸の魅力に包まれて、新たな海の世界への冒険を楽しんでください。")
 
 
 
 # Comment.create(user_id: 2, post_id: 20, content: '独創的で素晴らしいですね！')
-
-
-
+# Comment.create(user_id: 6, post_id: 7, content: 'いや、ほんとに燃えとるがな')
 
 # Like.create(user_id: 2, post_id: 20)
 
 # Relationship.create(follower_id: 1, followed_id: 2)
 # Relationship.create(follower_id: 2, followed_id: 1)
-
-
-
-
-
-

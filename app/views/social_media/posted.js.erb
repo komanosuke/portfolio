@@ -1,0 +1,23 @@
+function checkPostExists(word){
+    if('<%= @posts.exists? %>' == 'false'){
+        $("#posts-each-do").html(word + "投稿はありません");
+    } else {
+        $("#posts-each-do").html("<%= j(render 'posts/posts') %>");
+    }
+}
+
+$('.sns-btn').css('background-color', 'darkcyan');
+if("<%= @post_params %>" == 'posted'){
+    $('#post-selection').text('投稿内容');
+    $('.sns-btn').first().attr('style', 'background-color: #436aa2 !important;');
+    checkPostExists('まだ');
+} else if("<%= @post_params %>" == 'liked'){
+    $('#post-selection').text('Likeした投稿');
+    $('.sns-btn').eq(1).attr('style', 'background-color: #436aa2 !important;');
+    checkPostExists('Likeした');
+} else if("<%= @post_params %>" == 'commented'){
+    $('#post-selection').text('コメントした投稿');
+    $('.sns-btn').eq(2).attr('style', 'background-color: #436aa2 !important;');
+    checkPostExists('コメントした');
+}
+

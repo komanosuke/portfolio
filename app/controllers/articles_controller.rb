@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_action :logged_in_user, except: [:index, :show, :new, :edit, :create, :update]
   before_action :logged_in_admin, except: [:index, :show]
   before_action :set_article, only: %i[ show edit update destroy ]
+  before_action :check_cart
   layout 'main'
 
   # GET /articles or /articles.json
@@ -93,5 +94,16 @@ class ArticlesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def article_params
       params.require(:article).permit(:article_cat_id, :title, :image, :image_title, :text)
+    end
+
+    def check_cart
+      if logged_in?
+        @cart = current_user.cart
+      else
+        if !(Cart.find_by(id: session[:cart_id]).present?)
+          @cart = Cart.create
+          session[:cart_id] = @cart.id
+        end
+      end
     end
 end

@@ -5,7 +5,6 @@ class PostsController < ApplicationController
     # GET /posts or /posts.json
     def index
         @posts = Post.all
-        @post = Post.new
     end
 
     # GET /posts/1 or /posts/1.json
@@ -30,7 +29,7 @@ class PostsController < ApplicationController
 
         # respond_to do |format|
         if @post.save
-            redirect_to '/sns'
+            redirect_to '/posts'
             flash[:notice] = "新しい投稿が作成されました！"
             # format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
             # format.json { render :show, status: :created, location: @post }
@@ -63,7 +62,7 @@ class PostsController < ApplicationController
         @post.destroy
 
         respond_to do |format|
-        format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+        format.html { redirect_to posts_url, notice: "投稿が削除されました！" }
         format.json { head :no_content }
         end
     end

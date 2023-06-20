@@ -8,10 +8,10 @@
         <% if @relationships.count != 0 %>
             <% @relationships.each do |r| %>
                 <a href="/posted/<%= r.follower.id %>">
-                    <div class="relational-users">
+                    <div class="relational-users post-name-wrapper">
                         <%= image_tag r.follower.image.url, class:"sns-thumb", alt:"" %>
-                        <p>ユーザー名: <%= r.follower.name %></p>
-                        <p>ID: <%= r.follower.username %></p>
+                        <p><%= r.follower.name %></p>
+                        <p><%= r.follower.username %></p>
                     </div>
                 </a>
             <% end %>

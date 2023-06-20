@@ -4,6 +4,7 @@
         <h1>- My Portfolio Site -</h1>
         <p id="home-p">ご訪問いただきありがとうございます。以下は作成したポートフォリオの一覧です。<br>
         それぞれ簡単なWebアプリケーションですが、採用の判断材料としてご確認頂けると幸いです。</p>
+        <p>駒井　俊彦</p>
         <div class="works pfs">
             <div class="work pf">
                 <a href="/index">
@@ -79,7 +80,7 @@
             </div>
         </div>
         <% if logged_in? %>
-            <a href="/users/<%= current_user.id %>"><div class="btn sub-btn" id="my-profile">User Info</div></a>
+            <a href="/users/<%= current_user.id %>"><div class="btn sub-btn" id="my-profile">My Page</div></a>
         <% end %>
     </div>
 </main>

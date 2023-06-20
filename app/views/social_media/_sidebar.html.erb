@@ -1,9 +1,13 @@
 <ul class="sns-ul">
-    <a href="/posts"><li>ホーム</li></a>
+    <a href="/posts"><li>SNSホーム</li></a>
     <a href="/posts/new"><li>投稿作成</li></a>
     <% if logged_in? %>
-        <a href="/posted/<%= current_user.id %>"><li>自分の投稿</li></a>
+        <a href="/posted/<%= current_user.id %>"><li>マイページ</li></a>
         <a href="/followers"><li>フォロワー 一覧</li></a>
         <a href="/followed"><li>フォロー中 一覧</li></a>
     <% end %>
+    <div class="sp">
+        <a href="/" id="go-top">Portfolio トップに戻る</a>
+        <div id="menu-close">×</div>
+    </div>
 </ul>

@@ -10,6 +10,12 @@ class SessionsController < ApplicationController
             if user.activated?
                 log_in(user)
                 params[:session][:remember_me] == "1" ? remember(user) : forget(user)
+                if Cart.find_by(id: session[:cart_id]).present?
+                    cart_works = CartWork.where(cart_id: session[:cart_id])
+                    cart_works.each do |cw|
+                        CartWork.create(cart_id: user.cart.id, work_id: cw.work_id )
+                    end
+                end
                 if user.email == "user@example.com"
                     flash[:success] = "ゲストログインに成功しました"
                 else
@@ -29,7 +35,14 @@ class SessionsController < ApplicationController
 
     def destroy
         # ログイン中のみログアウトする
-        log_out if logged_in?
+        if logged_in?
+            cart = Cart.find_by(id: session[:cart_id])
+            if cart.present?
+                cart.destroy
+            end
+
+            log_out
+        end
         redirect_to root_path, status: :see_other
     end
 end
