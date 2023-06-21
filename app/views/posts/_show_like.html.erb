@@ -1,0 +1,5 @@
+<% if @post.user != current_user && @post.liked_by?(current_user) %>
+    <p id="delete-like"><%=link_to '❤︎', post_likes_path(@post.id, url: 'show'), method: :delete, remote: true %><span> <%= @post.likes.count %></span></p>
+<% elsif @post.user != current_user %>
+    <p id="post-like"><%=link_to '♡', post_likes_path(@post.id, url: 'show'), method: :post, remote: true %><span> <%= @post.likes.count %></span></p>
+<% end %>

@@ -1,8 +1,19 @@
 <% if @params_url.include?('followed') %>
     $("#followed-relationships").html("<%= j(render 'social_media/followed_relationships', relationships: @relationships) %>");
-<% elsif @params_url.include?('posts') %>
+<% elsif @params_url.include?('follower') %>
+    $("#followed-relationships").html("<%= j(render 'social_media/follower_relationships', relationships: @relationships) %>");
+<% elsif @params_url == '/posts' %>
     $("#posts-each-do").html("<%= j(render 'posts/posts', posts: @posts) %>");
+<% elsif @params_url.include?('posts') %>
+    $("#show-follow-wrapper").html("<%= j(render 'posts/show_relationships', post: @post) %>");
 <% elsif @params_url.include?('posted') %>
     $("#show-follow-wrapper").html("<%= j(render 'social_media/posted_relationships', user: @user) %>");
     $("#posts-each-do").html("<%= j(render 'posts/posts', posts: @posts) %>");
+    <% if @post_cat == 'posted' %>
+        $('.relationship_url').val(window.location.href.match(/\/post(.*)/)[0] + "/posted");
+    <% elsif @post_cat == 'liked' %>
+        $('.relationship_url').val(window.location.href.match(/\/post(.*)/)[0] + "/liked");
+    <% elsif @post_cat == 'commented' %>
+        $('.relationship_url').val(window.location.href.match(/\/post(.*)/)[0] + "/commented");
+    <% end %>
 <% end %>

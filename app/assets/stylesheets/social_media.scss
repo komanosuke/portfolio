@@ -11,6 +11,7 @@
     padding-top: 70px;
     width: 80%;
     margin: 0 auto 0 20%;
+    min-height: 430px;
 }
 
 .sns-top {
@@ -55,6 +56,10 @@
     cursor: pointer;
     font-size: 16px !important;
     border-radius: 5px;
+}
+
+.sns-btn:hover {
+    background-color: rgb(92, 182, 182) !important;
 }
 
 .side-bar {
@@ -186,6 +191,14 @@
     font-family:'Times New Roman', Times, serif;
 }
 
+#not-yet-post {
+    color: #fff;
+}
+
+#posted-user-id {
+    display: none;
+}
+
 .follow-wrapper {
     width: 50%;
 }
@@ -239,6 +252,10 @@
 .profile-thumb {
     width: 200px;
     border-radius: 100px;
+}
+
+#no-follow-thumb {
+    margin: 40px auto;
 }
 
 #profile-user {
@@ -322,10 +339,12 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
+    padding: 0;
 }
 
 #sns-footer-side {
     width: 100%;
+    margin: 30px auto;
 }
 
 .post-name {
@@ -366,8 +385,15 @@
     border: 1px solid darkcyan;
 }
 
+#change-post-wrapper {
+    background-color: darkcyan;
+    padding: 0 0 30px 0;
+}
+
 #change-post {
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #change-post form {
@@ -384,6 +410,10 @@
 
 #followpage-follow-wrapper {
     width: auto;
+}
+
+#followed-relationships {
+    margin: 30px auto 40px;
 }
 
 .sns-users-link {

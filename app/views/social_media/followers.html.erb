@@ -5,19 +5,8 @@
 
     <div class="contents" id="sns-contents">
         <h2>フォロワー 一覧</h2>
-        <% if @relationships.count != 0 %>
-            <% @relationships.each do |r| %>
-                <a href="/posted/<%= r.follower.id %>">
-                    <div class="relational-users post-name-wrapper">
-                        <%= image_tag r.follower.image.url, class:"sns-thumb", alt:"" %>
-                        <p><%= r.follower.name %></p>
-                        <p><%= r.follower.username %></p>
-                    </div>
-                </a>
-            <% end %>
-        <% else %>
-            <p>現在フォロワーはいません。</p>
-            <%= image_tag "/image/wolf.png", class:"profile-thumb", alt:"" %>
-        <% end %>
+        <div id="followed-relationships">
+            <%= render 'social_media/follower_relationships' %>
+        </div>
     </div>
 </main>

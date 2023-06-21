@@ -38,9 +38,9 @@
         <% if logged_in? %>
             <div class="like-com-wrapper">
                 <% if post.user != current_user && post.liked_by?(current_user) %>
-                    <div class="sns-like-com" id="delete-like"><%=link_to '❤︎', post_likes_path(post.id), method: :delete, remote: true %></div><div><%= post.likes.count %></div>
+                    <div class="sns-like-com" id="delete-like"><%=link_to '❤︎', post_likes_path(post.id, url: 'index'), method: :delete, remote: true, class:"like-link" %></div><div><%= post.likes.count %></div>
                 <% elsif post.user != current_user %>
-                    <div class="sns-like-com" id="post-like"><%=link_to '♡', post_likes_path(post.id), method: :post, remote: true %></div><div><%= post.likes.count %></div>
+                    <div class="sns-like-com" id="post-like"><%=link_to '♡', post_likes_path(post.id, url: 'index'), method: :post, remote: true, class:"like-link" %></div><div><%= post.likes.count %></div>
                 <% end %>
                 <div class="sns-like-com"><%= image_tag '/image/comment.jpeg', class:"icon" %></div><div><%= post.comments.count %></div>
             </div>

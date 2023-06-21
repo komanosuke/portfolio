@@ -1,23 +1,28 @@
 function checkPostExists(word){
     if('<%= @posts.exists? %>' == 'false'){
-        $("#posts-each-do").html(word + "投稿はありません");
+        $("#posts-each-do").html("<span id=\"not-yet-post\">" + word + "投稿はありません" + "</span>");
     } else {
         $("#posts-each-do").html("<%= j(render 'posts/posts') %>");
     }
 }
 
-$('.sns-btn').css('background-color', 'darkcyan');
+$('.sns-btn').attr('style', 'background-color: darkcyan !important; color: #fff;');
 if("<%= @post_params %>" == 'posted'){
     $('#post-selection').text('投稿内容');
-    $('.sns-btn').first().attr('style', 'background-color: #436aa2 !important;');
+    $('.sns-btn').first().attr('style', 'background-color: #fff !important; color: darkcyan;');
     checkPostExists('まだ');
+    currentURL = window.location.href.match(/\/post(.*)/)[0];
+    $('.relationship_url').val(currentURL + "/posted");
 } else if("<%= @post_params %>" == 'liked'){
     $('#post-selection').text('Likeした投稿');
-    $('.sns-btn').eq(1).attr('style', 'background-color: #436aa2 !important;');
+    $('.sns-btn').eq(1).attr('style', 'background-color: #fff !important; color: darkcyan;');
     checkPostExists('Likeした');
+    currentURL = window.location.href.match(/\/post(.*)/)[0];
+    $('.relationship_url').val(currentURL + "/liked");
 } else if("<%= @post_params %>" == 'commented'){
     $('#post-selection').text('コメントした投稿');
-    $('.sns-btn').eq(2).attr('style', 'background-color: #436aa2 !important;');
+    $('.sns-btn').eq(2).attr('style', 'background-color: #fff !important; color: darkcyan;');
     checkPostExists('コメントした');
+    currentURL = window.location.href.match(/\/post(.*)/)[0];
+    $('.relationship_url').val(currentURL + "/commented");
 }
-

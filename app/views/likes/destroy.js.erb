@@ -1,1 +1,32 @@
-$("#posts-each-do").html("<%= j(render 'posts/posts', post: @post) %>");
+<% if @params_url == 'index' %>
+    $("#posts-each-do").html("<%= j(render 'posts/posts', posts: @posts) %>");
+<% elsif @params_url == 'show' %>
+    $("#show-like").html("<%= j(render 'posts/show_like', post: @post) %>");
+<% elsif @params_url == 'posted' %>
+    $("#posts-each-do").html("<%= j(render 'posts/posts', posts: @posts) %>");
+    <% if @post_cat == 'posted' %>
+        $('.like-link').on('click', function(event) {
+            event.preventDefault();
+            var href = $(this).attr('href');
+            var updatedHref = href.replace('url=index', 'url=posted&user_id=' + user_id + '&post_cat=posted');
+            $(this).attr('href', updatedHref);
+            $(this).get(0).click();
+        });
+    <% elsif @post_cat == 'liked' %>
+        $('.like-link').on('click', function(event) {
+            event.preventDefault();
+            var href = $(this).attr('href');
+            var updatedHref = href.replace('url=index', 'url=posted&user_id=' + user_id + '&post_cat=liked');
+            $(this).attr('href', updatedHref);
+            $(this).get(0).click();
+        });
+    <% elsif @post_cat == 'commented' %>
+        $('.like-link').on('click', function(event) {
+            event.preventDefault();
+            var href = $(this).attr('href');
+            var updatedHref = href.replace('url=index', 'url=posted&user_id=' + user_id + '&post_cat=commented');
+            $(this).attr('href', updatedHref);
+            $(this).get(0).click();
+        });
+    <% end %>
+<% end %>

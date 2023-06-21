@@ -1,26 +1,26 @@
 <% if @relationships.count != 0 %>
     <% @relationships.each do |r| %>
         <div class="thumb-wrapper comment-wrapper followed-wrapper">
-            <a href="/posted/<%= r.followed.id %>" class="followed-link">
+            <a href="/posted/<%= r.follower.id %>" class="followed-link">
                 <div class="post-name-wrapper">
-                    <%= image_tag r.followed.image.url, class:"sns-thumb", alt:"" %>
-                    <p><%= r.followed.name %></p>
-                    <p><%= r.followed.username %></p>
+                    <%= image_tag r.follower.image.url, class:"sns-thumb", alt:"" %>
+                    <p><%= r.follower.name %></p>
+                    <p><%= r.follower.username %></p>
                 </div>
             </a>
             <div class="follow-wrapper" id="followpage-follow-wrapper">
-                <% if r.followed.id != current_user.id %>
-                    <% if r.followed.followed_by?(current_user) %>
-                        <% delete_id = r.followed.active_relationships.find_by(follower_id: current_user.id).id %>
+                <% if r.follower.id != current_user.id %>
+                    <% if r.follower.followed_by?(current_user) %>
+                        <% delete_id = r.follower.active_relationships.find_by(follower_id: current_user.id).id %>
                         <%= form_with model:@relationship, url: "/relationships/"+delete_id.to_s, local: false, method: :delete do |form| %>
-                            <%= form.hidden_field :url, value: "/followed" %>
+                            <%= form.hidden_field :url, value: "/follower" %>
                             <%= form.submit "フォロー解除", class:"follow-btn" %>
                         <% end %>
                     <% else %>
                         <%= form_with model:@relationship, url: relationships_path, local: false, method: :post, scope: :relationship do |form| %>
                             <%= form.hidden_field :follower_id, value: current_user.id %>
-                            <%= form.hidden_field :followed_id, value: r.followed.id %>
-                            <%= form.hidden_field :url, value: "/followed" %>
+                            <%= form.hidden_field :followed_id, value: r.follower.id %>
+                            <%= form.hidden_field :url, value: "/follower" %>
                             <%= form.submit "フォロー", class:"follow-btn" %>
                         <% end %>
                     <% end %>
@@ -29,6 +29,6 @@
         </div>
     <% end %>
 <% else %>
-    <p>フォロー中のユーザーはいません。誰かをフォローしてみましょう！</p>
+    <p>現在フォロワーはいません。</p>
     <%= image_tag "/image/wolf.png", class:"profile-thumb", id:"no-follow-thumb", alt:"" %>
 <% end %>

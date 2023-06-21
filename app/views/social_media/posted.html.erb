@@ -7,6 +7,7 @@
     <div class="contents" id="sns-contents">
         <div id="sns-container">
             <h1>基本情報</h1>
+            <div id="posted-user-id"><%= @user.id %></div>
             <div id="profile-user-wrapper">
                 <%= image_tag @user.image.url, class:"profile-thumb", alt:"" %>
                 <table id="profile-table">
@@ -34,28 +35,28 @@
             <div class="follow-wrapper" id="show-follow-wrapper">
                 <%= render 'social_media/posted_relationships' %>
             </div>
-
-            <div id="change-post">
-                <%= form_with url: posted_path(@user.id), local: false do |form| %>
-                    <%= form.hidden_field "post_cat", {value: 'posted'} %>
-                    <%= form.submit "投稿内容", class:'btn submit-btn sns-btn' %>
-                <% end %>
-                <%= form_with url: posted_path(@user.id), local: false do |form| %>
-                    <%= form.hidden_field "post_cat", {value: 'liked'} %>
-                    <%= form.submit "Likeした投稿", class:'btn submit-btn sns-btn' %>
-                <% end %>
-                <%= form_with url: posted_path(@user.id), local: false do |form| %>
-                    <%= form.hidden_field "post_cat", {value: 'commented'} %>
-                    <%= form.submit "コメントした投稿", class:'btn submit-btn sns-btn' %>
-                <% end %>
-            </div>
-            <h2 id="post-selection">投稿内容</h2>
-            <div class="works sns-posts" id="posts-each-do">
-                <% if @posts.exists? %>
-                    <%= render 'posts/posts' %>
-                <% else %>
-                    まだ投稿はありません。
-                <% end %>
+            <div id="change-post-wrapper">
+                <div id="change-post">
+                    <%= form_with url: posted_path(@user.id), local: false do |form| %>
+                        <%= form.hidden_field "post_cat", {value: 'posted'} %>
+                        <%= form.submit "自分の投稿", class:'btn submit-btn sns-btn' %>
+                    <% end %>
+                    <%= form_with url: posted_path(@user.id), local: false do |form| %>
+                        <%= form.hidden_field "post_cat", {value: 'liked'} %>
+                        <%= form.submit "Likeした投稿", class:'btn submit-btn sns-btn' %>
+                    <% end %>
+                    <%= form_with url: posted_path(@user.id), local: false do |form| %>
+                        <%= form.hidden_field "post_cat", {value: 'commented'} %>
+                        <%= form.submit "コメントした投稿", class:'btn submit-btn sns-btn' %>
+                    <% end %>
+                </div>
+                <div class="works sns-posts" id="posts-each-do">
+                    <% if @posts.exists? %>
+                        <%= render 'posts/posts' %>
+                    <% else %>
+                        <span id="not-yet-post">まだ投稿はありません。</span>
+                    <% end %>
+                </div>
             </div>
 
         </div>
@@ -63,10 +64,22 @@
 </main>
 
 <script>
-    $('.sns-btn').first().attr('style', 'background-color: #436aa2 !important;');
+    $('.sns-btn').first().attr('style', 'background-color: #fff !important; color: darkcyan;');
 
     $(document).ready(function() {
         let currentURL = window.location.href.match(/\/post(.*)/)[0];
-        $('.relationship_url').val(currentURL);
+        let user_id = document.getElementById('posted-user-id').textContent;
+        $('.relationship_url').val(currentURL + "/posted");
+
+        // リンクをクリックしたときの処理
+        $('.like-link').on('click', function(event) {
+            event.preventDefault(); // デフォルトのクリック動作をキャンセル
+
+            var href = $(this).attr('href'); // 現在のhref属性を取得
+            var updatedHref = href.replace('url=index', 'url=posted&user_id=' + user_id + '&post_cat=posted'); // 文字列の置換
+
+            $(this).attr('href', updatedHref); // href属性を更新
+            $(this).get(0).click(); // クリックイベントをトリガー
+        });
     });
 </script>
