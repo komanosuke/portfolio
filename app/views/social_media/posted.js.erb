@@ -7,22 +7,39 @@ function checkPostExists(word){
 }
 
 $('.sns-btn').attr('style', 'background-color: darkcyan !important; color: #fff;');
+user_id = document.getElementById('posted-user-id').textContent;
+post_urls = document.getElementsByClassName("like-link");
 if("<%= @post_params %>" == 'posted'){
     $('#post-selection').text('投稿内容');
     $('.sns-btn').first().attr('style', 'background-color: #fff !important; color: darkcyan;');
     checkPostExists('まだ');
     currentURL = window.location.href.match(/\/post(.*)/)[0];
     $('.relationship_url').val(currentURL + "/posted");
+    for(let i = 0; i < post_urls.length; i++){
+        href = post_urls[i].getAttribute('href');
+        newHref = href.replace('url=index', 'url=posted&user_id=' + user_id + '&post_cat=posted');
+        post_urls[i].setAttribute('href', newHref);
+    }
 } else if("<%= @post_params %>" == 'liked'){
     $('#post-selection').text('Likeした投稿');
     $('.sns-btn').eq(1).attr('style', 'background-color: #fff !important; color: darkcyan;');
     checkPostExists('Likeした');
     currentURL = window.location.href.match(/\/post(.*)/)[0];
     $('.relationship_url').val(currentURL + "/liked");
+    for(let i = 0; i < post_urls.length; i++){
+        href = post_urls[i].getAttribute('href');
+        newHref = href.replace('url=index', 'url=posted&user_id=' + user_id + '&post_cat=liked');
+        post_urls[i].setAttribute('href', newHref);
+    }
 } else if("<%= @post_params %>" == 'commented'){
     $('#post-selection').text('コメントした投稿');
     $('.sns-btn').eq(2).attr('style', 'background-color: #fff !important; color: darkcyan;');
     checkPostExists('コメントした');
     currentURL = window.location.href.match(/\/post(.*)/)[0];
     $('.relationship_url').val(currentURL + "/commented");
+    for(let i = 0; i < post_urls.length; i++){
+        href = post_urls[i].getAttribute('href');
+        newHref = href.replace('url=index', 'url=posted&user_id=' + user_id + '&post_cat=commented');
+        post_urls[i].setAttribute('href', newHref);
+    }
 }

@@ -218,7 +218,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:followers).through(:passive_relationships).source(:followed) }
     it { should have_one(:cart).dependent(:destroy) }
     it { should have_one(:lifecost).dependent(:destroy) }
-    it { should have_many(:study_records) }
+    it { should have_one(:study_record) }
   end
       
   describe "methods" do

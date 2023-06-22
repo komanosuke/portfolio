@@ -10,18 +10,18 @@ class SocialMediaController < ApplicationController
         if request.post? and params[:post_cat]
             @post_params = params[:post_cat]
             if params[:post_cat] == 'posted'
-                @posts = @user.posts
+                @posts = @user.posts.page(params[:page]).per(3)
             elsif params[:post_cat] == 'liked'
-                @posts = @user.like_posts
+                @posts = @user.like_posts.page(params[:page]).per(3)
             elsif params[:post_cat] == 'commented'
-                @posts = @user.comment_posts
+                @posts = @user.comment_posts.page(params[:page]).per(3)
             end
             respond_to do |format|
                 format.html
                 format.js
             end
         else
-            @posts = @user.posts
+            @posts = @user.posts.page(params[:page]).per(3)
         end
     end
 

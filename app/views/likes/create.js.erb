@@ -3,30 +3,30 @@
 <% elsif @params_url == 'show' %>
     $("#show-like").html("<%= j(render 'posts/show_like', post: @post) %>");
 <% elsif @params_url == 'posted' %>
+    $("#show-follow-wrapper").html("<%= j(render 'social_media/posted_relationships', user: @user) %>");
     $("#posts-each-do").html("<%= j(render 'posts/posts', posts: @posts) %>");
+    user_id = document.getElementById('posted-user-id').textContent;
+    post_urls = document.getElementsByClassName("like-link");
     <% if @post_cat == 'posted' %>
-        $('.like-link').on('click', function(event) {
-            event.preventDefault();
-            var href = $(this).attr('href');
-            var updatedHref = href.replace('url=index', 'url=posted&user_id=' + user_id + '&post_cat=posted');
-            $(this).attr('href', updatedHref);
-            $(this).get(0).click();
-        });
+        for(let i = 0; i < post_urls.length; i++){
+            href = post_urls[i].getAttribute('href');
+            newHref = href.replace('url=index', 'url=posted&user_id=' + user_id + '&post_cat=posted');
+            post_urls[i].setAttribute('href', newHref);
+        }
     <% elsif @post_cat == 'liked' %>
-        $('.like-link').on('click', function(event) {
-            event.preventDefault();
-            var href = $(this).attr('href');
-            var updatedHref = href.replace('url=index', 'url=posted&user_id=' + user_id + '&post_cat=liked');
-            $(this).attr('href', updatedHref);
-            $(this).get(0).click();
-        });
+        for(let i = 0; i < post_urls.length; i++){
+            href = post_urls[i].getAttribute('href');
+            newHref = href.replace('url=index', 'url=posted&user_id=' + user_id + '&post_cat=liked');
+            post_urls[i].setAttribute('href', newHref);
+        }
+        <% if @posts.length == 0 %>
+            $("#posts-each-do").html("<span id=\"not-yet-post\">Likeした投稿はありません</span>");
+        <% end %>
     <% elsif @post_cat == 'commented' %>
-        $('.like-link').on('click', function(event) {
-            event.preventDefault();
-            var href = $(this).attr('href');
-            var updatedHref = href.replace('url=index', 'url=posted&user_id=' + user_id + '&post_cat=commented');
-            $(this).attr('href', updatedHref);
-            $(this).get(0).click();
-        });
+        for(let i = 0; i < post_urls.length; i++){
+            href = post_urls[i].getAttribute('href');
+            newHref = href.replace('url=index', 'url=posted&user_id=' + user_id + '&post_cat=commented');
+            post_urls[i].setAttribute('href', newHref);
+        }
     <% end %>
 <% end %>

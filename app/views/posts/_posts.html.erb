@@ -1,5 +1,7 @@
+<div id="loading-wrapper">
 <% @posts.each do |post| %>
     <div class="work sns-post">
+        <div class="posted-post-id"><%= post.id %></div>
         <div class="thumb-wrapper">
             <a href="/posted/<%= post.user.id %>" class="sns-users-link">
                 <div class="post-name-wrapper">
@@ -52,3 +54,4 @@
         <% end %>
     </div>
 <% end %>
+</div>

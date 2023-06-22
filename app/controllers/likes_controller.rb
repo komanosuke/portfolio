@@ -13,13 +13,14 @@ class LikesController < ApplicationController
                     format.html { redirect_to 'posts/' + params[:post_id] }
                     format.js
                 elsif params[:url] == 'posted'
+                    @user = User.find(params[:user_id])
                     @post_cat = params[:post_cat]
                     if @post_cat == 'posted'
-                        @posts = User.find(params[:user_id]).posts
+                        @posts = @user.posts
                     elsif @post_cat == 'liked'
-                        @posts = User.find(params[:user_id]).like_posts
+                        @posts = @user.like_posts
                     elsif @post_cat == 'commented'
-                        @posts = User.find(params[:user_id]).comment_posts
+                        @posts = @user.comment_posts
                     end
                     format.html { redirect_to 'posted/' + params[:user_id]}
                     format.js
@@ -45,18 +46,20 @@ class LikesController < ApplicationController
                     format.html { redirect_to 'posts/' + params[:post_id] }
                     format.js
                 elsif params[:url] == 'posted'
+                    @user = User.find(params[:user_id])
                     @post_cat = params[:post_cat]
                     if @post_cat == 'posted'
-                        @posts = User.find(params[:user_id]).posts
+                        @posts = @user.posts
                     elsif @post_cat == 'liked'
-                        @posts = User.find(params[:user_id]).like_posts
+                        @posts = @user.like_posts
                     elsif @post_cat == 'commented'
-                        @posts = User.find(params[:user_id]).comment_posts
+                        @posts = @user.comment_posts
                     end
                     format.html { redirect_to 'posted/' + params[:user_id]}
                     format.js
                 end
             else
+                flash[:error] = like.errors.full_messages.join(', ')
                 format.html { redirect_to @post, alert: "Failed to unlike post." }
             end
         end
