@@ -13,7 +13,3 @@ $(function(){
 	  return false;
 	});
 });
-
-document.addEventListener('turbolinks:load', function() {
-    window.scrollTo(0, 0);
-});

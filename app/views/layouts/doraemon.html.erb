@@ -8,14 +8,13 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
-    <meta name="turbolinks-visit-control" content="reload">
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%# <meta name="turbolinks-visit-control" content="reload"> %>
   </head>
 
   <body>
     <%= render 'examples/header' %>
     <%= yield %>
     <%= render 'examples/footer' %>
-    <%= javascript_pack_tag 'common' %>
   </body>
 </html>

@@ -1,7 +1,3 @@
-document.addEventListener('turbolinks:load', function() {
-    window.scrollTo(0, 0);
-});
-
 $(function () {
     let demo = $('#demo-img');
     let demoBack = $('#demo-img-back');
@@ -13,7 +9,6 @@ $(function () {
         } else {
             position = 100;
         }
-        console.log(position);
         if ($(window).scrollTop() > offset.top - position) {
             demo.addClass('fixed');
             demoBack.addClass('appear');
@@ -313,46 +308,46 @@ function hex2rgb ( hex ) {
 //     }
 // });
 
-// const audio_file = document.getElementById('audio_file');
-// let audio_name = document.getElementById('audio_name');
-// // const sizeLimit = 1024 * 1024 * 1; // 制限サイズ
-// // changeイベントで呼び出す関数
-// function handle_audio_FileSelect(){
-//     let file = audio_file.files[0];
-//     let audio_filename = file.name;
-//     audio_name.value = audio_filename;
-//     let audio_filesize = file.size;
-//     preview_audio_File(file);
-// }
-// // ファイル選択時にhandleFileSelectを発火
-// audio_file.addEventListener('change', handle_audio_FileSelect);
+const audio_file = document.getElementById('audio_file');
+let audio_name = document.getElementById('audio_name');
+// const sizeLimit = 1024 * 1024 * 1; // 制限サイズ
+// changeイベントで呼び出す関数
+function handle_audio_FileSelect(){
+    let file = audio_file.files[0];
+    let audio_filename = file.name;
+    audio_name.value = audio_filename;
+    let audio_filesize = file.size;
+    preview_audio_File(file);
+}
+// ファイル選択時にhandleFileSelectを発火
+audio_file.addEventListener('change', handle_audio_FileSelect);
 
-// let audio_preview = document.getElementById('audio_preview');
+let audio_preview = document.getElementById('audio_preview');
 
-// function preview_audio_File(file) {
-//     // FileReaderオブジェクトを作成
-//     const reader = new FileReader();
-//     // URLとして読み込まれたときに実行する処理
-//     reader.onload = function (e) {
-//         const audioUrl = e.target.result; // URLはevent.target.resultで呼び出せる
-//         audio_preview.style.visibility = 'visible';
-//         audio_preview.innerHTML = file.name + '<button type="button" class="delete_cancel_btn">×</button>';
-//         $('.delete_cancel_btn').on('click', function() {
-//             audio_preview.style.visibility = 'hidden';
-//             audio_file.value = '';
-//         });
-//     }
-//     // いざファイルをURLとして読み込む
-//     reader.readAsDataURL(file);
-//     console.log('MP3,ON:xxxを送信しました。ファイル名の処理はコントローラーで行います。');
-//     audio_permit = true;
-//     audio_submit.click();
-// }
+function preview_audio_File(file) {
+    // FileReaderオブジェクトを作成
+    const reader = new FileReader();
+    // URLとして読み込まれたときに実行する処理
+    reader.onload = function (e) {
+        const audioUrl = e.target.result; // URLはevent.target.resultで呼び出せる
+        audio_preview.style.visibility = 'visible';
+        audio_preview.innerHTML = file.name + '<button type="button" class="delete_cancel_btn">×</button>';
+        $('.delete_cancel_btn').on('click', function() {
+            audio_preview.style.visibility = 'hidden';
+            audio_file.value = '';
+        });
+    }
+    // いざファイルをURLとして読み込む
+    reader.readAsDataURL(file);
+    console.log('MP3,ON:xxxを送信しました。ファイル名の処理はコントローラーで行います。');
+    audio_permit = true;
+    audio_submit.click();
+}
 
-// $('.delete_cancel_btn').on('click', function() {
-//     audio_preview.style.visibility = 'hidden';
-//     audio_file.value = '';
-// });
+$('.delete_cancel_btn').on('click', function() {
+    audio_preview.style.visibility = 'hidden';
+    audio_file.value = '';
+});
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -402,7 +397,35 @@ for(let i = 0; i < ctx.length; i++){
 let data = {'BATTERY': '5.635', 'TEMPERATURE': '19.75', 'FAN': 'OFF', 'DISPLAY': 'OFF', 'POSITION': 'LAT:36.383:LON:136.381', 'LED': 'OFF', 'COLOR': 'R:0:G:0:B:0', 'AUDIO': 'OFF', 'MP3': 'OFF', 'MP4': 'OFF', 'USB5V': 'OFF', 'WIFIUSE': '1', 'MESSAGE': 'none', 'GTEMPERATURE': '23.64', 'HUMIDITY': '58.02', 'LIGHT': '26', 'PRESS': '1025.856', 'NOISE': '52.29', 'ETVOC': '45', 'CO2': '700', 'DISCOMFORT': '70.73', 'HEAT': '21.13'}
 let chart_check = false;
 
-setInterval(updateData, 1000);
+// setInterval(updateData, 1000);
+// setIntervalのIDを格納する変数
+let intervalID;
+
+// setIntervalの実行
+function startInterval() {
+    intervalID = setInterval(function() {
+        updateData();
+        console.log('Interval is running...');
+    }, 1000);
+}
+
+// setIntervalの停止
+function stopInterval() {
+    clearInterval(intervalID);
+}
+
+// turbolinksのページ読み込み後に実行される処理
+document.addEventListener('turbolinks:load', function() {
+    console.log(document.querySelector('#socket-checked'));
+    if (document.querySelector('#socket-checked')) {
+        startInterval();
+        console.log('Interval started.');
+    } else {
+        stopInterval();
+        console.log('stopped');
+    }
+});
+
 
 function updateData(){
     // submit();

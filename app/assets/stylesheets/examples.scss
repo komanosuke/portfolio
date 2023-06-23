@@ -19,6 +19,14 @@
     margin: 30px auto;
 }
 
+#cost-result table {
+    font-size: 24px;
+}
+
+#cost-result th, #cost-result td {
+    padding: 15px;
+}
+
 #cost-con table, td, th {
     min-width: 200px;
 }
