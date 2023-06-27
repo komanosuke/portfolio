@@ -76,8 +76,8 @@ gem 'mechanize'
 
 
 group :production do
-  # gem 'pg'
   gem 'unicorn', '~> 6.0.0'
+  gem 'pg'
 end
 
 gem 'net-imap'
