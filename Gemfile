@@ -79,3 +79,7 @@ group :production do
   # gem 'pg'
   gem 'unicorn', '~> 6.0.0'
 end
+
+gem 'net-imap'
+gem 'net-pop'
+gem 'net-smtp'
