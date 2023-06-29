@@ -24,17 +24,22 @@ Rails.application.configure do
   #   namespace: 'myapp_cache',
   #   expires_in: 1.day
   # }
+
+  host = 'localhost:3000'
+  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
   
   # # メールの送信設定例
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   address: 'smtp.example.com',
-  #   port: 587,
-  #   user_name: 'username',
-  #   password: ENV['SMTP_PASSWORD'],
-  #   authentication: :login,
-  #   enable_starttls_auto: true
-  # }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    enable_starttls_auto: true, # STARTTLSに自動接続する
+    address:              'smtp.gmail.com',
+    port:                  587,
+    domain:               'gmail.com',
+    user_name:            ENV['SMTP_USERNAME'],
+    password:             ENV['SMTP_PASSWORD'],
+    openssl_verify_mode: 'none',
+    authentication: :login
+  }
   # config.action_mailer.default_url_options = { host: 'example.com' }
   
   # # キャッシュの設定例

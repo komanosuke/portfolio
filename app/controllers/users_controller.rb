@@ -48,7 +48,11 @@ class UsersController < ApplicationController
         if @user.update(user_params)
             @user.update(address: @user.prefecture + @user.city + @user.street)
             flash[:notice] = "アカウントが更新されました！"
-            redirect_to "/users/" + params[:id] + "/edit"
+            if user_params[:photo] or user_params[:audio] or user_params[:video]
+                redirect_to "/socket"
+            else
+                redirect_to "/users/" + params[:id] + "/edit"
+            end
         else
             flash.now[:alert] = "作成に失敗しました"
         end
@@ -98,7 +102,7 @@ class UsersController < ApplicationController
 
         # Only allow a list of trusted parameters through.
         def user_params
-            params.require(:user).permit(:name, :username, :email, :password, :zip, :prefecture, :city, :street, :address, :tel, :image, :profile, :introduction)
+            params.require(:user).permit(:name, :username, :email, :password, :zip, :prefecture, :city, :street, :address, :tel, :image, :photo, :audio, :video, :profile, :introduction)
         end
 
         def login_check

@@ -1,6 +1,10 @@
 class SocketController < ApplicationController
     layout 'socket'
 
+    def socket
+        @user = current_user
+    end
+
     def send_msg
         socket_message(params[:cmd])
     end

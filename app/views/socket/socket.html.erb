@@ -3,7 +3,6 @@
         <h1>IoT機器へのコマンド送信アプリ（DEMO）</h1>
         <p id="socket-con-exp">IoT機器側でTCPソケットの受信プログラムを書くことで、ブラウザからIoT機器を操作できるようになります。※DEMOでは画面上のロボットに反映されます。</p>
 
-
         <h2>IoT機器の操作パネル（DEMO）</h2>
         <div id="demo-wrapper">
             <%= image_tag "/image/robota.png", id:"demo-img-back" %>
@@ -11,6 +10,18 @@
                 <div class="robot-eyes" id="left-eye"></div>
                 <div class="robot-eyes" id="right-eye"></div>
                 <%= image_tag "/image/robota.png" %>
+                <% if logged_in? %>
+                    <div id="robot_photo">
+                        <%= image_tag @user.photo.to_s %>
+                    </div>
+                    <div id="robot_mp4">
+                        <% if @user.video.to_s == '' %>
+                            <%= image_tag "/image/noimage.jpg" %>
+                        <% else %>
+                            <%= video_tag(@user.video.to_s, loop: true, autoplay: true, muted: true, controls: true) %> 
+                        <% end %>
+                    </div>
+                <% end %>
             </div>
         </div>
         <div class="panel_item_wrap">
@@ -19,7 +30,7 @@
                 <div class="panel_item_content">
                     <div class="panel_item_ttl">
                         <h2>LEDカラーの変更</h2>
-                        <p>IoT機器のLEDのカラー変更が可能です。カラーコードを指定するとお好きなカラーを指定することができます。</p>
+                        <p>IoT機器のLEDのカラーを変更することができます。</p>
                     </div>
                     <div class="form_item">
                         <label>プリセットカラーから選択する</label>
@@ -43,31 +54,34 @@
                 <div class="panel_item_content">
                     <div class="panel_item_ttl">
                         <h2>ディスプレイの表示</h2>
-                        <p>ディスプレイに表示されている画像・動画を非表示にして、ディスプレイの電源を切ることができます。</p>
+                        <p>IoT機器のモニターに画像を表示することができます。</p>
                     </div>
                     <div class="flex_container_start upload_item">
                         <div class="upload">
                             <label class="upload_file">
-                                ここを<span>クリック</span>または<br>ドラッグ＆ドロップで<br>ファイルをアップロード
-                                <%= form_with model:@bench_image, local:false do |f| %>
-                                <%= f.file_field :image, id:'pdf_file', accept:'image/*,.pdf' %>
-                                <%= f.hidden_field :name, id:'pdf_name' %>
-                                <%= f.submit "送信", id:"pdf_submit" %>
-                                <% end %>
+                                    ここを<span>クリック</span>または<br>ドラッグ＆ドロップで<br>ファイルをアップロード
+                                    <%= form_with model: @user, local: false, method: :patch do |f| %>
+                                        <%= f.file_field :photo, id:'pdf_file', class:"logged_in_submit", accept:'image/*', required: true %>
+                                        <%= f.hidden_field :name, id:'pdf_name' %>
+                                        <%= f.submit "更新", id:"pdf_submit", class:"logged_in_submit" %>
+                                    <% end %>
                             </label>
                         </div>
-                        <div class="preview">
+                        <div class="preview upload-preview">
                             <label>プレビュー</label>
                             <div class="preview_file preview_file_img" id="preview">
-                                <% if @bench_image_now %>
-                                    <iframe src="<%= @bench_image_now.pdf_url %>" id="preview_image"></iframe>
-                                    <%#= image_tag @bench_image_now.image.to_s, id:"preview_image" %>
+                                <% if logged_in? %>
+                                    <%= image_tag @user.photo.to_s, id:"preview_image" %>
                                 <% else %>
-                                    <%= image_tag "/image/noimage.jpg", id: "preview_dummy", alt: "プレビューファイル" %>
+                                    <%= image_tag '/image/noimage.jpg', id:"preview_image" %>
                                 <% end %>
                             </div>
                         </div>
                     </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="photo_switch">
+                        <span class="slider"></span>
+                    </label>
                 </div>
             </div>
 
@@ -75,30 +89,37 @@
                 <div class="panel_item_content">
                     <div class="panel_item_ttl">
                         <h2>映像ファイルの表示</h2>
-                        <p>IoT機器のモニターに動画を表示することが可能です。シーンに合わせて動画を自由に変更できます。</p>
+                        <p>IoT機器のモニターにMP4動画を表示することができます。</p>
                     </div>
                     <div class="flex_container_start upload_item">
                         <div class="upload">
                             <label class="upload_file">
-                                ここを<span>クリック</span>または<br>ドラッグ＆ドロップで<br>ファイルをアップロード
-                                <%= form_with model: @bench_video, local:false do |f| %>
-                                <%= f.file_field :video, id:'movie_file', accept:'video/*' %>
-                                <%= f.hidden_field :name, id:'movie_name' %>
-                                <%= f.submit "送信", id:"movie_submit" %>
-                                <% end %>
+                                    ここを<span>クリック</span>または<br>ドラッグ＆ドロップで<br>ファイルをアップロード
+                                    <%= form_with model: @user, local: false, method: :patch do |f| %>
+                                        <%= f.file_field :video, id:'movie_file', class:"logged_in_submit", accept:'video/*', required: true %>
+                                        <%= f.submit "更新", id:"movie_submit", class:"logged_in_submit" %>
+                                    <% end %>
                             </label>
                         </div>
-                        <div class="preview">
+                        <div class="preview upload-preview">
                             <label>プレビュー</label>
                             <div class="preview_file preview_file_video">
-                                <% if @bench_video_now %>
-                                <%= video_tag(@bench_video_now.video.to_s, loop: true, autoplay: true, muted: true, controls: true, id:"mp4_preview_video") %>
+                                <% if logged_in? %>
+                                    <% if @user.video.to_s == '' %>
+                                        <%= image_tag "/image/noimage.jpg", id:"mp4_preview_dummy", alt: "現在何も表示されていません" %>
+                                    <% else %>
+                                        <%= video_tag(@user.video.to_s, loop: true, autoplay: true, muted: true, controls: true, id:"mp4_preview_video") %> 
+                                    <% end %>
                                 <% else %>
-                                <%= image_tag "/image/noimage.jpg", id:"mp4_preview_dummy", alt: "現在何も表示されていません" %>
+                                    <%= image_tag "/image/noimage.jpg", id:"mp4_preview_dummy", alt: "現在何も表示されていません" %>
                                 <% end %>
                             </div>
                         </div>
                     </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="mp4_switch">
+                        <span class="slider"></span>
+                    </label>
                 </div>
             </div>
 
@@ -106,32 +127,27 @@
                 <div class="panel_item_content">
                     <div class="panel_item_ttl">
                         <h2>音楽ファイルの再生</h2>
-                        <p>IoT機器のスピーカーから音楽を再生することが可能です。シーンに合わせて音楽を自由に変更できます。</p>
+                        <p>IoT機器のスピーカーからMP3ファイルを再生することができます。</p>
                     </div>
-                    <div class="flex_container_start upload_item">
+                    <div class="flex_container_start upload_item" id="audio_item">
                         <div class="upload">
                             <label class="upload_file">
-                                ここを<span>クリック</span>または<br>ドラッグ＆ドロップで<br>ファイルをアップロード
-                                <%= form_with model: @bench_audio, local:false do |f| %>
-                                <%= f.hidden_field :name, id:'audio_name' %>
-                                <%= f.file_field :audio, :size => 140, id:'audio_file', accept:'audio/mp3' %>
-                                <%= f.submit "送信", id:"audio_submit" %>
-                                <% end %>
+                                    ここを<span>クリック</span>または<br>ドラッグ＆ドロップで<br>ファイルをアップロード
+                                    <%= form_with model: @user, local: false, method: :patch do |f| %>
+                                        <%= f.file_field :audio, :size => 140, id:'audio_file', class:"logged_in_submit", accept:'audio/mp3', required: true %>
+                                        <%= f.submit "更新", id:"audio_submit", class:"logged_in_submit" %>
+                                    <% end %>
                             </label>
                         </div>
-                        <div class="preview">
-                            <label>プレビュー</label>
-                            <div class="preview_file preview_file_audio">
-                                <% if @bench_audio_now %>
-                                <div class="form_attachment_preview" id="audio_preview"><%= @bench_audio_now.name %><button type="button" class="delete_cancel_btn">×</button></div>
-                                <% else %>
-                                <div class="form_attachment_preview" id="audio_preview">default.mp3<button type="button" class="delete_cancel_btn">×</button></div>
-                                <% end %>
-                            </div>
-                        </div>
                     </div>
-                    <% if @bench_audio_now %>
-                        <audio src= "<%= "#{@bench_audio_now.audio}" %>" controls="" id="audio_player">
+                    <% if logged_in? %>
+                        <% if @user.audio.to_s == '' %>
+                            <p>現在、音楽ファイルはありません。</p>
+                        <% else %>
+                            <audio src= "<%= "#{@user.audio}" %>" controls="" id="audio_player">
+                        <% end %>
+                    <% else %>
+                        <p>現在、音楽ファイルはありません。</p>
                     <% end %>
                 </div>
             </div>
@@ -230,1133 +246,13 @@
 </div>
 </main>
 
-<%#= javascript_include_tag 'socket.js' %>
-<%#= javascript_pack_tag 'socket.js' %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
-<script>
-$(function () {
-    let demo = $('#demo-img');
-    let demoBack = $('#demo-img-back');
-    let offset = demo.offset();
-    
-    $(window).on('scroll', function () {
-        if($(window).width() < 480){
-            position = 75;
-        } else {
-            position = 100;
-        }
-        if ($(window).scrollTop() > offset.top - position) {
-            demo.addClass('fixed');
-            demoBack.addClass('appear');
-        } else {
-            demo.removeClass('fixed');
-            demoBack.removeClass('appear');
-        }
-    });
-});
+<%= javascript_include_tag 'socket.js' %>
 
-(function() {
-  // 既に実行中かどうかをチェックするフラグ
-  var isExecuting = false;
-
-  // 実行中でない場合のみ処理を実行する
-  if (!isExecuting) {
-    isExecuting = true;
-//RGBの取得
-let rgb_select = ''; //現在選択されている色を格納
-
-//プリセットカラーをクリック->取得->スイッチオン(送信)cまで
-$('.preset_color').on('click', function(e) {
-    rgb_select = e.target.value;
-    command = changeColor(rgb_select);
-    color_code.value = rgb_select;
-    postData(command);
-});
-const colors = document.getElementsByClassName('preset_color');
-for(let i = 0; i < colors.length; i++){
-    colors[i].addEventListener('change', function(e) {
-        rgb_select = e.target.value;
-        command = changeColor(rgb_select);
-        color_code.value = rgb_select;
-        postData(command);
-    });
-}
-
-//カラーコードを入力->取得->スイッチオン(送信)まで
-const color_code = document.getElementById('led_color');
-color_code.addEventListener('change', function(e) {
-    rgb_select = e.target.value;
-    command = changeColor(rgb_select);
-    if(command){
-        postData(command);
-    }
-});
-
-
-//カラーの変換・変更(送信用コマンドを返す)
-function changeColor(rgb_select){
-    rgb_select = hex2rgb(rgb_select);
-    if(rgb_select.includes(NaN)){
-        alert('入力されたカラーコードは正しくありません。再入力をお願いします。');
-        rgb_select = '';
-        return '';
-    } else {
-        command = 'R:xxx,G:xxx,B:xxx';
-        for(let i = 0; i < rgb_select.length; i++){
-            command = command.replace('xxx', rgb_select[i]);
-        }
-        return 'COLOR,' + command;
-    }
-}
-
-
-//カラーコードからRGBに変換する処理
-function hex2rgb ( hex ) {
-    if ( hex.slice(0, 1) == "#" ) hex = hex.slice(1);
-    if ( hex.length == 3 ) hex = hex.slice(0,1) + hex.slice(0,1) + hex.slice(1,2) + hex.slice(1,2) + hex.slice(2,3) + hex.slice(2,3);
-
-    return [ hex.slice(0, 2), hex.slice(2, 4), hex.slice(4, 6) ].map( function (str) {
-        return parseInt(str, 16);
-    } ) ;
-}
-
-// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// //画像のアップロード
-// let pdf_permit = false;
-// if(document.getElementById('preview_image')){
-//     pdf_permit = true;
-// }
-
-// $('#display_switch').on('click', function() {
-//     if(on_or_off[1] == true){
-//         switchOff(1, 'PDF,OFF');
-//     } else if(on_or_off[1] == false){
-//         if(pdf_permit == false){
-//             alert('再生する画像ファイルをアップロードしてから押してください。');
-//         } else {
-//             switchOn(1, 'PDF,ON:');
-//         }
-//     }
-// });
-
-// const pdf_submit = document.getElementById('pdf_submit');
-
-// ////////PDF,MP3,MP4で繰り返し、まとめて関数化????
-// const pdf_file = document.getElementById('pdf_file');
-// // const sizeLimit = 1024 * 1024 * 1; // 制限サイズ
-// // changeイベントで呼び出す関数
-// function handleFileSelect(){
-//     let file = pdf_file.files[0];
-//     let pdf_filename = file.name;
-//     // let pdf_filesize = file.size;
-
-//     // if (file && file.size > sizeLimit) {
-//     //     // ファイルサイズが制限以上
-//     //     alert('ファイルサイズは1MB以下にしてください'); // エラーメッセージを表示
-//     //     pdf_file.value = ''; // inputの中身をリセット
-//     //     return; // この時点で処理を終了する
-//     // }
-//     previewFile(file);
-//     $('#preview_image').css('visibility', 'visible');
-//     $('.preview_close_btn').css('visibility', 'visible');
-// }
-// // ファイル選択時にhandleFileSelectを発火
-// pdf_file.addEventListener('change', handleFileSelect);
-
-// function previewFile(file) {
-//     // プレビュー画像を追加する要素
-//     const preview = document.getElementById('preview');
-//     // FileReaderオブジェクトを作成
-//     const reader = new FileReader();
-
-//     // URLとして読み込まれたときに実行する処理
-//     reader.onload = function (e) {
-//         const imageUrl = e.target.result; // URLはevent.target.resultで呼び出せる
-//         $('#preview_dummy').css('display', 'none');
-//         $('#preview_image').remove();
-//         const img = document.createElement("img"); // img要素を作成
-//         img.src = imageUrl; // URLをimg要素にセット
-//         img.id = 'preview_image';
-//         preview.appendChild(img); // #previewの中に追加
-//     }
-//     // いざファイルをURLとして読み込む
-//     reader.readAsDataURL(file);
-//     console.log('PDF,ON:xxxを送信しました。ファイル名の処理はコントローラーで行います。');
-//     pdf_default = false; //デフォルト画像が消滅
-//     pdf_submit.click();
-//     postData('PDF,ON:');
-// }
-
-// $('.preview_close_btn').on('click', function() {
-//     $('#preview_dummy').css('display', 'none');
-//     $('#preview_image').remove();
-//     $('.preview_close_btn').css('visibility', 'hidden');
-//     pdf_file.value = '';
-// });
-
-
-// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// //音量の決定
-// $('#volume_input').on('click', function(e) {
-//     //volume ベンチの仕様上、 0(最小値) ~ 100(最大値) を -1000(最小値) ~ 900(最大値) に変換して送信しないといけない。
-//     let volume = (e.target.value * 19) - 1000;
-//     command = 'VOLUME,' + volume;
-//     if(on_or_off[2] == true){
-//         if(volume == -1000){
-//             switchOff(2, command);
-//         } else {
-//             switchOn(2, command);
-//         }
-//     }
-// });
-
-// //音量初期値をビュー表示
-// let default_volume = '80';
-// let volume = document.getElementsByClassName('volume')[0];
-// document.getElementById('volume_input').value = default_volume;
-// volume.style.left = default_volume + '%';
-// volume.children[1].textContent = default_volume;
-// switchOn(2);
-
-// $('#audio_switch').on('click', function() {
-//     if(on_or_off[2] == true){
-//         switchOff(2, 'AUDIO,OFF');
-//         document.getElementById('volume_input').value = 0;
-//         volume.style.left = '0%';
-//         volume.children[1].textContent = '0';
-//     } else if(on_or_off[2] == false){
-//         let volume_value = document.getElementById('volume_input').value;
-//         switchOn(2, 'VOLUME,' + ((volume_value * 19) - 1000));
-//         volume.style.left = volume_value + '%';
-//         volume.children[1].textContent = volume_value;
-//     }
-// });
-
-// let rangePercent = $('[type="range"]').val();
-// $('[type="range"]').on('change input', function() {
-//     rangePercent = $('[type="range"]').val();
-//     $('.volume p').html(rangePercent+'<span></span>');
-//     $('.volume').css({'left': rangePercent+'%'});
-// });
-
-
-
-// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// //動画のアップロード
-// let movie_permit = false;
-// if(document.getElementById('mp4_preview_video')){
-//     movie_permit = true;
-// }
-// const movie_submit = document.getElementById('movie_submit');
-
-// $('#mp4_switch').on('click', function() {
-//     if(on_or_off[3] == true){
-//         switchOff(3, 'MP4,OFF');
-//         audio_lock.style.display = 'none';
-//         //連動して音量もオフにする(値はそのまま)
-//         switchOff(2);
-//     } else if(on_or_off[3] == false){
-//         if(movie_permit == false){
-//             alert('再生するmp4ファイルをアップロードしてから押してください。');
-//         } else {
-//             switchOn(3, 'MP4,ON:');
-//             audio_lock.style.display = 'inline';
-//             //連動して音量もオンにする
-//             switchOn(2);
-//             if(document.getElementById('volume_input').value == 0){
-//                 document.getElementById('volume_input').value = default_volume;
-//                 volume.style.left = default_volume + '%';
-//                 volume.children[1].textContent = default_volume;
-//             }
-//         }
-//     }
-// });
-
-// const movie_file = document.getElementById('movie_file');
-// // const sizeLimit = 1024 * 1024 * 1; // 制限サイズ
-// // changeイベントで呼び出す関数
-// function handle_mv_FileSelect(){
-//     let file = movie_file.files[0];
-//     let movie_filename = file.name;
-//     let movie_filesize = file.size;
-    
-//     preview_mv_File(file);
-//     $('#mp4_preview_video').css('visibility', 'visible');
-// }
-// // ファイル選択時にhandleFileSelectを発火
-// movie_file.addEventListener('change', handle_mv_FileSelect);
-
-// function preview_mv_File(file) {
-//     // プレビュー画像を追加する要素
-//     const preview = document.getElementsByClassName('preview_file_video')[0];
-//     // FileReaderオブジェクトを作成
-//     const reader = new FileReader();
-
-//     // URLとして読み込まれたときに実行する処理
-//     reader.onload = function (e) {
-//     const videoUrl = e.target.result; // URLはevent.target.resultで呼び出せる
-//     $('#mp4_preview_dummy').css('display', 'none');
-//     $('#mp4_preview_video').remove();
-//     const video = document.createElement("video"); // video要素を作成
-//     video.src = videoUrl; // URLをvideo要素にセット
-//     video.id = 'mp4_preview_dummy';
-//     preview.appendChild(video); // #previewの中に追加
-//     }
-//     // いざファイルをURLとして読み込む
-//     reader.readAsDataURL(file);
-//     console.log('MP4,ON:xxxを送信しました。ファイル名の処理はコントローラーで行います。');
-//     movie_permit = true;
-//     movie_submit.click();
-// }
-
-
-
-// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// //音楽のアップロード
-
-// //再生したらボリュームはロック
-// let audio_lock = document.getElementById('audio_lock');
-
-// let audio_permit = false;
-// if(document.getElementById('audio_player')){
-//     audio_permit = true;
-// }
-// const audio_submit = document.getElementById('audio_submit');
-
-// $('#mp3_switch').on('click', function() {
-//     if(on_or_off[4] == true){
-//         switchOff(4, 'MP3,OFF');
-//         audio_lock.style.display = 'none';
-//         //連動して音量もオフにする(値はそのまま)
-//         switchOff(2);
-//     } else if(on_or_off[4] == false){
-//         if(audio_permit == false){
-//             alert('再生するmp3ファイルをアップロードしてから押してください。');
-//         } else {
-//             switchOn(4, 'MP3,ON:');
-//             audio_lock.style.display = 'inline';
-//             //連動して音量もオンにする
-//             switchOn(2);
-//             if(document.getElementById('volume_input').value == 0){
-//                 document.getElementById('volume_input').value = default_volume;
-//                 volume.style.left = default_volume + '%';
-//                 volume.children[1].textContent = default_volume;
-//             }
-//         }
-//     }
-// });
-
-const audio_file = document.getElementById('audio_file');
-let audio_name = document.getElementById('audio_name');
-// const sizeLimit = 1024 * 1024 * 1; // 制限サイズ
-// changeイベントで呼び出す関数
-function handle_audio_FileSelect(){
-    let file = audio_file.files[0];
-    let audio_filename = file.name;
-    audio_name.value = audio_filename;
-    let audio_filesize = file.size;
-    preview_audio_File(file);
-}
-// ファイル選択時にhandleFileSelectを発火
-audio_file.addEventListener('change', handle_audio_FileSelect);
-
-let audio_preview = document.getElementById('audio_preview');
-
-function preview_audio_File(file) {
-    // FileReaderオブジェクトを作成
-    const reader = new FileReader();
-    // URLとして読み込まれたときに実行する処理
-    reader.onload = function (e) {
-        const audioUrl = e.target.result; // URLはevent.target.resultで呼び出せる
-        audio_preview.style.visibility = 'visible';
-        audio_preview.innerHTML = file.name + '<button type="button" class="delete_cancel_btn">×</button>';
-        $('.delete_cancel_btn').on('click', function() {
-            audio_preview.style.visibility = 'hidden';
-            audio_file.value = '';
+<% if !(logged_in?) %>
+    <script>
+        $(".logged_in_submit").click(function(event) {
+            event.preventDefault();
+            alert("アップロード機能を利用するにはログインが必要です。");
         });
-    }
-    // いざファイルをURLとして読み込む
-    reader.readAsDataURL(file);
-    console.log('MP3,ON:xxxを送信しました。ファイル名の処理はコントローラーで行います。');
-    audio_permit = true;
-    audio_submit.click();
-}
-
-$('.delete_cancel_btn').on('click', function() {
-    audio_preview.style.visibility = 'hidden';
-    audio_file.value = '';
-});
-
-// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-// //カメラ
-// $('#camera_switch').on('click', function() {
-//     if(on_or_off[5] == true){
-//         switchOff(5, 'CAMERA,OFF');
-//     } else if(on_or_off[5] == false){
-//         switchOn(5, 'CAMERA,ON:');
-//     }
-// });
-
-//ajaxでコマンドのテキストデータを渡す
-function postData(command){
-    let request_cmd =  command;
-    console.log('コマンド: ' + request_cmd + ' を送信');
-    // 実機送信時の通信
-    // $.ajax({
-    //     url: '/send_msg',
-    //     type: 'GET',
-    //     dataType: 'text',
-    //     async: true,
-    //     data: {
-    //         cmd: request_cmd
-    //     },
-    // });
-    if(command.includes('COLOR')){
-        rgb = command.split(":").slice(1).map(item => parseInt(item, 10));
-        hex = "rgb(" + rgb.join(",") + ")";
-        $('.robot-eyes').css('background-color', hex);
-        $("#demo-img img").css("boxShadow", "1px 1px 50px " + hex);
-    }
-}
-
-
-
-let ctx = document.getElementsByClassName('ex_chart');
-// let myCharts = [];
-let chart_num = document.getElementsByClassName('graph_value');
-
-chart_data = [];
-for(let i = 0; i < ctx.length; i++){
-    chart_data.push([0,0,0,0,0,0,0,0,0,0]);
-}
-
-let data = {'BATTERY': '5.635', 'TEMPERATURE': '19.75', 'FAN': 'OFF', 'DISPLAY': 'OFF', 'POSITION': 'LAT:36.383:LON:136.381', 'LED': 'OFF', 'COLOR': 'R:0:G:0:B:0', 'AUDIO': 'OFF', 'MP3': 'OFF', 'MP4': 'OFF', 'USB5V': 'OFF', 'WIFIUSE': '1', 'MESSAGE': 'none', 'GTEMPERATURE': '23.64', 'HUMIDITY': '58.02', 'LIGHT': '26', 'PRESS': '1025.856', 'NOISE': '52.29', 'ETVOC': '45', 'CO2': '700', 'DISCOMFORT': '70.73', 'HEAT': '21.13'}
-let chart_check = false;
-
-// setInterval(updateData, 1000);
-// setIntervalのIDを格納する変数
-let intervalID;
-
-// setIntervalの実行
-function startInterval() {
-    intervalID = setInterval(function() {
-        updateData();
-        console.log('Interval is running...');
-    }, 1000);
-}
-
-// setIntervalの停止
-function stopInterval() {
-    clearInterval(intervalID);
-}
-
-// turbolinksのページ読み込み後に実行される処理
-document.addEventListener('turbolinks:load', function() {
-    if (document.querySelector('#socket-con')) {
-        stopInterval();
-        startInterval();
-        console.log('Interval started.');
-    } else {
-        stopInterval();
-        destroyChart();
-        console.log('stopped');
-    }
-});
-
-
-
-function updateData(){
-    // submit();
-    // let data = document.getElementById('data').textContent.replace(/(\\|\/)/g,'');
-    // data = JSON.parse(data.replaceAll('=>', ':'));
-    // if(data["DATA"]){
-    //     document.getElementById('error_msg').textContent = 'スマートIoT機器からのデータを受信していません。IoT機器を起動してください。';
-    // } else {
-    //     document.getElementById('error_msg').textContent = '';
-    // }
-
-    destroyChart();
-
-    //下記pushed_dataは、HTMLと順番合わせる + グラフ描画の順番も合わせる
-    // IoT機器のバッテリー残量
-    // IoT機器の基盤温度
-    // IoT機器周辺の外気温
-    // IoT機器の着席情報
-    // Wi-Fi接続台数
-    // IoT機器周辺の湿度
-    // IoT機器周辺の照度
-    // IoT機器周辺の気圧
-    // IoT機器周辺のノイズ
-    // IoT機器周辺の揮発性有機化合物濃度
-    // IoT機器周辺のCO2濃度
-    // IoT機器周辺の不快指数
-    // IoT機器周辺の熱中症警戒度
-    // データ通信使用量
-    pushed_data = [
-        // Number(data["BATTERY"]),
-        // Number(data["TEMPERATURE"]),
-        // Number(data["GTEMPERATURE"]),
-        // Number(data["WIFIUSE"]),
-        // Number(data["HUMIDITY"]),
-        // Number(data["LIGHT"]),
-        // Number(data["PRESS"]),
-        // Number(data["NOISE"]),
-        // Number(data["ETVOC"]),
-        // Number(data["CO2"]),
-        // Number(data["DISCOMFORT"]),
-        // Number(data["HEAT"]),
-        (Math.random() * (5.785 - 4.987) + 4.987).toFixed(3),
-        (Math.random() * (19.76 - 19.73) + 19.73).toFixed(2),
-        (Math.random() * (23.67 - 23.64) + 23.64).toFixed(2),
-        Math.floor(Math.random() * 3),
-        (Math.random() * (58.05 - 58.02) + 58.02).toFixed(2),
-        Math.floor(Math.random() * (27 - 25) + 25),
-        (Math.random() * (1025.856 - 1025.756) + 1025.756).toFixed(3),
-        (Math.random() * (52.49 - 52.29) + 52.29).toFixed(2),
-        Math.floor(Math.random() * (47 - 45) + 45),
-        Math.floor(Math.random() * (704 - 700) + 700),
-        (Math.random() * (70.83 - 70.73) + 70.73).toFixed(2),
-        (Math.random() * (21.33 - 21.23) + 21.23).toFixed(2)
-    ];
-    for(let i = 0; i < ctx.length; i++){
-        chart_data[i].shift();
-        chart_data[i].push(pushed_data[i]);
-        chart_num[i].querySelector('span').textContent = pushed_data[i];
-    }
-
-    chart_check = true;
-
-    // document.getElementById("fan").textContent = "FAN: " + data["FAN"];
-    // document.getElementById("display").textContent = "DISPLAY: " + data["DISPLAY"];
-    // document.getElementById("position").textContent = "POSITION: " + data["POSITION"];
-    // document.getElementById("led").textContent = "LED: " + data["LED"];
-    // document.getElementById("color").textContent = "COLOR: " + data["COLOR"];
-    // document.getElementById("audio").textContent = "AUDIO: " + data["AUDIO"];
-    // document.getElementById("mp3").textContent = "MP3: " + data["MP3"];
-    // document.getElementById("mp4").textContent = "MP4: " + data["MP4"];
-    // document.getElementById("usb").textContent = "USB5V: " + data["USB5V"];
-    // document.getElementById("message").textContent = "MESSAGE: " + data["MESSAGE"];
-
-
-    ///////////// 以下グラフ描画 ///////////////
-    // IoT機器のバッテリー残量
-    window.myChart1 = new Chart(ctx[0], {
-        type: 'line',
-        data: {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            datasets: [{
-                pointRadius: 0,
-                borderWidth: 2,
-                label: '',
-                data: chart_data[0],
-                // データライン
-                borderColor: 'lightseagreen',
-                xAxisID: 'x',
-                yAxisID: 'y'
-            }],
-        },
-        options: {
-            animation: false,
-            scales: {  // 軸設定
-                x: {  // Ｘ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                        // min: 0,            // 最小値
-                        // max: 25,           // 最大値
-                        // stepSize: 5,       // 間隔
-                    },
-                    grid: {
-                        display: false,
-                        drawBorder: false
-                    }
-                },
-                y: { // Ｙ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                    },
-                    grid: {  // グリッド線
-                        display: false,
-                        drawBorder: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-    
-    // IoT機器の基盤温度
-    window.myChart2 = new Chart(ctx[1], {
-        type: 'line',
-        data: {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            datasets: [{
-                pointRadius: 0,
-                borderWidth: 2,
-                label: '',
-                data: chart_data[1],
-                // データライン
-                borderColor: 'lightseagreen',
-                xAxisID: 'x',
-                yAxisID: 'y'
-            }],
-        },
-        options: {
-            animation: false,
-            scales: {  // 軸設定
-                x: {  // Ｘ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                        // min: 0,            // 最小値
-                        // max: 25,           // 最大値
-                        // stepSize: 5,       // 間隔
-                    },
-                    grid: {
-                        display: false,
-                        drawBorder: false
-                    }
-                },
-                y: { // Ｙ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                    },
-                    grid: {  // グリッド線
-                        display: false,
-                        drawBorder: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-    
-
-    // IoT機器周辺の外気温
-    window.myChart3 = new Chart(ctx[2], {
-        type: 'line',
-        data: {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            datasets: [{
-                pointRadius: 0,
-                borderWidth: 2,
-                label: '',
-                data: chart_data[2],
-                // データライン
-                borderColor: 'lightseagreen',
-                xAxisID: 'x',
-                yAxisID: 'y'
-            }],
-        },
-        options: {
-            animation: false,
-            scales: {  // 軸設定
-                x: {  // Ｘ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                        // min: 0,            // 最小値
-                        // max: 25,           // 最大値
-                        // stepSize: 5,       // 間隔
-                    },
-                    grid: {
-                        display: false,
-                        drawBorder: false
-                    }
-                },
-                y: { // Ｙ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                    },
-                    grid: {  // グリッド線
-                        display: false,
-                        drawBorder: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-    
-    // Wi-Fi接続台数
-    window.myChart4 = new Chart(ctx[3], {
-        type: 'line',
-        data: {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            datasets: [{
-                pointRadius: 0,
-                borderWidth: 2,
-                label: '',
-                data: chart_data[3],
-                // データライン
-                borderColor: 'lightseagreen',
-                xAxisID: 'x',
-                yAxisID: 'y'
-            }],
-        },
-        options: {
-            animation: false,
-            scales: {  // 軸設定
-                x: {  // Ｘ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                        // min: 0,            // 最小値
-                        // max: 25,           // 最大値
-                        // stepSize: 5,       // 間隔
-                    },
-                    grid: {
-                        display: false,
-                        drawBorder: false
-                    }
-                },
-                y: { // Ｙ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                    },
-                    grid: {  // グリッド線
-                        display: false,
-                        drawBorder: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-    
-    // IoT機器周辺の湿度
-    window.myChart5 = new Chart(ctx[4], {
-        type: 'line',
-        data: {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            datasets: [{
-                pointRadius: 0,
-                borderWidth: 2,
-                label: '',
-                data: chart_data[4],
-                // データライン
-                borderColor: 'lightseagreen',
-                xAxisID: 'x',
-                yAxisID: 'y'
-            }],
-        },
-        options: {
-            animation: false,
-            scales: {  // 軸設定
-                x: {  // Ｘ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                        // min: 0,            // 最小値
-                        // max: 25,           // 最大値
-                        // stepSize: 5,       // 間隔
-                    },
-                    grid: {
-                        display: false,
-                        drawBorder: false
-                    }
-                },
-                y: { // Ｙ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                    },
-                    grid: {  // グリッド線
-                        display: false,
-                        drawBorder: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-    
-    // IoT機器周辺の照度
-    window.myChart6 = new Chart(ctx[5], {
-        type: 'line',
-        data: {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            datasets: [{
-                pointRadius: 0,
-                borderWidth: 2,
-                label: '',
-                data: chart_data[5],
-                // データライン
-                borderColor: 'lightseagreen',
-                xAxisID: 'x',
-                yAxisID: 'y'
-            }],
-        },
-        options: {
-            animation: false,
-            scales: {  // 軸設定
-                x: {  // Ｘ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                        // min: 0,            // 最小値
-                        // max: 25,           // 最大値
-                        // stepSize: 5,       // 間隔
-                    },
-                    grid: {
-                        display: false,
-                        drawBorder: false
-                    }
-                },
-                y: { // Ｙ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                    },
-                    grid: {  // グリッド線
-                        display: false,
-                        drawBorder: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-    
-    // IoT機器周辺の気圧
-    window.myChart7 = new Chart(ctx[6], {
-        type: 'line',
-        data: {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            datasets: [{
-                pointRadius: 0,
-                borderWidth: 2,
-                label: '',
-                data: chart_data[6],
-                // データライン
-                borderColor: 'lightseagreen',
-                xAxisID: 'x',
-                yAxisID: 'y'
-            }],
-        },
-        options: {
-            animation: false,
-            scales: {  // 軸設定
-                x: {  // Ｘ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                        // min: 0,            // 最小値
-                        // max: 25,           // 最大値
-                        // stepSize: 5,       // 間隔
-                    },
-                    grid: {
-                        display: false,
-                        drawBorder: false
-                    }
-                },
-                y: { // Ｙ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                    },
-                    grid: {  // グリッド線
-                        display: false,
-                        drawBorder: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-    
-    // IoT機器周辺のノイズ
-    window.myChart8 = new Chart(ctx[7], {
-        type: 'line',
-        data: {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            datasets: [{
-                pointRadius: 0,
-                borderWidth: 2,
-                label: '',
-                data: chart_data[7],
-                // データライン
-                borderColor: 'lightseagreen',
-                xAxisID: 'x',
-                yAxisID: 'y'
-            }],
-        },
-        options: {
-            animation: false,
-            scales: {  // 軸設定
-                x: {  // Ｘ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                        // min: 0,            // 最小値
-                        // max: 25,           // 最大値
-                        // stepSize: 5,       // 間隔
-                    },
-                    grid: {
-                        display: false,
-                        drawBorder: false
-                    }
-                },
-                y: { // Ｙ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                    },
-                    grid: {  // グリッド線
-                        display: false,
-                        drawBorder: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-    
-    // IoT機器周辺の揮発性有機化合物濃度
-    window.myChart9 = new Chart(ctx[8], {
-        type: 'line',
-        data: {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            datasets: [{
-                pointRadius: 0,
-                borderWidth: 2,
-                label: '',
-                data: chart_data[8],
-                // データライン
-                borderColor: 'lightseagreen',
-                xAxisID: 'x',
-                yAxisID: 'y'
-            }],
-        },
-        options: {
-            animation: false,
-            scales: {  // 軸設定
-                x: {  // Ｘ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                        // min: 0,            // 最小値
-                        // max: 25,           // 最大値
-                        // stepSize: 5,       // 間隔
-                    },
-                    grid: {
-                        display: false,
-                        drawBorder: false
-                    }
-                },
-                y: { // Ｙ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                    },
-                    grid: {  // グリッド線
-                        display: false,
-                        drawBorder: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-    
-    // IoT機器周辺のCO2濃度
-    window.myChart10 = new Chart(ctx[9], {
-        type: 'line',
-        data: {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            datasets: [{
-                pointRadius: 0,
-                borderWidth: 2,
-                label: '',
-                data: chart_data[9],
-                // データライン
-                borderColor: 'lightseagreen',
-                xAxisID: 'x',
-                yAxisID: 'y'
-            }],
-        },
-        options: {
-            animation: false,
-            scales: {  // 軸設定
-                x: {  // Ｘ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                        // min: 0,            // 最小値
-                        // max: 25,           // 最大値
-                        // stepSize: 5,       // 間隔
-                    },
-                    grid: {
-                        display: false,
-                        drawBorder: false
-                    }
-                },
-                y: { // Ｙ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                    },
-                    grid: {  // グリッド線
-                        display: false,
-                        drawBorder: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-    
-    // IoT機器周辺の不快指数
-    window.myChart11 = new Chart(ctx[10], {
-        type: 'line',
-        data: {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            datasets: [{
-                pointRadius: 0,
-                borderWidth: 2,
-                label: '',
-                data: chart_data[10],
-                // データライン
-                borderColor: 'lightseagreen',
-                xAxisID: 'x',
-                yAxisID: 'y'
-            }],
-        },
-        options: {
-            animation: false,
-            scales: {  // 軸設定
-                x: {  // Ｘ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                        // min: 0,            // 最小値
-                        // max: 25,           // 最大値
-                        // stepSize: 5,       // 間隔
-                    },
-                    grid: {
-                        display: false,
-                        drawBorder: false
-                    }
-                },
-                y: { // Ｙ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                    },
-                    grid: {  // グリッド線
-                        display: false,
-                        drawBorder: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-
-    // IoT機器周辺の熱中症警戒度
-    window.myChart12 = new Chart(ctx[11], {
-        type: 'line',
-        data: {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            datasets: [{
-                pointRadius: 0,
-                borderWidth: 2,
-                label: '',
-                data: chart_data[11],
-                // データライン
-                borderColor: 'lightseagreen',
-                xAxisID: 'x',
-                yAxisID: 'y'
-            }],
-        },
-        options: {
-            animation: false,
-            scales: {  // 軸設定
-                x: {  // Ｘ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                        // min: 0,            // 最小値
-                        // max: 25,           // 最大値
-                        // stepSize: 5,       // 間隔
-                    },
-                    grid: {
-                        display: false,
-                        drawBorder: false
-                    }
-                },
-                y: { // Ｙ軸設定
-                    ticks: {  // 目盛り
-                        display: false
-                    },
-                    grid: {  // グリッド線
-                        display: false,
-                        drawBorder: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-
-}
-updateData();
-
-function destroyChart(){
-    if (chart_check) {
-        for(let i = 0; i < ctx.length; i++){
-            myChart1.destroy();
-            myChart2.destroy();
-            myChart3.destroy();
-            myChart4.destroy();
-            myChart5.destroy();
-            myChart6.destroy();
-            myChart7.destroy();
-            myChart8.destroy();
-            myChart9.destroy();
-            myChart10.destroy();
-            myChart11.destroy();
-            myChart12.destroy();
-        }
-    }
-}
-isExecuting = false;
-  }
-})();
-</script>
+    </script>
+<% end %>

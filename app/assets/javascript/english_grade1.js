@@ -1,3 +1,4 @@
+english = (function() {
 const lists = [
     [
         {
@@ -11214,13 +11215,16 @@ let on_or_off = false;
 //     }
 // }
 
+let timerId;
+
 function autoMode(){
-    const timerId = setInterval(function(){
+    timerId = setInterval(function(){
         nextQuiz();
         if(on_or_off == false){ 
             clearInterval(timerId);
         }
     }, 2000);
+    // console.log(timerId);
     if(on_or_off == false){
         meaning.style.display = 'block';
         on_or_off = true;
@@ -11230,9 +11234,23 @@ function autoMode(){
     }
 }
 
+function stopInterval() {
+    clearInterval(timerId);
+}
+
 
 // function postData(msg){
 //     word.value = msg;
 //     console.log(msg + ' を送信');
 //     sentence.click();
 // }
+return {
+    timerId: timerId,
+    stopInterval: stopInterval
+};
+})();
+
+$(document).on('turbolinks:before-visit', function() {
+    english.stopInterval();
+    Turbolinks.clearCache();
+});

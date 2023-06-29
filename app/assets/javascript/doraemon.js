@@ -1,4 +1,4 @@
-function doraemon() {
+function doraemon(){
     let speakButton = document.getElementById("voiceButton");
     speakButton.addEventListener("click", () => { stop() });
 
@@ -75,7 +75,7 @@ function doraemon() {
             SpeechRecognition = webkitSpeechRecognition;
         }
     }
-    
+
     if (SpeechRecognition){
         let btn_stt = document.getElementById('btn_stt');  
         btn_stt.onclick = function(){
@@ -124,7 +124,11 @@ function doraemon() {
             }
         }
     }else{
-    alert('ブラウザはChromeをお使いください。');
+        alert('ブラウザはChromeをお使いください。');
     }
 }
 doraemon();
+
+$(document).on('turbolinks:before-visit', function() {
+    Turbolinks.clearCache();
+});

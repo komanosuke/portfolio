@@ -1,3 +1,4 @@
+socket = (function() {
 $(function () {
     let demo = $('#demo-img');
     let demoBack = $('#demo-img-back');
@@ -18,7 +19,6 @@ $(function () {
         }
     });
 });
-
 
 //RGBの取得
 let rgb_select = ''; //現在選択されている色を格納
@@ -80,233 +80,123 @@ function hex2rgb ( hex ) {
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// //画像のアップロード
-// let pdf_permit = false;
-// if(document.getElementById('preview_image')){
-//     pdf_permit = true;
-// }
+//画像のアップロード
+$('#photo_switch').on('click', function() {
+    if($('#mp4_switch').prop('checked')){
+        $('#mp4_switch').click();
+        $('#robot_mp4').css('display', 'none');
+        if($('#photo_switch').prop('checked')){
+            $('#robot_photo').css('display', 'block');
+        } else {
+            $('#robot_photo').css('display', 'none');
+        }
+    } else {
+        if($('#photo_switch').prop('checked')){
+            $('#robot_photo').css('display', 'block');
+        } else {
+            $('#robot_photo').css('display', 'none');
+        }
+    }
+});
 
-// $('#display_switch').on('click', function() {
-//     if(on_or_off[1] == true){
-//         switchOff(1, 'PDF,OFF');
-//     } else if(on_or_off[1] == false){
-//         if(pdf_permit == false){
-//             alert('再生する画像ファイルをアップロードしてから押してください。');
-//         } else {
-//             switchOn(1, 'PDF,ON:');
-//         }
-//     }
-// });
+const pdf_file = document.getElementById('pdf_file');
+const sizeLimit = 1024 * 1024 * 2; // 制限サイズ
+// changeイベントで呼び出す関数
+function handleFileSelect(){
+    let file = pdf_file.files[0];
+    let pdf_filename = file.name;
+    if (file && file.size > sizeLimit) {
+        // ファイルサイズが制限以上
+        alert('ファイルサイズは2MB以下にしてください'); // エラーメッセージを表示
+        pdf_file.value = ''; // inputの中身をリセット
+        return; // この時点で処理を終了する
+    }
+    previewFile(file);
+}
+// ファイル選択時にhandleFileSelectを発火
+pdf_file.addEventListener('change', handleFileSelect);
 
-// const pdf_submit = document.getElementById('pdf_submit');
+function previewFile(file) {
+    // プレビュー画像を追加する要素
+    const preview = document.getElementById('preview');
+    // FileReaderオブジェクトを作成
+    const reader = new FileReader();
 
-// ////////PDF,MP3,MP4で繰り返し、まとめて関数化????
-// const pdf_file = document.getElementById('pdf_file');
-// // const sizeLimit = 1024 * 1024 * 1; // 制限サイズ
-// // changeイベントで呼び出す関数
-// function handleFileSelect(){
-//     let file = pdf_file.files[0];
-//     let pdf_filename = file.name;
-//     // let pdf_filesize = file.size;
-
-//     // if (file && file.size > sizeLimit) {
-//     //     // ファイルサイズが制限以上
-//     //     alert('ファイルサイズは1MB以下にしてください'); // エラーメッセージを表示
-//     //     pdf_file.value = ''; // inputの中身をリセット
-//     //     return; // この時点で処理を終了する
-//     // }
-//     previewFile(file);
-//     $('#preview_image').css('visibility', 'visible');
-//     $('.preview_close_btn').css('visibility', 'visible');
-// }
-// // ファイル選択時にhandleFileSelectを発火
-// pdf_file.addEventListener('change', handleFileSelect);
-
-// function previewFile(file) {
-//     // プレビュー画像を追加する要素
-//     const preview = document.getElementById('preview');
-//     // FileReaderオブジェクトを作成
-//     const reader = new FileReader();
-
-//     // URLとして読み込まれたときに実行する処理
-//     reader.onload = function (e) {
-//         const imageUrl = e.target.result; // URLはevent.target.resultで呼び出せる
-//         $('#preview_dummy').css('display', 'none');
-//         $('#preview_image').remove();
-//         const img = document.createElement("img"); // img要素を作成
-//         img.src = imageUrl; // URLをimg要素にセット
-//         img.id = 'preview_image';
-//         preview.appendChild(img); // #previewの中に追加
-//     }
-//     // いざファイルをURLとして読み込む
-//     reader.readAsDataURL(file);
-//     console.log('PDF,ON:xxxを送信しました。ファイル名の処理はコントローラーで行います。');
-//     pdf_default = false; //デフォルト画像が消滅
-//     pdf_submit.click();
-//     postData('PDF,ON:');
-// }
-
-// $('.preview_close_btn').on('click', function() {
-//     $('#preview_dummy').css('display', 'none');
-//     $('#preview_image').remove();
-//     $('.preview_close_btn').css('visibility', 'hidden');
-//     pdf_file.value = '';
-// });
+    // URLとして読み込まれたときに実行する処理
+    reader.onload = function (e) {
+        
+    }
+    // いざファイルをURLとして読み込む
+    reader.readAsDataURL(file);
+}
 
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// //音量の決定
-// $('#volume_input').on('click', function(e) {
-//     //volume ベンチの仕様上、 0(最小値) ~ 100(最大値) を -1000(最小値) ~ 900(最大値) に変換して送信しないといけない。
-//     let volume = (e.target.value * 19) - 1000;
-//     command = 'VOLUME,' + volume;
-//     if(on_or_off[2] == true){
-//         if(volume == -1000){
-//             switchOff(2, command);
-//         } else {
-//             switchOn(2, command);
-//         }
-//     }
-// });
+//動画のアップロード
 
-// //音量初期値をビュー表示
-// let default_volume = '80';
-// let volume = document.getElementsByClassName('volume')[0];
-// document.getElementById('volume_input').value = default_volume;
-// volume.style.left = default_volume + '%';
-// volume.children[1].textContent = default_volume;
-// switchOn(2);
+$('#mp4_switch').on('click', function() {
+    if($('#photo_switch').prop('checked')){
+        $('#photo_switch').click();
+        $('#robot_photo').css('display', 'none');
+        if($('#mp4_switch').prop('checked')){
+            $('#robot_mp4').css('display', 'block');
+        } else {
+            $('#robot_mp4').css('display', 'none');
+        }
+    } else {
+        if($('#mp4_switch').prop('checked')){
+            $('#robot_mp4').css('display', 'block');
+        } else {
+            $('#robot_mp4').css('display', 'none');
+        }
+    }
+});
 
-// $('#audio_switch').on('click', function() {
-//     if(on_or_off[2] == true){
-//         switchOff(2, 'AUDIO,OFF');
-//         document.getElementById('volume_input').value = 0;
-//         volume.style.left = '0%';
-//         volume.children[1].textContent = '0';
-//     } else if(on_or_off[2] == false){
-//         let volume_value = document.getElementById('volume_input').value;
-//         switchOn(2, 'VOLUME,' + ((volume_value * 19) - 1000));
-//         volume.style.left = volume_value + '%';
-//         volume.children[1].textContent = volume_value;
-//     }
-// });
+const movie_file = document.getElementById('movie_file');
+const mv_sizeLimit = 1024 * 1024 * 5; // 制限サイズ
+// changeイベントで呼び出す関数
+function handle_mv_FileSelect(){
+    let file = movie_file.files[0];
+    let movie_filename = file.name;
 
-// let rangePercent = $('[type="range"]').val();
-// $('[type="range"]').on('change input', function() {
-//     rangePercent = $('[type="range"]').val();
-//     $('.volume p').html(rangePercent+'<span></span>');
-//     $('.volume').css({'left': rangePercent+'%'});
-// });
-
-
-
-// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// //動画のアップロード
-// let movie_permit = false;
-// if(document.getElementById('mp4_preview_video')){
-//     movie_permit = true;
-// }
-// const movie_submit = document.getElementById('movie_submit');
-
-// $('#mp4_switch').on('click', function() {
-//     if(on_or_off[3] == true){
-//         switchOff(3, 'MP4,OFF');
-//         audio_lock.style.display = 'none';
-//         //連動して音量もオフにする(値はそのまま)
-//         switchOff(2);
-//     } else if(on_or_off[3] == false){
-//         if(movie_permit == false){
-//             alert('再生するmp4ファイルをアップロードしてから押してください。');
-//         } else {
-//             switchOn(3, 'MP4,ON:');
-//             audio_lock.style.display = 'inline';
-//             //連動して音量もオンにする
-//             switchOn(2);
-//             if(document.getElementById('volume_input').value == 0){
-//                 document.getElementById('volume_input').value = default_volume;
-//                 volume.style.left = default_volume + '%';
-//                 volume.children[1].textContent = default_volume;
-//             }
-//         }
-//     }
-// });
-
-// const movie_file = document.getElementById('movie_file');
-// // const sizeLimit = 1024 * 1024 * 1; // 制限サイズ
-// // changeイベントで呼び出す関数
-// function handle_mv_FileSelect(){
-//     let file = movie_file.files[0];
-//     let movie_filename = file.name;
-//     let movie_filesize = file.size;
+    if (file && file.size > mv_sizeLimit) {
+        // ファイルサイズが制限以上
+        alert('ファイルサイズは5MB以下にしてください'); // エラーメッセージを表示
+        movie_file.value = ''; // inputの中身をリセット
+        return; // この時点で処理を終了する
+    }
     
-//     preview_mv_File(file);
-//     $('#mp4_preview_video').css('visibility', 'visible');
-// }
-// // ファイル選択時にhandleFileSelectを発火
-// movie_file.addEventListener('change', handle_mv_FileSelect);
+    preview_mv_File(file);
+}
+// ファイル選択時にhandleFileSelectを発火
+movie_file.addEventListener('change', handle_mv_FileSelect);
 
-// function preview_mv_File(file) {
-//     // プレビュー画像を追加する要素
-//     const preview = document.getElementsByClassName('preview_file_video')[0];
-//     // FileReaderオブジェクトを作成
-//     const reader = new FileReader();
+function preview_mv_File(file) {
+    // プレビュー画像を追加する要素
+    const preview = document.getElementsByClassName('preview_file_video')[0];
+    // FileReaderオブジェクトを作成
+    const reader = new FileReader();
 
-//     // URLとして読み込まれたときに実行する処理
-//     reader.onload = function (e) {
-//     const videoUrl = e.target.result; // URLはevent.target.resultで呼び出せる
-//     $('#mp4_preview_dummy').css('display', 'none');
-//     $('#mp4_preview_video').remove();
-//     const video = document.createElement("video"); // video要素を作成
-//     video.src = videoUrl; // URLをvideo要素にセット
-//     video.id = 'mp4_preview_dummy';
-//     preview.appendChild(video); // #previewの中に追加
-//     }
-//     // いざファイルをURLとして読み込む
-//     reader.readAsDataURL(file);
-//     console.log('MP4,ON:xxxを送信しました。ファイル名の処理はコントローラーで行います。');
-//     movie_permit = true;
-//     movie_submit.click();
-// }
+    // URLとして読み込まれたときに実行する処理
+    reader.onload = function (e) {
+        const videoUrl = e.target.result; // URLはevent.target.resultで呼び出せる
+        $('#mp4_preview_dummy').css('display', 'none');
+        $('#mp4_preview_video').remove();
+        const video = document.createElement("video"); // video要素を作成
+        video.src = videoUrl; // URLをvideo要素にセット
+        video.id = 'mp4_preview_dummy';
+        preview.appendChild(video); // #previewの中に追加
+    }
+    // いざファイルをURLとして読み込む
+    reader.readAsDataURL(file);
+}
 
 
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // //音楽のアップロード
-
-// //再生したらボリュームはロック
-// let audio_lock = document.getElementById('audio_lock');
-
-// let audio_permit = false;
-// if(document.getElementById('audio_player')){
-//     audio_permit = true;
-// }
-// const audio_submit = document.getElementById('audio_submit');
-
-// $('#mp3_switch').on('click', function() {
-//     if(on_or_off[4] == true){
-//         switchOff(4, 'MP3,OFF');
-//         audio_lock.style.display = 'none';
-//         //連動して音量もオフにする(値はそのまま)
-//         switchOff(2);
-//     } else if(on_or_off[4] == false){
-//         if(audio_permit == false){
-//             alert('再生するmp3ファイルをアップロードしてから押してください。');
-//         } else {
-//             switchOn(4, 'MP3,ON:');
-//             audio_lock.style.display = 'inline';
-//             //連動して音量もオンにする
-//             switchOn(2);
-//             if(document.getElementById('volume_input').value == 0){
-//                 document.getElementById('volume_input').value = default_volume;
-//                 volume.style.left = default_volume + '%';
-//                 volume.children[1].textContent = default_volume;
-//             }
-//         }
-//     }
-// });
 
 const audio_file = document.getElementById('audio_file');
 let audio_name = document.getElementById('audio_name');
@@ -322,44 +212,20 @@ function handle_audio_FileSelect(){
 // ファイル選択時にhandleFileSelectを発火
 audio_file.addEventListener('change', handle_audio_FileSelect);
 
-let audio_preview = document.getElementById('audio_preview');
-
 function preview_audio_File(file) {
     // FileReaderオブジェクトを作成
     const reader = new FileReader();
     // URLとして読み込まれたときに実行する処理
     reader.onload = function (e) {
         const audioUrl = e.target.result; // URLはevent.target.resultで呼び出せる
-        audio_preview.style.visibility = 'visible';
-        audio_preview.innerHTML = file.name + '<button type="button" class="delete_cancel_btn">×</button>';
-        $('.delete_cancel_btn').on('click', function() {
-            audio_preview.style.visibility = 'hidden';
-            audio_file.value = '';
-        });
     }
     // いざファイルをURLとして読み込む
     reader.readAsDataURL(file);
-    console.log('MP3,ON:xxxを送信しました。ファイル名の処理はコントローラーで行います。');
-    audio_permit = true;
-    audio_submit.click();
 }
-
-$('.delete_cancel_btn').on('click', function() {
-    audio_preview.style.visibility = 'hidden';
-    audio_file.value = '';
-});
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-// //カメラ
-// $('#camera_switch').on('click', function() {
-//     if(on_or_off[5] == true){
-//         switchOff(5, 'CAMERA,OFF');
-//     } else if(on_or_off[5] == false){
-//         switchOn(5, 'CAMERA,ON:');
-//     }
-// });
 
 //ajaxでコマンドのテキストデータを渡す
 function postData(command){
@@ -397,7 +263,6 @@ for(let i = 0; i < ctx.length; i++){
 let data = {'BATTERY': '5.635', 'TEMPERATURE': '19.75', 'FAN': 'OFF', 'DISPLAY': 'OFF', 'POSITION': 'LAT:36.383:LON:136.381', 'LED': 'OFF', 'COLOR': 'R:0:G:0:B:0', 'AUDIO': 'OFF', 'MP3': 'OFF', 'MP4': 'OFF', 'USB5V': 'OFF', 'WIFIUSE': '1', 'MESSAGE': 'none', 'GTEMPERATURE': '23.64', 'HUMIDITY': '58.02', 'LIGHT': '26', 'PRESS': '1025.856', 'NOISE': '52.29', 'ETVOC': '45', 'CO2': '700', 'DISCOMFORT': '70.73', 'HEAT': '21.13'}
 let chart_check = false;
 
-// setInterval(updateData, 1000);
 // setIntervalのIDを格納する変数
 let intervalID;
 
@@ -414,18 +279,8 @@ function stopInterval() {
     clearInterval(intervalID);
 }
 
-// turbolinksのページ読み込み後に実行される処理
-document.addEventListener('turbolinks:load', function() {
-    console.log(document.querySelector('#socket-checked'));
-    if (document.querySelector('#socket-checked')) {
-        startInterval();
-        console.log('Interval started.');
-    } else {
-        stopInterval();
-        console.log('stopped');
-    }
-});
-
+startInterval();
+console.log('Interval started.');
 
 function updateData(){
     // submit();
@@ -1111,3 +966,16 @@ function destroyChart(){
         }
     }
 }
+
+return {
+    intervalID: intervalID,
+    stopInterval: stopInterval
+};
+
+})();
+console.log(socket.intervalID);
+
+$(document).on('turbolinks:before-visit', function() {
+    socket.stopInterval();
+    Turbolinks.clearCache();
+});

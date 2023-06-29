@@ -4,6 +4,7 @@
 // that code so it'll be compiled.
 //= require swiper/swiper-bundle.min.js
 //= require swiper.js
+//= require audiojs
 
 
 import Rails from "@rails/ujs"

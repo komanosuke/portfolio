@@ -12,6 +12,9 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :address
       t.string :tel, null: false
       t.string :image
+      t.string :photo
+      t.string :audio
+      t.string :video
       t.text :profile
       t.string :remember_digest
       t.string :activation_digest

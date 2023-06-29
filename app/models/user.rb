@@ -47,7 +47,9 @@ class User < ApplicationRecord
     has_one :study_record, dependent: :destroy
 
     mount_uploader :image, ImageUploader
-    
+    mount_uploader :photo, ImageUploader
+    mount_uploader :audio, AudioUploader
+    mount_uploader :video, VideoUploader
 
     # ランダムな記憶トークンを返す
     def User.new_token

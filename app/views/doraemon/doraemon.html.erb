@@ -7,7 +7,7 @@
             <%# <input type="text" id="message"> %>
             <%= form_tag(url_for(:action => 'doraemon'), :remote => true) do %>
                 <img src="/svg/microphone.svg" id="btn_stt">
-                <%= text_field_tag :msg, nil, {id:'msg-input'} %>
+                <%= text_field_tag :msg, nil, {id:'msg-input', required: true} %>
                 <%= submit_tag 'SEND' ,{id: 'send', class:'btn'} %>
             <% end %>
         </div>

@@ -1,7 +1,7 @@
 
 Admin.create(name: 'fashion', password: 'fashionable')
 
-User.create(name: 'Guest User', username: '@user', email: 'user@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '', activated: true)
+User.create(name: 'Guest User', username: '@user', email: 'user@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '', activated: true, photo: File.open("./public/image/skull.png"))
 User.create(name: 'Dragon', username: '@dragon', image:File.open("./public/image/dragon.png"), email: 'dragon@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '幻獣系デザイナーのドラゴンです。よろしくお願いします。', activated: true)
 User.create(name: 'Gorilla', username: '@gorilla', image:File.open("./public/image/gorilla.png"), email: 'gorilla@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '筋肉系デザイナーのゴリラです。よろしくお願いします。', activated: true)
 User.create(name: 'Panda', username: '@panda', image:File.open("./public/image/panda.png"), email: 'panda@example.com', password: 'aaaaaaaa', password_confirmation: 'aaaaaaaa', zip: '0000000', prefecture: '東京都', city: '〇〇区', street: '〇〇町', address: '東京都〇〇区〇〇町', tel: '0000000000', profile: '珍獣系デザイナーのパンダです。よろしくお願いします。', activated: true)

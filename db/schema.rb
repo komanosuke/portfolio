@@ -192,6 +192,9 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
     t.string "address"
     t.string "tel", null: false
     t.string "image"
+    t.string "photo"
+    t.string "audio"
+    t.string "video"
     t.text "profile"
     t.string "remember_digest"
     t.string "activation_digest"
