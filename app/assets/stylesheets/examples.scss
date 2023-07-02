@@ -395,6 +395,10 @@ ul {
         min-width: auto;
     }
 
+    #cost-result table {
+        font-size: 18px;
+    }
+
     .cost-section {
         width: 90%;
     }
@@ -407,7 +411,10 @@ ul {
         background-color: rgb(255, 191, 0) !important;
     }
 
-
+    .cost-btn {
+        width: 65px !important;
+        font-size: 12px !important;
+    }
 
     //english_grade1
     #e-g1-back {

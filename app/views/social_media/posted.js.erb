@@ -2,7 +2,9 @@ function checkPostExists(word){
     if('<%= @posts.exists? %>' == 'false'){
         $("#posts-each-do").html("<span id=\"not-yet-post\">" + word + "投稿はありません" + "</span>");
     } else {
-        $("#posts-each-do").html("<%= j(render 'posts/posts') %>");
+        $("#posts-each-do").html("<%= j(render 'posts/posts', posts: @posts) %>");
+        $("#page-update").html("<%= j(paginate @posts, remote: true) %>");
+        console.log("<%= @posts.length %>");
     }
 }
 
@@ -43,3 +45,4 @@ if("<%= @post_params %>" == 'posted'){
         post_urls[i].setAttribute('href', newHref);
     }
 }
+

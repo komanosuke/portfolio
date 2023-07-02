@@ -104,8 +104,10 @@ default_mode.addEventListener('click', function(e) {
 	}
 	marry_check = false;
 	child_count = 0;
-	house_count = 0;
-	car_count = 0;
+	house_check = false;
+	car_check = false;
+	// house_count = 0;
+	// car_count = 0;
 	option[1].textContent = '子ども';
 	option[2].textContent = '住宅';
 	option[3].textContent = '車';
@@ -174,13 +176,19 @@ child_set.addEventListener('change', function(e) {
 
 let house_set = document.getElementById('house_set');
 let house_mode = document.getElementById('house_mode');
-let house_count = 0;
+let house_check = false;
 house_mode.addEventListener('click', function(e) {
-	option[2].style.background = 'orange';
-	house_count++;
-	option[2].textContent = '住宅' + house_count;
-	my_costs[3].textContent = parseInt(my_costs[3].textContent) + parseInt(house_set.value);
-	sumup();
+	if(house_check == false){
+		option[2].style.background = 'orange';
+		my_costs[3].textContent = parseInt(house_set.value);
+		sumup();
+		house_check = true;
+	} else {
+		option[2].style.background = '#fff';
+		sumup();
+		my_costs[3].textContent = 0;
+		house_check = false;
+	}
 });
 house_set.addEventListener('change', function(e) {
 	let value = parseInt(e.target.value);
@@ -200,13 +208,19 @@ house_set.addEventListener('change', function(e) {
 
 let car_set = document.getElementById('car_set');
 let car_mode = document.getElementById('car_mode');
-let car_count = 0;
+let car_check = false;
 car_mode.addEventListener('click', function(e) {
-	option[3].style.background = 'orange';
-	car_count++;
-	option[3].textContent = '車' + car_count;
-	my_costs[4].textContent = parseInt(my_costs[4].textContent) + parseInt(car_set.value);
-	sumup();
+	if(car_check == false){
+		option[3].style.background = 'orange';
+		my_costs[4].textContent = parseInt(car_set.value);
+		sumup();
+		car_check = true;
+	} else {
+		option[3].style.background = '#fff';
+		sumup();
+		my_costs[4].textContent = 0;
+		car_check = false;
+	}
 });
 car_set.addEventListener('change', function(e) {
 	let value = parseInt(e.target.value);
@@ -337,11 +351,11 @@ function sumup(){
 	if(child_count != 0){
 		parseInt(my_costs[2].textContent) + parseInt(child_set.value);
 	}
-	if(house_count != 0){
-		parseInt(my_costs[3].textContent) + parseInt(house_set.value);
+	if(house_check == true){
+		my_costs[3].textContent = house_set.value;
 	}
-	if(car_count != 0){
-		parseInt(my_costs[4].textContent) + parseInt(car_set.value);
+	if(car_check == true){
+		my_costs[4].textContent = car_set.value;
 	}
 	my_costs[5].textContent = insurance_set.value;
 	my_costs[6].textContent = after_retire_set.value;

@@ -21,6 +21,13 @@
                             <%= video_tag(@user.video.to_s, loop: true, autoplay: true, muted: true, controls: true) %> 
                         <% end %>
                     </div>
+                <% else %>
+                    <div id="robot_photo">
+                        <%= image_tag "/image/noimage.jpg" %>
+                    </div>
+                    <div id="robot_mp4">
+                        <%= image_tag "/image/noimage.jpg" %>
+                    </div>
                 <% end %>
             </div>
         </div>

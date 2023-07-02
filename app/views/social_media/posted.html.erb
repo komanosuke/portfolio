@@ -57,7 +57,7 @@
                         <span id="not-yet-post">まだ投稿はありません。</span>
                     <% end %>
                 </div>
-                <div class="none"><%= paginate @posts, remote: true %></div>
+                <div class="none" id="page-update"><%= paginate @posts, remote: true %></div>
                 <div class="none" id="loading">
                     <div class="spinner"></div>
                 </div>
