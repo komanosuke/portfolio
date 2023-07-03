@@ -7,7 +7,7 @@ class SocialMediaController < ApplicationController
 
     def posted
         @user = User.find(params[:id])
-        if request.post? and params[:post_cat]
+        if request.post? or params[:post_cat]
             @post_params = params[:post_cat]
             if params[:post_cat] == 'posted'
                 @posts = @user.posts.page(params[:page]).per(3)
@@ -22,6 +22,7 @@ class SocialMediaController < ApplicationController
             end
         else
             @posts = @user.posts.page(params[:page]).per(3)
+            p '例外です。'
         end
     end
 

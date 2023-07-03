@@ -43,11 +43,11 @@
                     <% end %>
                     <%= form_with url: posted_path(@user.id), local: false do |form| %>
                         <%= form.hidden_field "post_cat", {value: 'liked'} %>
-                        <%= form.submit "Likeした投稿", class:'btn submit-btn sns-btn' %>
+                        <%= form.submit "Liked", class:'btn submit-btn sns-btn' %>
                     <% end %>
                     <%= form_with url: posted_path(@user.id), local: false do |form| %>
                         <%= form.hidden_field "post_cat", {value: 'commented'} %>
-                        <%= form.submit "コメントした投稿", class:'btn submit-btn sns-btn' %>
+                        <%= form.submit "Commented", class:'btn submit-btn sns-btn' %>
                     <% end %>
                 </div>
                 <div class="works sns-posts" id="posts-each-do">

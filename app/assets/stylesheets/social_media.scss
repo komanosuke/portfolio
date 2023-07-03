@@ -421,6 +421,12 @@
 
 #change-post form {
     margin: 1px;
+    width: 30%;
+}
+
+#change-post .submit-btn {
+    width: 100%;
+    border: 1px solid #139a9a;
 }
 
 #show-follow-wrapper {
@@ -505,6 +511,10 @@
 
     .follow-btn {
         float: none;
+    }
+
+    #change-post .submit-btn {
+        font-size: 14px !important;
     }
 
     #sns-img-file {

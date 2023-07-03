@@ -11,11 +11,6 @@ $(window).scroll(function() {
                     type: 'GET',
                     dataType: 'html',
                     success: function(data) {
-                        console.log(data);
-
-
-
-                        
                         $('#loading-wrapper').append($(data).find('#loading-wrapper').html());
 
                         if(String($(data).find('#loading-wrapper').html()) == "undefined" || $(data).find('#loading-wrapper').html().length == 1){
