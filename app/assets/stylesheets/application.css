@@ -490,6 +490,22 @@ small {
 
 
 /* Contact */
+#contact-wrapper {
+    width: 500px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 15px;
+}
+
+#contact-wrapper p {
+    text-align: center;
+}
+
+.contact-btn {
+    border: none !important;
+    border-radius: 0 !important;
+    cursor: pointer;
+}
 
 .questions {
     width: 100%;
@@ -546,6 +562,10 @@ small {
 
 #cxxsew-contents .article {
     margin-bottom: 60px;
+}
+
+#cxxsew-contents .article textarea {
+    padding: 15px;
 }
 
 /* Works */
@@ -1053,8 +1073,8 @@ input[type="checkbox"]{
 }
 
 #contact-select {
-    width: 89%;
-    padding: 0 4%;
+    width: 432px;
+    padding: 0 15px;
     height: 50px;
     border: 1px solid indianred;
     border-radius: 5px;
@@ -1063,9 +1083,6 @@ input[type="checkbox"]{
     font-size: 15px;
     color: #000;
 }
-
-
-
 
 /**/
 .pf-side {
@@ -1248,6 +1265,15 @@ input[type="checkbox"]{
 
     input, textarea {
         width: 80%;
+    }
+
+    #contact-wrapper {
+        width: 90%;
+    }
+
+    #contact-select {
+        width: 89%;
+        padding: 0 4%;
     }
 
     .contents {

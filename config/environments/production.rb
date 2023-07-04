@@ -25,11 +25,11 @@ Rails.application.configure do
   #   expires_in: 1.day
   # }
 
-  host = 'localhost:3000'
-  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
-  
-  # # メールの送信設定例
+  config.action_mailer.default_url_options = { protocol: 'https', host:'https://portfolio-cxxsew-496dbad8f9a7.herokuapp.com/'}
+
   config.action_mailer.delivery_method = :smtp
+
+  # メールの送信設定例
   config.action_mailer.smtp_settings = {
     enable_starttls_auto: true, # STARTTLSに自動接続する
     address:              'smtp.gmail.com',
@@ -37,8 +37,8 @@ Rails.application.configure do
     domain:               'gmail.com',
     user_name:            ENV['SMTP_USERNAME'],
     password:             ENV['SMTP_PASSWORD'],
-    openssl_verify_mode: 'none',
-    authentication: :login
+    authentication: :plain,
+    enable_starttls_auto: true
   }
   # config.action_mailer.default_url_options = { host: 'example.com' }
   
