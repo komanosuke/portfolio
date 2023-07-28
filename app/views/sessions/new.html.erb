@@ -13,8 +13,8 @@
             <div id="guest-login-wrapper">
                 <p class="center marker">ポートフォリオ閲覧用のゲストログインボタンはこちらです。</p>
                 <%= form_for(:session, url: login_path) do |f| %>
-                    <%= f.hidden_field :email, value: 'user@example.com' %>
                     <%= f.hidden_field :password, value: 'aaaaaaaa' %>
+                    <%= f.hidden_field :guest, value: 'true' %>
                     <%= f.submit 'Guest Log in', class:'btn submit-btn' %>
                 <% end %>
             </div>

@@ -51,22 +51,6 @@ class CartWorksController < ApplicationController
         flash.now[:alert] = "カートの作成に失敗しました。問題の発生が続く場合、次のメールアドレスまで問い合わせ願います。"
       end
     end
-    
-    # PATCH/PUT /cart_works/1 or /cart_works/1.json
-    # def update
-    #   # respond_to do |format|
-    #   if @cart_work.update(cart_work_params)
-    #     redirect_to "/cart_works/" + params[:id] + "/edit"
-    #     flash[:notice] = "商品カテゴリーが更新されました！"
-    #     # format.html { redirect_to cart_work_url(@cart_work), notice: "CartWork was successfully updated." }
-    #     # format.json { render :show, status: :ok, location: @cart_work }
-    #   else
-    #     flash.now[:alert] = "作成に失敗しました"
-    #     # format.html { render :edit, status: :unprocessable_entity }
-    #     # format.json { render json: @cart_work.errors, status: :unprocessable_entity }
-    #   end
-    #   # end
-    # end
 
     def delete
         if logged_in?
@@ -100,9 +84,6 @@ class CartWorksController < ApplicationController
     # DELETE /cart_works/1 or /cart_works/1.json
     def destroy
       @cart_work.destroy
-      # if @cart_work.cart.cart_works.empty?
-      #   session.delete(:cart_id)
-      # end
     
       respond_to do |format|
         format.html { redirect_to cart_works_url, notice: "CartWork was successfully destroyed." }

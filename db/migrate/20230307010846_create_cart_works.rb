@@ -4,6 +4,7 @@ class CreateCartWorks < ActiveRecord::Migration[6.1]
       t.references :cart, foreign_key: true, null: false
       t.references :work, foreign_key: true, null: false
       t.string :status
+      t.string :message
 
       t.timestamps
     end

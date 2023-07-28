@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
     t.integer "cart_id", null: false
     t.integer "work_id", null: false
     t.string "status"
+    t.string "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_cart_works_on_cart_id"
@@ -59,7 +60,7 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "content", null: false
+    t.string "content", null: false
     t.integer "user_id", null: false
     t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false

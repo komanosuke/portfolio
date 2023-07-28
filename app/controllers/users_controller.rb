@@ -112,7 +112,7 @@ class UsersController < ApplicationController
         end
 
         def guest_login_check
-            if current_user.email == 'user@example.com'
+            if current_user.email.include? '@example.com'
                 flash[:notice] = "ゲストログインのユーザーデータの操作はできません。"
                 redirect_to "/users/" + current_user.id.to_s
             end

@@ -22,9 +22,15 @@ test:
 
 production:
   <<: *default
+  # heroku用
   adapter: postgresql
   encoding: unicode
   pool: 5
+  username: 'user'
+  password: 'password'
+  database: 'db'
+
+  # # MySQL
   # adapter: mysql2
   # encoding: utf8mb4
   # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -33,9 +39,7 @@ production:
   # username: <%= ENV['MYSQL_USERNAME'] %>
   # password: <%= ENV['MYSQL_PASSWORD'] %>
   # database: <%= ENV['MYSQL_DATABASE'] %>
-  username: 'user'
-  password: 'password'
-  database: 'db'
+  
 
   # host: 'localhost'
   # username: 'root'
@@ -47,3 +51,13 @@ production:
   # adapter: postgresql
   # encoding: unicode
   # pool: 5
+
+  # # docker用
+  # adapter: mysql2
+  # database: root
+  # encoding: utf8
+  # pool: 5
+  # username: root
+  # password: password
+  # host: db
+  # port: 3306

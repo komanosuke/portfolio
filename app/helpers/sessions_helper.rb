@@ -35,6 +35,10 @@ module SessionsHelper
     def log_out
         # ログアウト時に current_user の永続的セッションも破棄する
         forget(current_user)
+        # userがゲストの場合、userデータそのものを破棄する
+        if current_user.email.include? "@example.com"
+            current_user.destroy  
+        end
         session.delete(:user_id)
         @current_user = nil
     end
