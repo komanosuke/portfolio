@@ -27,34 +27,22 @@ class PostsController < ApplicationController
         @post = current_user.posts.build(post_params)
         # @post = Post.new(post_params)
 
-        # respond_to do |format|
         if @post.save
             redirect_to '/posts'
             flash[:notice] = "新しい投稿が作成されました！"
-            # format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
-            # format.json { render :show, status: :created, location: @post }
         else
             flash.now[:alert] = "作成に失敗しました"
-            # format.html { render :new, status: :unprocessable_entity }
-            # format.json { render json: @post.errors, status: :unprocessable_entity }
         end
-        # end
     end
 
     # PATCH/PUT /posts/1 or /posts/1.json
     def update
-        # respond_to do |format|
         if @post.update(post_params)
             redirect_to "/posts/" + params[:id] + "/edit"
             flash[:notice] = "投稿が更新されました！"
-            # format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
-            # format.json { render :show, status: :ok, location: @post }
         else
             flash.now[:alert] = "作成に失敗しました"
-            # format.html { render :edit, status: :unprocessable_entity }
-            # format.json { render json: @post.errors, status: :unprocessable_entity }
         end
-        # end
     end
 
     # DELETE /posts/1 or /posts/1.json

@@ -1381,17 +1381,18 @@ table {
 
     .nav {
         position: fixed;
-        top: -255px;
+        top: 0;
         right: -70%;
         width: 50%;
         height: 100vh;
         margin-left: auto;
-        margin-top: 40px;
+        margin-top: 60px;
         /* メニューを縦に */
         display: flex;
         flex-direction: column;
         color: #efefef;
         transition: .3s;
+        justify-content: normal;
     }
 
     .nav li {

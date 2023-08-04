@@ -7,6 +7,6 @@ class Contact < ApplicationRecord
     validates :name, presence: true
     validates :email, presence: true
     validates :phone_number, presence: true
-    validates :subject, presence: true
+    validates :subject, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 2 }
     validates :message, presence: true
 end

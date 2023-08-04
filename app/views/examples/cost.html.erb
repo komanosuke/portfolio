@@ -1,5 +1,6 @@
 <main>
     <div class="contents" id="cost-con">
+        <div id="page-top"><a></a></div>
         
         <h1>生涯収支の概算アプリ</h1>
         <%# <p>https://fukupon.jp/a/17032323</p> %>
@@ -27,7 +28,7 @@
             <h2>生涯収入の設定</h2>
             <p>自由に変更してください。値を変更すると自動で計算されますが、次にこのURLにアクセスしたときには保存はされていません。ログインユーザーであれば、「保存する」ボタンを押すとその時点での設定を保存することができます。</p>
             <% if logged_in? %>
-                <%= form_with url: examples_update_path, method: :patch do |form| %>
+                <%= form_with url: examples_update_path, method: :patch, local: false do |form| %>
                     <table class="cost-table">
                         <tr>
                             <th>年代</th>
@@ -36,27 +37,27 @@
                         </tr>
                         <tr>
                             <th>20代</th>
-                            <td><%= number_field_tag :twenty, @lifecost.twenty, class: "gene_cost_input", min:"0", max:"1000000000" %>円</td>
+                            <td><%= number_field_tag :twenty, @lifecost.twenty, class: "gene_cost_input", min:"0", max:"1000000000" %>円 / 年</td>
                             <td><span class="gene_cost_year"></span>円</td>
                         </tr>
                         <tr>
                             <th>30代</th>
-                            <td><%= number_field_tag :thirty, @lifecost.thirty, class: "gene_cost_input", min:"0", max:"1000000000"  %>円</td>
+                            <td><%= number_field_tag :thirty, @lifecost.thirty, class: "gene_cost_input", min:"0", max:"1000000000"  %>円 / 年</td>
                             <td><span class="gene_cost_year"></span>円</td>
                         </tr>
                         <tr>
                             <th>40代</th>
-                            <td><%= number_field_tag :forty, @lifecost.forty, class: "gene_cost_input", min:"0", max:"1000000000"  %>円</td>
+                            <td><%= number_field_tag :forty, @lifecost.forty, class: "gene_cost_input", min:"0", max:"1000000000"  %>円 / 年</td>
                             <td><span class="gene_cost_year"></span>円</td>
                         </tr>
                         <tr>
                             <th>50代</th>
-                            <td><%= number_field_tag :fifty, @lifecost.fifty, class: "gene_cost_input", min:"0", max:"1000000000"  %>円</td>
+                            <td><%= number_field_tag :fifty, @lifecost.fifty, class: "gene_cost_input", min:"0", max:"1000000000"  %>円 / 年</td>
                             <td><span class="gene_cost_year"></span>円</td>   
                         </tr>
                         <tr>
                             <th>60代</th>
-                            <td><%= number_field_tag :sixty, @lifecost.sixty, class: "gene_cost_input", min:"0", max:"1000000000"  %>円</td>
+                            <td><%= number_field_tag :sixty, @lifecost.sixty, class: "gene_cost_input", min:"0", max:"1000000000"  %>円 / 年</td>
                             <td><span class="gene_cost_year"></span>円</td>
                         </tr>
                         <tr>
@@ -76,27 +77,27 @@
                     </tr>
                     <tr>
                         <th>20代</th>
-                        <td><input type="number" class="gene_cost_input" value="3000000">円</td>
+                        <td><input type="number" class="gene_cost_input" value="3000000">円 / 年</td>
                         <td><span class="gene_cost_year"></span>円</td>
                     </tr>
                     <tr>
                         <th>30代</th>
-                        <td><input type="number" class="gene_cost_input" value="4000000">円</td>
+                        <td><input type="number" class="gene_cost_input" value="4000000">円 / 年</td>
                         <td><span class="gene_cost_year"></span>円</td>
                     </tr>
                     <tr>
                         <th>40代</th>
-                        <td><input type="number" class="gene_cost_input" value="5000000">円</td>
+                        <td><input type="number" class="gene_cost_input" value="5000000">円 / 年</td>
                         <td><span class="gene_cost_year"></span>円</td>
                     </tr>
                     <tr>
                         <th>50代</th>
-                        <td><input type="number" class="gene_cost_input" value="6000000">円</td>
+                        <td><input type="number" class="gene_cost_input" value="6000000">円 / 年</td>
                         <td><span class="gene_cost_year"></span>円</td>   
                     </tr>
                     <tr>
                         <th>60代</th>
-                        <td><input type="number" class="gene_cost_input" value="2000000">円</td>
+                        <td><input type="number" class="gene_cost_input" value="2000000">円 / 年</td>
                         <td><span class="gene_cost_year"></span>円</td>
                     </tr>
                     <tr>
@@ -116,7 +117,27 @@
             <button id="child_mode" class="btn cost-btn">子ども</button>
             <button id="house_mode" class="btn cost-btn">住宅購入</button>
             <button id="car_mode" class="btn cost-btn">車購入</button>
+            <% if logged_in? %>
+                <%= form_with url: examples_update_path, class:"none", method: :patch, local: false do |form| %>
+                    <%= number_field_tag :marriage, @lifecost.marriage, id: "option_marriage", min:"0", max:"1"  %>
+                    <%= number_field_tag :child, @lifecost.child, id: "option_child", min:"0", max:"10"  %>
+                    <%= number_field_tag :house, @lifecost.house, id: "option_house", min:"0", max:"1"  %>
+                    <%= number_field_tag :car, @lifecost.car, id: "option_car", min:"0", max:"1"  %>
+                    <%= form.submit "保存する", class:"btn cost-btn", id:"option_submit" %>
+                <% end %>
+                <div class="none" id="login_checker">logged_in</div>
+            <% else %>
+                <div class="none" id="login_checker">not_logged_in</div>
+            <% end %>
             <%# <button id="care_mode" class="btn cost-btn">親の介護</button> %>
+            
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+        </div>
+        
+        <div class="cost-section" id="all-cost-section">
             <p id="mode">
                 <span class="option">結婚</span>
                 <span class="option">子ども</span>
@@ -124,15 +145,8 @@
                 <span class="option">車</span>
                 <%# <span class="option">介護</span> %>
             </p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-        </div>
-        
-        <div class="cost-section">
             <h2>生涯支出の計算</h2>
-            <p>表の中の「設定元へ移動」をクリックすると、リンク先にて子ども費や住宅費などを一括で計算する設定ができます。</p>
+            <p>表の中の「設定元へ移動→」をクリックすると、リンク先にて子ども費や住宅費などを一括で計算する設定ができます。</p>
             <table class="cost-table">
                 <tr>
                     <th>項目</th>
@@ -147,42 +161,42 @@
                 <tr>
                     <td>22～64歳の平均生活費</td>
                     <td><span class="cost">145480000</span>円</td>
-                    <td><span class="my_cost">0</span>円（<a href="#evid1" class="underline">設定元へ移動</a>）</td>
+                    <td><span class="my_cost">0</span>円（<a href="#evid1" class="underline">設定元へ移動→</a>）</td>
                 </tr>
                 <tr>
                     <td>結婚関連費用</td>
                     <td><span class="cost">5130000</span>円</td>
-                    <td><span class="my_cost">0</span>円（<a href="#evid2" class="underline">設定元へ移動</a>）</td>
+                    <td><span class="my_cost">0</span>円（<a href="#evid2" class="underline">設定元へ移動→</a>）</td>
                 </tr>
                 <tr class="option_cost">
                     <td>子供の学習費</td>
                     <td><span class="cost">12750000</span>円</td>
-                    <td><span class="my_cost">0</span>円（<a href="#evid3" class="underline">設定元へ移動</a>）</td>
+                    <td><span class="my_cost">0</span>円（<a href="#evid3" class="underline">設定元へ移動→</a>）</td>
                 </tr>
                 <tr class="option_cost">
                     <td>マイホーム</td>
                     <td><span class="cost">39450000</span>円</td>
-                    <td><span class="my_cost">0</span>円（<a href="#evid4" class="underline">設定元へ移動</a>）</td>
+                    <td><span class="my_cost">0</span>円（<a href="#evid4" class="underline">設定元へ移動→</a>）</td>
                 </tr>
                 <tr class="option_cost">
                     <td>マイカー</td>
                     <td><span class="cost">15000000</span>円</td>
-                    <td><span class="my_cost">0</span>円（<a href="#evid5" class="underline">設定元へ移動</a>）</td>
+                    <td><span class="my_cost">0</span>円（<a href="#evid5" class="underline">設定元へ移動→</a>）</td>
                 </tr>
                 <tr class="option_cost">
                     <td>生命保険</td>
                     <td><span class="cost">9640000</span>円</td>
-                    <td><span class="my_cost">0</span>円（<a href="#evid6" class="underline">設定元へ移動</a>）</td>
+                    <td><span class="my_cost">0</span>円（<a href="#evid6" class="underline">設定元へ移動→</a>）</td>
                 </tr>
                 <tr>
                     <td>老後の平均生活費</td>
                     <td><span class="cost">57600000</span>円</td>
-                    <td><span class="my_cost">0</span>円（<a href="#evid7" class="underline">設定元へ移動</a>）</td>
+                    <td><span class="my_cost">0</span>円（<a href="#evid7" class="underline">設定元へ移動→</a>）</td>
                 </tr>
                 <tr>
                     <td>税金</td>
                     <td><span class="cost">54000000</span>円</td>
-                    <td><span class="my_cost">0</span>円（<a href="#evid8" class="underline">設定元へ移動</a>）</td>
+                    <td><span class="my_cost">0</span>円（<a href="#evid8" class="underline">設定元へ移動→</a>）</td>
                 </tr>
                 <tr id="lifecost_total">
                     <td>支出合計</td>
@@ -205,7 +219,7 @@
                 ※2 総務省（2016年）「家計調査」</p>
             <% if logged_in? %>
                 <p>①固定費</p>
-                <%= form_with url: examples_update_path, method: :patch do |form| %>
+                <%= form_with url: examples_update_path, method: :patch, local: false do |form| %>
                     <table class="cost-table">
                         <tr>
                             <th>項目</th>
@@ -462,7 +476,7 @@
                 ※3 リクルートブライダル総研「結婚トレンド調査2016」</p>
             <p>予算を入力してください。</p>
             <% if logged_in? %>
-                <%= form_with url: examples_update_path, method: :patch do |form| %>
+                <%= form_with url: examples_update_path, method: :patch, local: false do |form| %>
                     <div>結婚費用<%= number_field_tag :marriage_total, @lifecost.marriage_total, id:"marriage_set", class:"set_input", min:"0", max:"10000000" %>円</div>
                     <%= form.submit "保存する", class:"btn cost-btn" %>
                 <% end %>
@@ -513,7 +527,7 @@
                 ※4 文部科学省（2014年）「子供の学習費調査」</p>
             <p>予算を入力してください。</p>
             <% if logged_in? %>
-                <%= form_with url: examples_update_path, method: :patch do |form| %>
+                <%= form_with url: examples_update_path, method: :patch, local: false do |form| %>
                     <div>一人当たり<%= number_field_tag :child_total, @lifecost.child_total, id:"child_set", class:"set_input", min:"0", max:"100000000" %>円</div>
                     <%= form.submit "保存する", class:"btn cost-btn" %>
                 <% end %>
@@ -569,7 +583,7 @@
             <p>※5 住宅金融支援機構（2015年）「フラット35利用者調査」</p>
             <p>予算を入力してください。</p>
             <% if logged_in? %>
-                <%= form_with url: examples_update_path, method: :patch do |form| %>
+                <%= form_with url: examples_update_path, method: :patch, local: false do |form| %>
                     <div>総額<%= number_field_tag :house_total, @lifecost.house_total, id:"house_set", class:"set_input", min:"0", max:"10000000000" %>円</div>
                     <%= form.submit "保存する", class:"btn cost-btn" %>
                 <% end %>
@@ -588,7 +602,7 @@
                 ※6 日本自動車工業会「2015年度 乗用車市場動向調査」</p>
             <p>予算を入力してください。</p>
             <% if logged_in? %>
-                <%= form_with url: examples_update_path, method: :patch do |form| %>
+                <%= form_with url: examples_update_path, method: :patch, local: false do |form| %>
                     <div>総額<%= number_field_tag :car_total, @lifecost.car_total, id:"car_set", class:"set_input", min:"0", max:"100000000" %>円</div>
                     <%= form.submit "保存する", class:"btn cost-btn" %>
                 <% end %>
@@ -607,7 +621,14 @@
                 ちなみに病気やケガによる入院費は「1日1万円×30日＝30万円」が一般的です。ただし、この数字には高齢者が多く含まれており、20～40代であれば入院する割合が低いため、確率的には考慮しない人も多いです。
                 ※7 生命保険文化センター「平成25年度 生活保障に関する調査」</p>
             <p>予算を入力してください。</p>
-            <div>生命保険総額<input type="number" id="insurance_set" class="set_input" value="9640000" min="0" max="100000000">円</div>
+            <% if logged_in? %>
+                <%= form_with url: examples_update_path, method: :patch, local: false do |form| %>
+                    <div>生命保険総額<%= number_field_tag :insurance_total, @lifecost.insurance_total, id:"insurance_set", class:"set_input", min:"0", max:"100000000" %>円</div>
+                    <%= form.submit "保存する", class:"btn cost-btn" %>
+                <% end %>
+            <% else %>
+                <div>生命保険総額<input type="number" id="insurance_set" class="set_input" value="9640000" min="0" max="100000000">円</div>
+            <% end %>
             <p></p>
         </div>
 
@@ -619,7 +640,14 @@
                 
                 ※8 総務省統計局（2016年）「家計調査」</p>
             <p>予算を入力してください。</p>
-            <div>老後費総額<input type="number" id="after_retire_set" class="set_input" value="57600000" min="0" max="10000000000">円</div>
+            <% if logged_in? %>
+                <%= form_with url: examples_update_path, method: :patch, local: false do |form| %>
+                    <div>老後費総額<%= number_field_tag :retire_total, @lifecost.retire_total, id:"after_retire_set", class:"set_input", min:"0", max:"100000000" %>円</div>
+                    <%= form.submit "保存する", class:"btn cost-btn" %>
+                <% end %>
+            <% else %>
+                <div>老後費総額<input type="number" id="after_retire_set" class="set_input" value="57600000" min="0" max="100000000">円</div>
+            <% end %>
             <p></p>
         </div>
 
@@ -627,7 +655,7 @@
             <h2 id="evid8">税金</h2>
             <p>総収入から差し引く税金の設定（%）を入力してください。</p>
             <% if logged_in? %>
-                <%= form_with url: examples_update_path, method: :patch do |form| %>
+                <%= form_with url: examples_update_path, method: :patch, local: false do |form| %>
                     <div>生涯年収の<%= number_field_tag :tax, @lifecost.tax, id:"tax_set", class:"set_input", min:"0", max:"100" %>%</div>
                     <%= form.submit "保存する", class:"btn cost-btn" %>
                 <% end %>

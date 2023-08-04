@@ -11,11 +11,14 @@ class ExamplesController < ApplicationController
 
 	def update
 		@lifecost = Lifecost.find_by(user_id: current_user.id)
-		if @lifecost.update(lifecost_params)
-			redirect_to '/cost'
-		else
-			flash[:alert] = "作成に失敗しました"
-			redirect_to '/cost/'
+		respond_to do |format|
+			if @lifecost.update(lifecost_params)
+				format.html { redirect_to '/cost/' }
+				format.js
+			else
+				flash[:alert] = "作成に失敗しました"
+				redirect_to '/cost/'
+			end
 		end
 	end
 

@@ -45,34 +45,22 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
 
-    # respond_to do |format|
-      if @article.save
-        redirect_to '/admin_view?which=article'
-        flash[:notice] = "新しい商品が作成されました！"
-        # format.html { redirect_to article_url(@article), notice: "Article was successfully created." }
-        # format.json { render :show, status: :created, location: @article }
-      else
-        flash.now[:alert] = "作成に失敗しました"
-        # format.html { render :new, status: :unprocessable_entity }
-        # format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
-    # end
+    if @article.save
+      redirect_to '/admin_view?which=article'
+      flash[:notice] = "新しい商品が作成されました！"
+    else
+      flash.now[:alert] = "作成に失敗しました"
+    end
   end
 
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
-    # respond_to do |format|
       if @article.update(article_params)
         redirect_to "/articles/" + params[:id] + "/edit"
         flash[:notice] = "商品が更新されました！"
-        # format.html { redirect_to article_url(@article), notice: "Article was successfully updated." }
-        # format.json { render :show, status: :ok, location: @article }
       else
         flash.now[:alert] = "作成に失敗しました"
-        # format.html { render :edit, status: :unprocessable_entity }
-        # format.json { render json: @article.errors, status: :unprocessable_entity }
       end
-    # end
   end
 
   # DELETE /articles/1 or /articles/1.json

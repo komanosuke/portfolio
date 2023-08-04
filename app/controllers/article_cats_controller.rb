@@ -27,35 +27,13 @@ class ArticleCatsController < ApplicationController
   def create
     @article_cat = ArticleCat.new(article_cat_params)
   
-    # respond_to do |format|
     if @article_cat.save
       redirect_to '/admin_view?which=article_cat'
       flash[:notice] = "新しい記事カテゴリーが作成されました！"
-      # format.html { redirect_to article_cat_url(@article_cat), notice: "ArticleCat was successfully created." }
-      # format.json { render :show, status: :created, location: @article_cat }
     else
       flash.now[:alert] = "作成に失敗しました"
-      # format.html { render :new, status: :unprocessable_entity }
-      # format.json { render json: @article_cat.errors, status: :unprocessable_entity }
     end
-    # end
   end
-  
-  # PATCH/PUT /article_cats/1 or /article_cats/1.json
-  # def update
-  #   # respond_to do |format|
-  #   if @article_cat.update(article_cat_params)
-  #     redirect_to "/article_cats/" + params[:id] + "/edit"
-  #     flash[:notice] = "記事カテゴリーが更新されました！"
-  #     # format.html { redirect_to article_cat_url(@article_cat), notice: "ArticleCat was successfully updated." }
-  #     # format.json { render :show, status: :ok, location: @article_cat }
-  #   else
-  #     flash.now[:alert] = "作成に失敗しました"
-  #     # format.html { render :edit, status: :unprocessable_entity }
-  #     # format.json { render json: @article_cat.errors, status: :unprocessable_entity }
-  #   end
-  #   # end
-  # end
   
   # DELETE /article_cats/1 or /article_cats/1.json
   def destroy

@@ -25,7 +25,7 @@
                                     <div>
                                         <p>title: <%= work.title %></p>
                                         <p>type: 
-                                            <% if work.onlyone == '1' %>
+                                            <% if work.onlyone == 'original' %>
                                                 <%= 'オリジナル（一点物）' %>
                                             <% else %>
                                                 <%= 'ノーマル' %>
@@ -42,7 +42,7 @@
                                 <%= image_submit_tag("/image/bin.jpg", class:"bin", alt:"") %>
                             <% end %>
                         </div>
-                        <div class="btn add-msg">自分へのメッセージを追加</div>
+                        <div class="btn add-msg none">自分へのメッセージを追加</div>
                         <!--
                         <p>「人生の目的」を入力して、衣服を自分だけの記念碑にしませんか？</p>
                         <input type="text" placeholder="（例）友達を大切にして生きる！">-->

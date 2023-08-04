@@ -6,7 +6,7 @@
     
     <div class="work-box">
         <div>title: <%= @work.title %>
-        <% if @work.onlyone == '1' %>
+        <% if @work.onlyone == 'original' %>
         ◆
         <% end %>
         </div>
@@ -14,7 +14,7 @@
         <div class="price">price: ￥<%= @work.price.to_s(:delimited) %></div>
         <p><%= @work.text %></p>
         <p class="anno">※ 当ブランドの作品であることの証明としてNFTのQRコードをタグにプリントします。</p>
-        <p class="anno">※ 注文時に、自分へのメッセージとして「人生の目的」または「直近の目標」のご記入をおすすめしています。メッセージはタグにプリントされます。</p>
+        <p class="anno none">※ 注文時に、自分へのメッセージとして「人生の目的」または「直近の目標」のご記入をおすすめしています。メッセージはタグにプリントされます。</p>
         <%= form_for @cart_work, url: '/cart_works', method: 'post' do |form| %>
             <%= form.hidden_field "work_id", {value: @work.id} %>
             <%= form.hidden_field "cart_id", {value: @cart.id} %>

@@ -10,6 +10,49 @@
     width: 100%;
 }
 
+#page-top{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 4px;
+    bottom: 4px;
+    background: orange;
+    opacity: 0.4;
+    border-radius: 25px;
+    z-index: 1000;
+}
+
+#page-top:hover {
+    background-color: orange;
+    opacity: 0.9;
+}
+
+#page-top a{
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#page-top a::before{
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f102';
+    font-size: 25px;
+    color: black;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+}
+
 #cost-con p {
     width: 80%;
     margin: 10px auto;
@@ -58,9 +101,12 @@
     padding: 20px 0;
 }
 
+#all-cost-section {
+    background-color: #ffdac6;
+}
+
 .underline {
-    text-decoration:underline;
-    color: blue;
+    color: royalblue;
 }
 
 .cost-table {
@@ -387,6 +433,18 @@ ul {
 
 
 @media screen and (max-width:750px) {
+    #page-top{
+        width: 45px;
+        height: 45px;
+        border-radius: 22.5px;
+        opacity: 1;
+    }
+
+    #page-top a {
+        width: 45px;
+        height: 45px;
+    }
+
     .cost-table {
         width: 90%;
     }
@@ -412,8 +470,8 @@ ul {
     }
 
     .cost-btn {
-        width: 65px !important;
-        font-size: 12px !important;
+        width: 60px !important;
+        font-size: 10px !important;
     }
 
     //english_grade1

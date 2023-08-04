@@ -1,4 +1,5 @@
 <main>
+    <div id="alert">アップロード機能を利用するにはログインが必要です。<span>OK</span></div>
     <div class="contents" id="socket-con">
         <h1>IoT機器へのコマンド送信アプリ（DEMO）</h1>
         <p id="socket-con-exp">IoT機器側でTCPソケットの受信プログラムを書くことで、ブラウザからIoT機器を操作できるようになります。※DEMOでは画面上のロボットに反映されます。</p>
@@ -259,7 +260,11 @@
     <script>
         $(".logged_in_submit").click(function(event) {
             event.preventDefault();
-            alert("アップロード機能を利用するにはログインが必要です。");
+            $("#alert").css("display", "block");
+        });
+
+        $("#alert").click(function() {
+            $(this).css("display", "none");
         });
     </script>
 <% end %>

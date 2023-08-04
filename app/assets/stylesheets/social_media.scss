@@ -182,6 +182,10 @@
     width: 100%;
 }
 
+.posts-user-name {
+    width: 40% !important;
+}
+
 #sns-show-post-name {
     width: 70%;
     margin: auto;
@@ -503,6 +507,10 @@
     .post-name-wrapper {
         display: flex;
         width: 100%;
+    }
+
+    .posts-user-name {
+        width: 100% !important;
     }
 
     .follow-wrapper {

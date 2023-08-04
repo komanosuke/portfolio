@@ -3,13 +3,23 @@
     <div class="work sns-post">
         <div class="posted-post-id"><%= post.id %></div>
         <div class="thumb-wrapper">
-            <a href="/posted/<%= post.user.id %>" class="sns-users-link">
-                <div class="post-name-wrapper">
-                    <%= image_tag post.user.image.url, class:"sns-thumb", alt:"" %>
-                    <p><%= post.user.name %></p>
-                    <p><%= post.user.username %></p>
-                </div>
-            </a>
+            <% if logged_in? %>
+                <a href="/posted/<%= post.user.id %>" class="sns-users-link">
+                    <div class="post-name-wrapper">
+                        <%= image_tag post.user.image.url, class:"sns-thumb", alt:"" %>
+                        <p class="posts-user-name"><%= post.user.name %></p>
+                        <p><%= post.user.username %></p>
+                    </div>
+                </a>
+            <% else %>
+                <a href="/login" class="sns-users-link">
+                    <div class="post-name-wrapper">
+                        <%= image_tag post.user.image.url, class:"sns-thumb", alt:"" %>
+                        <p class="posts-user-name"><%= post.user.name %></p>
+                        <p><%= post.user.username %></p>
+                    </div>
+                </a>
+            <% end %>
             <div class="follow-wrapper" id="posts-relationships">
                 <% if logged_in? %>
                     <% if post.user_id != current_user.id %>

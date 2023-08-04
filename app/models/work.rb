@@ -17,8 +17,8 @@ class Work < ApplicationRecord
 
     validates :title, presence: true
     validates :image, presence: true
-    validates :price, presence: true
+    validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100000000 }
     validates :text, presence: true
-    validates :onlyone, presence: true
-    validates :status, presence: true
+    validates :onlyone, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
+    validates :status, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 2 }
 end

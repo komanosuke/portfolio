@@ -25,7 +25,7 @@ Rails.application.configure do
   #   expires_in: 1.day
   # }
 
-  config.action_mailer.default_url_options = { protocol: 'https', host:'https://portfolio-cxxsew-496dbad8f9a7.herokuapp.com/'}
+  config.action_mailer.default_url_options = { protocol: 'https', host:'portfolio-box.jp'}
 
   config.action_mailer.delivery_method = :smtp
 

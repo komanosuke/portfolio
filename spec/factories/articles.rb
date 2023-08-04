@@ -7,5 +7,3 @@ FactoryBot.define do
         text { "This is a sample article." }
     end
 end
-
-# 上記のコードとバリデーションに対して、models/xxx_spec.rbの記述はどう書けばいいですか？

@@ -88,18 +88,12 @@ class WorksController < ApplicationController
 
   # PATCH/PUT /works/1 or /works/1.json
   def update
-    # respond_to do |format|
-      if @work.update(work_params)
-        redirect_to "/works/" + params[:id] + "/edit"
-        flash[:notice] = "商品が更新されました！"
-        # format.html { redirect_to work_url(@work), notice: "Work was successfully updated." }
-        # format.json { render :show, status: :ok, location: @work }
-      else
-        flash.now[:alert] = "作成に失敗しました"
-        # format.html { render :edit, status: :unprocessable_entity }
-        # format.json { render json: @work.errors, status: :unprocessable_entity }
-      end
-    # end
+    if @work.update(work_params)
+      redirect_to "/works/" + params[:id] + "/edit"
+      flash[:notice] = "商品が更新されました！"
+    else
+      flash.now[:alert] = "作成に失敗しました"
+    end
   end
 
   # DELETE /works/1 or /works/1.json

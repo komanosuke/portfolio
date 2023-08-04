@@ -81,42 +81,44 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
 
   create_table "lifecosts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "twenty", null: false
-    t.integer "thirty", null: false
-    t.integer "forty", null: false
-    t.integer "fifty", null: false
-    t.integer "sixty", null: false
-    t.integer "marriage", null: false
-    t.integer "child", null: false
-    t.integer "house", null: false
-    t.integer "car", null: false
-    t.integer "care", null: false
-    t.integer "rent", null: false
-    t.integer "utility", null: false
-    t.integer "internet", null: false
-    t.integer "insurance", null: false
-    t.integer "car_cost", null: false
-    t.integer "child_care", null: false
-    t.integer "lesson", null: false
-    t.integer "transport", null: false
-    t.integer "pocket_money", null: false
-    t.integer "other_cost", null: false
-    t.integer "food", null: false
-    t.integer "necessity", null: false
-    t.integer "medical_cost", null: false
-    t.integer "child_lesson", null: false
-    t.integer "clothes", null: false
-    t.integer "beauty", null: false
-    t.integer "companionship", null: false
-    t.integer "entertainment", null: false
-    t.integer "small_cost", null: false
-    t.integer "exception", null: false
-    t.integer "marriage_total", null: false
-    t.integer "child_total", null: false
-    t.integer "house_total", null: false
-    t.integer "car_total", null: false
-    t.integer "tax", null: false
-    t.integer "pension", null: false
+    t.integer "twenty", default: 3000000, null: false
+    t.integer "thirty", default: 4000000, null: false
+    t.integer "forty", default: 5000000, null: false
+    t.integer "fifty", default: 6000000, null: false
+    t.integer "sixty", default: 2000000, null: false
+    t.integer "marriage", default: 0, null: false
+    t.integer "child", default: 0, null: false
+    t.integer "house", default: 0, null: false
+    t.integer "car", default: 0, null: false
+    t.integer "care", default: 0, null: false
+    t.integer "rent", default: 0, null: false
+    t.integer "utility", default: 0, null: false
+    t.integer "internet", default: 0, null: false
+    t.integer "insurance", default: 0, null: false
+    t.integer "car_cost", default: 0, null: false
+    t.integer "child_care", default: 0, null: false
+    t.integer "lesson", default: 0, null: false
+    t.integer "transport", default: 0, null: false
+    t.integer "pocket_money", default: 0, null: false
+    t.integer "other_cost", default: 0, null: false
+    t.integer "food", default: 0, null: false
+    t.integer "necessity", default: 0, null: false
+    t.integer "medical_cost", default: 0, null: false
+    t.integer "child_lesson", default: 0, null: false
+    t.integer "clothes", default: 0, null: false
+    t.integer "beauty", default: 0, null: false
+    t.integer "companionship", default: 0, null: false
+    t.integer "entertainment", default: 0, null: false
+    t.integer "small_cost", default: 0, null: false
+    t.integer "exception", default: 0, null: false
+    t.integer "marriage_total", default: 5130000, null: false
+    t.integer "child_total", default: 12750000, null: false
+    t.integer "house_total", default: 39450000, null: false
+    t.integer "car_total", default: 15000000, null: false
+    t.integer "insurance_total", default: 9640000, null: false
+    t.integer "retire_total", default: 57600000, null: false
+    t.integer "tax", default: 20, null: false
+    t.integer "pension", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_lifecosts_on_user_id"
@@ -170,12 +172,12 @@ ActiveRecord::Schema.define(version: 2023_05_30_053528) do
 
   create_table "study_records", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.text "grade1", null: false
-    t.text "grade2", null: false
-    t.text "grade3", null: false
-    t.text "grade4", null: false
-    t.text "grade5", null: false
-    t.text "grade6", null: false
+    t.text "grade1", default: "00000000000000000000000000000000000000000000000000000000000000000000000000000000", null: false
+    t.text "grade2", default: "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", null: false
+    t.text "grade3", default: "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", null: false
+    t.text "grade4", default: "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", null: false
+    t.text "grade5", default: "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", null: false
+    t.text "grade6", default: "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_study_records_on_user_id"

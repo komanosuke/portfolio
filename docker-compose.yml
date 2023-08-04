@@ -45,19 +45,19 @@
 version: '3'
 
 services:
-  db:
-    build:
-      context: .
-      dockerfile: ./mysql/Dockerfile
-    ports:
-      - '3306:3306'
-    volumes:
-      - db_data:/var/lib/mysql
-    extends:
-      file: ./mysql/password.yml
-      service: password
-    environment:
-      MYSQL_ROOT_PASSWORD: password
+  # db:
+  #   build:
+  #     context: .
+  #     dockerfile: ./mysql/Dockerfile
+  #   ports:
+  #     - '3306:3306'
+  #   volumes:
+  #     - db_data:/var/lib/mysql
+  #   extends:
+  #     file: ./mysql/password.yml
+  #     service: password
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: password
 
   web:
     build: 
@@ -70,8 +70,8 @@ services:
     environment:
       RAILS_ENV: production
     command: ["bundle", "exec", "unicorn", "-p", "3000", "-c", "/app/config/unicorn.rb"]
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
 
   nginx:
     build:
@@ -81,5 +81,5 @@ services:
       - "80:80"
     depends_on:
       - web
-volumes:
-  db_data:
+# volumes:
+#   db_data:

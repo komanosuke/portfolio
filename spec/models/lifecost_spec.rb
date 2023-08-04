@@ -176,6 +176,16 @@ RSpec.describe Lifecost, type: :model do
       lifecost = FactoryBot.build(:lifecost, car_total: nil)
       expect(lifecost).not_to be_valid
     end
+
+    it "is not valid without a insurance_total value" do
+      lifecost = FactoryBot.build(:lifecost, insurance_total: nil)
+      expect(lifecost).not_to be_valid
+    end
+
+    it "is not valid without a retire_total value" do
+      lifecost = FactoryBot.build(:lifecost, retire_total: nil)
+      expect(lifecost).not_to be_valid
+    end
     
     it "is not valid without a tax value" do
       lifecost = FactoryBot.build(:lifecost, tax: nil)

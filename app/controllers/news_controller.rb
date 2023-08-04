@@ -44,35 +44,22 @@ class NewsController < ApplicationController
   # POST /news or /news.json
   def create
     @news = News.new(news_params)
-
-    # respond_to do |format|
-      if @news.save
-        redirect_to '/admin_view?which=news'
-        flash[:notice] = "新しいニュースが作成されました！"
-        # format.html { redirect_to news_url(@news), notice: "News was successfully created." }
-        # format.json { render :show, status: :created, location: @news }
-      else
-        flash.now[:alert] = "作成に失敗しました"
-        # format.html { render :new, status: :unprocessable_entity }
-        # format.json { render json: @news.errors, status: :unprocessable_entity }
-      end
-    # end
+    if @news.save
+      redirect_to '/admin_view?which=news'
+      flash[:notice] = "新しいニュースが作成されました！"
+    else
+      flash.now[:alert] = "作成に失敗しました"
+    end
   end
 
   # PATCH/PUT /news/1 or /news/1.json
   def update
-    # respond_to do |format|
-      if @news.update(news_params)
-        redirect_to "/news/" + params[:id] + "/edit"
-        flash[:notice] = "ニュースが更新されました！"
-        # format.html { redirect_to news_url(@news), notice: "News was successfully updated." }
-        # format.json { render :show, status: :ok, location: @news }
-      else
-        flash.now[:alert] = "作成に失敗しました"
-        # format.html { render :edit, status: :unprocessable_entity }
-        # format.json { render json: @news.errors, status: :unprocessable_entity }
-      end
-    # end
+    if @news.update(news_params)
+      redirect_to "/news/" + params[:id] + "/edit"
+      flash[:notice] = "ニュースが更新されました！"
+    else
+      flash.now[:alert] = "作成に失敗しました"
+    end
   end
 
   # DELETE /news/1 or /news/1.json
