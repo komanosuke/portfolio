@@ -29,27 +29,15 @@ production:
   # username: 'user'
   # password: 'password'
   # database: 'db'
-
-  # # MySQL
+  
+  # # ローカル
   # adapter: mysql2
   # encoding: utf8mb4
-  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  
-  # host: <%= ENV['MYSQL_HOST'] %>
-  # username: <%= ENV['MYSQL_USERNAME'] %>
-  # password: <%= ENV['MYSQL_PASSWORD'] %>
-  # database: <%= ENV['MYSQL_DATABASE'] %>
-  
-
-  # host: 'localhost'
-  # username: 'root'
-  # password: 'new_password'
-  # # database: 'database'
-  # database: 'root'
-  
-  # <<: *default
-  # adapter: postgresql
-  # encoding: unicode
+  # collation: utf8mb4_unicode_ci
+  # host: localhost
+  # username: root
+  # password: new_password
+  # database: database
   # pool: 5
 
   # # docker用

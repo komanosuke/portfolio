@@ -4,9 +4,9 @@ class Contact < ApplicationRecord
         '新商品について' => 1,
         'サービスについて' => 2
     }
-    validates :name, presence: true
-    validates :email, presence: true
-    validates :phone_number, presence: true
-    validates :subject, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 2 }
-    validates :message, presence: true
+    # validates :name, presence: true
+    # validates :email, presence: true
+    # validates :phone_number, presence: true
+    # validates :subject, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 2 }
+    # validates :message, presence: true
 end

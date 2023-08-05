@@ -10,13 +10,10 @@ Rails.application.configure do
   #   }
   
   # # ログの出力先を標準エラー出力にする設定例
-  # config.logger = ActiveSupport::Logger.new(STDERR)
+  config.logger = ActiveSupport::Logger.new(STDOUT)
   
   # # プリコンパイル済みアセットを提供するようにする設定例
   # config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
-  
-  # # SSL/TLSの強制設定例
-  # config.force_ssl = true
   
   # # キャッシュストアの設定例
   # config.cache_store = :redis_cache_store, {
@@ -24,8 +21,13 @@ Rails.application.configure do
   #   namespace: 'myapp_cache',
   #   expires_in: 1.day
   # }
-
+  # config.force_ssl = true # 全ての通信のhttps化　SSL/TLSの強制設定
+  config.action_controller.asset_host = 'https://portfolio-box.jp'
+  config.action_controller.default_url_options = { protocol: 'https' }
   config.action_mailer.default_url_options = { protocol: 'https', host:'portfolio-box.jp'}
+  config.action_controller.forgery_protection_origin_check = false
+  # config.ssl_options = { redirect: { exclude: -> request { request.headers['X-Forwarded-Proto'] == 'https' } } }
+
 
   config.action_mailer.delivery_method = :smtp
 
@@ -40,7 +42,6 @@ Rails.application.configure do
     authentication: :plain,
     enable_starttls_auto: true
   }
-  # config.action_mailer.default_url_options = { host: 'example.com' }
   
   # # キャッシュの設定例
   # config.cache_classes = true

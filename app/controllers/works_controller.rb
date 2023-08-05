@@ -12,7 +12,6 @@ class WorksController < ApplicationController
 
   # GET /works/1 or /works/1.json
   def show
-    # logger.debug(session.inspect)
     @work = Work.find(params[:id])
     @works = Work.all
     @cart_work = CartWork.new
@@ -20,7 +19,7 @@ class WorksController < ApplicationController
     if logged_in?
       @cart_works = CartWork.where(cart_id: current_user.cart.id)
       @cart = current_user.cart
-      @cart_works_view = @cart.cart_works # associationで関連するCartWorkを取得
+      @cart_works_view = @cart.cart_works
       @works_view = @cart_works_view.map(&:work) # CartWorkに紐づくWorkを取得
     else
       if session[:cart_id].nil?
