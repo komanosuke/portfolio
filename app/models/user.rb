@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
-    validates :password, presence: true, #空白を許可しない
-                        length: {minimum: 8}, #最低8文字必要とする
+    validates :password, presence: true,
+                        length: {minimum: 8, maximum: 20},
                         on: :create
     validates :email, presence: true,
                         length: { maximum: 255 },

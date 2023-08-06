@@ -22,11 +22,13 @@ Rails.application.configure do
   #   expires_in: 1.day
   # }
   # config.force_ssl = true # 全ての通信のhttps化　SSL/TLSの強制設定
+  # config.ssl_options = { redirect: { exclude: -> request { request.headers['X-Forwarded-Proto'] == 'https' } } }
+
+  # 以下４つhttpsで設定
   config.action_controller.asset_host = 'https://portfolio-box.jp'
   config.action_controller.default_url_options = { protocol: 'https' }
   config.action_mailer.default_url_options = { protocol: 'https', host:'portfolio-box.jp'}
   config.action_controller.forgery_protection_origin_check = false
-  # config.ssl_options = { redirect: { exclude: -> request { request.headers['X-Forwarded-Proto'] == 'https' } } }
 
 
   config.action_mailer.delivery_method = :smtp

@@ -7,7 +7,7 @@
                 <%= f.text_field :name, required: true %>
             </div>
             <div class="form-group">
-                <label for="name">アカウントID（必須）</label>
+                <label for="name">アカウントID（必須）※登録後、先頭に@がつきます</label>
                 <%= f.text_field :username, required: true %>
             </div>
             <div class="form-group">
@@ -15,8 +15,8 @@
                 <%= f.email_field :email, required: true %>
             </div>
             <div class="form-group">
-                <label for="password">パスワード（必須）</label>
-                <%= f.password_field :password, required: true %>
+                <label for="password">パスワード（必須）※8文字以上20文字以下</label>
+                <%= f.password_field :password, required: true, minlength: 8, maxlength: 20 %>
             </div>
             <div class="form-group">
                 <label for="zip">郵便番号（必須）</label>

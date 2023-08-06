@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_user, only: %i[ show edit update destroy ]
-    before_action :logged_in_user, except: [:new, :confirm, :back, :success]
+    before_action :logged_in_user, except: [:new, :create, :confirm, :back, :success]
     before_action :guest_login_check, only: %i[ edit update destroy ]
     # GET /users or /users.json
     def index
@@ -32,13 +32,12 @@ class UsersController < ApplicationController
                 StudyRecord.create(user_id: @user.id)
                 Lifecost.create(user_id: @user.id)
                 UserMailer.account_activation(@user).deliver_now
+                p 'USER CREATED'
                 flash[:notice] = "アカウント仮登録が完了しました！以下の手続きに従って下さい。"
-                @user.update(address: @user.prefecture + @user.city + @user.street)
-                format.html { render :success, notice: "User was successfully created." }
+                @user.update(address: @user.prefecture + @user.city + @user.street, username: '@' + @user.username)
+                format.html { render :success }
             else
                 flash.now[:alert] = "作成に失敗しました"
-                format.html { render :new, status: :unprocessable_entity }
-                format.json { render json: @user.errors, status: :unprocessable_entity }
             end
         end
     end
@@ -63,8 +62,8 @@ class UsersController < ApplicationController
         @user.destroy
 
         respond_to do |format|
-        format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-        format.json { head :no_content }
+            format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+            format.json { head :no_content }
         end
     end
 

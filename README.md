@@ -1,33 +1,6 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-
 # portfolio アプリケーション
 * ポートフォリオとして作成したwebアプリ群を一つにまとめたサイトです。
-* URL
+* URL: https://portfolio-box.jp
 * アカウントを作成しなくても、ヘッダーの「log in」ボタンからログインページに移動後ゲストログインができます。メールアドレスの登録が必要ですが、アカウントの新規作成もできます。
 <img width="1008" alt="portfolio_top" src="https://github.com/komanosuke/portfolio/assets/54266017/a85854a5-2408-43de-b057-1870b64882b7">
 
@@ -42,16 +15,19 @@ Things you may want to cover:
 * ・RSpec
 
 ## データベース
-* ・PostgreSQL
+* ・RDS(MySQL)
 
 ## コンテナ
-* ・Docker, docker-compose(web, nginx)
+* ・Docker, docker-compose(web, nginx) → ECR
 
 ## CI/CD
 * ・CircleCI
 
 ## デプロイ
-* ・Heroku
+* ・ECS, ALB
+
+## AWSの設定管理
+* ・Terraform
 
 ## API
 * ・ChatGPT API
