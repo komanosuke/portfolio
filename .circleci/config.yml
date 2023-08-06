@@ -59,7 +59,7 @@ jobs:
       - run:
           name: Build and Push Rails Docker Image to ECR
           command: |
-            docker build -t portfolio-web -f Dockerfile .
+            docker build --build-arg SECRET_KEY_BASE=${SECRET_KEY_BASE} -t portfolio-web -f Dockerfile .
             docker tag portfolio-web:latest 345762154890.dkr.ecr.us-west-1.amazonaws.com/portfolio-web:latest
             docker push 345762154890.dkr.ecr.us-west-1.amazonaws.com/portfolio-web:latest
       - run:

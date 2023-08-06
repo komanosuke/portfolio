@@ -23,7 +23,7 @@ Rails.application.configure do
   # config.force_ssl = true # 全ての通信のhttps化　SSL/TLSの強制設定
   # config.ssl_options = { redirect: { exclude: -> request { request.headers['X-Forwarded-Proto'] == 'https' } } }
 
-  # 以下４つhttpsで設定
+  # 以下httpsで設定
   config.action_controller.asset_host = 'https://portfolio-box.jp'
   config.action_controller.default_url_options = { protocol: 'https' }
   config.action_mailer.default_url_options = { protocol: 'https', host:'portfolio-box.jp'}
@@ -42,7 +42,6 @@ Rails.application.configure do
     user_name:            ENV['SMTP_USERNAME'],
     password:             ENV['SMTP_PASSWORD'],
     authentication: :plain,
-    enable_starttls_auto: true
   }
   
   # # キャッシュの設定例
