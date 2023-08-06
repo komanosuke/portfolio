@@ -100,4 +100,10 @@ resource "aws_ecs_service" "my_service" {
     security_groups = ["sg-0c44a7442335c9318"]
     assign_public_ip = true
   }
+
+  load_balancer {
+    target_group_arn = "arn:aws:elasticloadbalancing:us-west-1:345762154890:targetgroup/portfolio-tg/a78f079856f8f5d5"
+    container_name   = "nginx"
+    container_port   = 80
+  }
 }
