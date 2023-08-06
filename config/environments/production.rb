@@ -8,7 +8,6 @@ Rails.application.configure do
   #     sender_address: %{"notifier" <notifier@example.com>},
   #     exception_recipients: %w{admin@example.com}
   #   }
-  
   # # ログの出力先を標準エラー出力にする設定例
   config.logger = ActiveSupport::Logger.new(STDOUT)
   
@@ -29,6 +28,7 @@ Rails.application.configure do
   config.action_controller.default_url_options = { protocol: 'https' }
   config.action_mailer.default_url_options = { protocol: 'https', host:'portfolio-box.jp'}
   config.action_controller.forgery_protection_origin_check = false
+  config.secret_key_base = ENV['SECRET_KEY_BASE']
 
 
   config.action_mailer.delivery_method = :smtp
