@@ -6,31 +6,31 @@
 
 # 使用技術
 
-* ・Ruby 3.1.3
-* ・Ruby on Rails 6.1.6.1
-* ・Unicorn
-* ・Nginx
+* Ruby 3.1.3
+* Ruby on Rails 6.1.6.1
+* Unicorn
+* Nginx
 
 ## テスト
-* ・RSpec
+* RSpec
 
 ## データベース
-* ・RDS(MySQL)
+* RDS(MySQL)
 
 ## コンテナ
-* ・Docker, docker-compose(web, nginx) → ECR
+* Docker → ECR 開発環境ではdocker-compose(web, nginx)
 
 ## CI/CD
-* ・CircleCI
+* CircleCI
 
 ## デプロイ
-* ・ECS, ALB
+* ECS, ALB
 
 ## AWSの設定管理
-* ・Terraform
+* Terraform
 
 ## API
-* ・ChatGPT API
+* ChatGPT API
 
 ## ER図
 ![drawio](https://github.com/komanosuke/portfolio/assets/54266017/64141dc0-cbab-409b-9b37-7cdc38037b47)
