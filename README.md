@@ -1,6 +1,6 @@
 # portfolio アプリケーション
 * ポートフォリオとして作成したwebアプリ群を一つにまとめたサイトです。
-* URL: https://portfolio-box.jp
+* URL: https://portfolio-box.jp（現在使えません）
 * アカウントを作成しなくても、ヘッダーの「log in」ボタンからログインページに移動後ゲストログインができます。メールアドレスの登録が必要ですが、アカウントの新規作成もできます。
 <img width="1008" alt="portfolio_top" src="https://github.com/komanosuke/portfolio/assets/54266017/a85854a5-2408-43de-b057-1870b64882b7">
 
