@@ -33,7 +33,7 @@
 * ChatGPT API
 
 ## ER図
-![drawio](https://github.com/komanosuke/portfolio/assets/54266017/64141dc0-cbab-409b-9b37-7cdc38037b47)
+![Image](https://github.com/user-attachments/assets/6d4c0d46-dbf5-4c68-bf51-6f90cc2dd446)
 
 
 # サービス概要
